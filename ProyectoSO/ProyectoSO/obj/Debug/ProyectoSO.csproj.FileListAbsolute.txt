@@ -18,3 +18,23 @@ C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\ProyectoSO\ProyectoSO\obj\Deb
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CoreCompileInputs.cache
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.exe
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.pdb
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe.config
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.pdb
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.AssemblyReference.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.WelcomeForm.resources
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.Properties.Resources.resources
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.GenerateResource.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CoreCompileInputs.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.exe
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.pdb
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe.config
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.pdb
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.AssemblyReference.cache
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.WelcomeForm.resources
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.Properties.Resources.resources
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.GenerateResource.cache
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CoreCompileInputs.cache
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.exe
+C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.pdb

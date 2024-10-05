@@ -28,8 +28,8 @@ namespace ProyectoSO
             labelError.Visible = false;
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9050);
+            IPAddress direc = IPAddress.Parse(IPBox.Text);
+            IPEndPoint ipep = new IPEndPoint(direc, Convert.ToInt32(PortBox.Text));
 
 
             //Creamos el socket 
@@ -61,7 +61,7 @@ namespace ProyectoSO
                 try
                 {
                     server.Connect(ipep);//Intentamos conectar el socket
-                    this.BackColor = Color.Green;
+                    this.BackColor = Color.LightGreen;
 
 
                     if (puntos_verificacion == 4)
@@ -79,7 +79,7 @@ namespace ProyectoSO
 
                         if (mensaje == "1")
                         {
-                            MessageBox.Show("Usuario creado satisfactoriamente. Puede iniciar sesión");
+                            MessageBox.Show("Usuario creado satisfactoriamente.");
                         }
                         else if (mensaje == "2")
                         {
@@ -97,6 +97,7 @@ namespace ProyectoSO
                     // Nos desconectamos
                     server.Shutdown(SocketShutdown.Both);
                     server.Close();
+                    this.BackColor = Color.White;
 
 
 
@@ -114,6 +115,113 @@ namespace ProyectoSO
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (SelectPlayers.Checked) 
+            {
+                // Quiere saber la longitud
+                string mensaje = "3/"+gameBox.Text;
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
 
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show("The players selected for a game are:\n" + mensaje);
+            }
+            else if (Puntuation.Checked)
+            {
+                // Quiere saber si el nombre es bonito
+                string mensaje = "4/" + gameBox.Text;
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show("The points of the game are:\n" + mensaje);
+            }
+            else if (GamesPlayer.Checked) 
+            {
+                // Quiere saber si el nombre es bonito
+                string mensaje = "5/" + IDPlayerBox.Text;
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show("The player played in games:\n" + mensaje);
+            }
+        }
+
+        private void LogIn_Button_Click(object sender, EventArgs e)
+        {
+            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+            //al que deseamos conectarnos
+            IPAddress direc = IPAddress.Parse(IPBox.Text);
+            IPEndPoint ipep = new IPEndPoint(direc, Convert.ToInt32(PortBox.Text));
+
+
+            //Creamos el socket 
+            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                server.Connect(ipep);//Intentamos conectar el socket
+                this.BackColor = Color.LightGreen;
+                MessageBox.Show("Te has conectado al servidor.");
+            }
+            catch (SocketException)
+            {
+                //Si hay excepcion imprimimos error y salimos del programa con return 
+                MessageBox.Show("No se ha podido conectar con el servidor.");
+                return;
+            }
+            // Quiere saber la longitud
+            string mensaje = "2/" + Username_TextBox.Text + "/" + Password_TextBox.Text;
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            //MessageBox.Show(mensaje);
+
+        }
+
+        private void Disconnect_bttn_Click(object sender, EventArgs e)
+        {
+            // Quiere saber si el nombre es bonito
+            string mensaje = "6/";
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            this.BackColor = Color.White;
+            MessageBox.Show("Te has desconectado del servidor.");
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

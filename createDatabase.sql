@@ -64,6 +64,6 @@ CREATE TABLE Chat (
 CREATE TABLE Configuration (
 	Version_ID INT(32) NOT NULL AUTO_INCREMENT,
 	Mandatory INT(8) NOT NULL,
-	Time_Stampt VARCHAR(255) NOT NULL,
+	Time_Stamp VARCHAR(255) NOT NULL,
 	PRIMARY KEY(Version_ID)
 );
