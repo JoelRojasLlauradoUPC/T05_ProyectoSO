@@ -2,4 +2,6 @@
 "Multijuegos" 
 "Versi¢n 0.1 generada por Joel Rojas" 
 'Versi¢n 02 generada por Joel Rojas' 
-"Versi¢n v03 generada por Judit Martinez, Alex Fernandez y Joel Rojas" 
+"Versi¢n v03 generada por Judit Martinez Joel Rojas" 
+"Versi¢n v03 verificada por ·lex Fern ndez" 
+"Versi¢n v03 verificada por Alex Fernandez" 
