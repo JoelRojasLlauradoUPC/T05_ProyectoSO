@@ -38,6 +38,16 @@ C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\Proy
 C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CoreCompileInputs.cache
 C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.exe
 C:\Users\joelr\Documents\UNI\SO\Project_TESTS\T05_ProyectoSO\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.pdb
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe.config
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.pdb
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.AssemblyReference.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.WelcomeForm.resources
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.Properties.Resources.resources
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.GenerateResource.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CoreCompileInputs.cache
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.exe
+C:\Users\judit\Documents\3r CARRERA\5è QUATRI\SO\Project T5\T05_ProyectoSO\T05_ProyectoSO-03-dev\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.pdb
 C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe.config
 C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.exe
 C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\ProyectoSO.pdb

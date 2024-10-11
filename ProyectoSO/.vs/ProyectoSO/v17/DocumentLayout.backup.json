@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\proyectoso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|solutionrelative:proyectoso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|c:\\users\\usuario\\onedrive\\escritorio\\project_so_t5\\t05_proyectoso\\proyectoso\\proyectoso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|solutionrelative:proyectoso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,20 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\Form1.cs",
               "RelativeDocumentMoniker": "ProyectoSO\\Form1.cs",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\Form1.cs",
               "RelativeToolTip": "ProyectoSO\\Form1.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgBAAB0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T09:05:13.064Z",
+              "WhenOpened": "2024-10-11T18:29:56.758Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\Form1.cs",
+              "RelativeDocumentMoniker": "ProyectoSO\\Form1.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ProyectoSO\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T18:25:40.043Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

@@ -2,7 +2,6 @@
 "Multijuegos" 
 "Version 0.1 generada por Joel Rojas" 
 'Version 02 generada por Joel Rojas' 
-"Version v03 generada por Judit Martinez Joel Rojas"  
-"Version v03 verificada por Alex Fernandez" 
-"Version v03 comunicada por Ignasi Navas"
-URL: https://youtu.be/rW5CuYcPO5E
+"Version v03 generada por Judit Martinez, Alex Fernandez y Joel Rojas" 
+"Version v2 generada por Ignasi Navas y Judit Martinez"
+"Version v3 generada por Alex Fernandez"

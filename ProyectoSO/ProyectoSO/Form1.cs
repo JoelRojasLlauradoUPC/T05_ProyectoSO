@@ -15,7 +15,6 @@ namespace ProyectoSO
 {
     public partial class WelcomeForm : Form
     {
-
         Socket server;
 
         public WelcomeForm()
@@ -23,16 +22,28 @@ namespace ProyectoSO
             InitializeComponent();
         }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------- REGISTER + LOG IN + CONNECTION / DISCONNECTION SERVER ----------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
         private void Register_Button_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: Register_Button_Click                                                                           |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Handles the user registration process. If the required fields are filled and valid, it       |
+        // | connects to the server via a socket, sends the registration request, and processes the server's response. |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output: Displays a success or error message depending on whether or not the user can be registered.       |
+        // |-----------------------------------------------------------------------------------------------------------|
         {
             labelError.Visible = false;
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
+            // We create an IPEndPoint with the server's IP address and the server port we want to connect to
             IPAddress direc = IPAddress.Parse(IPBox.Text);
             IPEndPoint ipep = new IPEndPoint(direc, Convert.ToInt32(PortBox.Text));
 
-
-            //Creamos el socket 
+            // We create the socket
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             int puntos_verificacion = 0;
             if (UserRegisterBox.Text != "")
@@ -55,57 +66,51 @@ namespace ProyectoSO
                 puntos_verificacion = puntos_verificacion + 1;
             }
 
-            if (puntos_verificacion == 4) //Si nombre de usuario y contraseñas cumplen con los requisitos
+            if (puntos_verificacion == 4) // If the username and passwords meet the requirements
             {
 
                 try
                 {
-                    server.Connect(ipep);//Intentamos conectar el socket
-                    this.BackColor = Color.LightGreen;
-
+                    server.Connect(ipep); // We attempt to connect the socket
 
                     if (puntos_verificacion == 4)
                     {
-                        // Quiere saber la longitud
+                        // Register
                         string mensaje = "1/" + UserRegisterBox.Text + "/" + PassRegisterBox.Text;
-                        // Enviamos al servidor el nombre tecleado
+                        // We send the entered username and password to the server
                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                         server.Send(msg);
 
-                        //Recibimos la respuesta del servidor
+                        // We receive the server's response
                         byte[] msg2 = new byte[80];
                         server.Receive(msg2);
                         mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
                         if (mensaje == "1")
                         {
-                            MessageBox.Show("Usuario creado satisfactoriamente.");
+                            MessageBox.Show("User created successfully.");
                         }
-                        else if (mensaje == "2")
+                        else if (mensaje == "0")
                         {
-                            MessageBox.Show("El nombre de usuario introducido ya se encuentra registrado.");
+                            MessageBox.Show("The entered username is already registered.");
                         }
                         else
                         {
-                            MessageBox.Show("Ha habido un error creando su usuario. Inténtelo más tarde.");
+                            MessageBox.Show("There was an error creating the user. Please try again later.");
                         }
                         
                     }
 
-
-                    // Se terminó el servicio. 
-                    // Nos desconectamos
+                    // The service has ended. Disconnecting.
                     server.Shutdown(SocketShutdown.Both);
                     server.Close();
                     this.BackColor = Color.White;
 
-
-
                 }
                 catch (SocketException)
                 {
-                    //Si hay excepcion imprimimos error y salimos del programa con return 
-                    MessageBox.Show("No he podido conectar con el servidor");
+                    // If there is an exception, an error is printed and the program exits with return. 
+                    MessageBox.Show("Connection to the server failed.");
                     return;
                 }
             }
@@ -115,31 +120,117 @@ namespace ProyectoSO
             }
         }
 
+        private void LogIn_Button_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: LogIn_Button_Click                                                                              |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Handles the user login process. If the connection is successful, it sends the login request  |
+        // | and processes the server's response.                                                                      |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output: Displays a message indicating whether the connection to the server was successful or not.         |
+        // |-----------------------------------------------------------------------------------------------------------|
+        {
+            // We create an IPEndPoint with the server's IP address and the server port we want to connect to
+            IPAddress direc = IPAddress.Parse(IPBox.Text);
+            IPEndPoint ipep = new IPEndPoint(direc, Convert.ToInt32(PortBox.Text));
+
+            // We create the socket
+            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                server.Connect(ipep);// We attempt to connect the socket
+                this.BackColor = Color.LightGreen;
+                MessageBox.Show("Connection to the server successful.");
+            }
+            catch (SocketException)
+            {
+                // If there is an exception, an error is printed and the program exits with return. 
+                MessageBox.Show("Connection to the server failed.");
+                return;
+            }
+
+            // Log In
+            string mensaje = "2/" + Username_TextBox.Text + "/" + Password_TextBox.Text;
+            // We send the entered username and password to the server
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // We receive the server's response
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+        }
+
+        private void Disconnect_bttn_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: Disconnect_bttn_Click                                                                           |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Handles the user disconnect process. It sends a request to the server to disconnect the user |
+        // | and processes the server's response.                                                                      |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output: Displays a message indicating the user has been disconnected from the server.                     |
+        // |-----------------------------------------------------------------------------------------------------------|
+        {
+            // Disconnect
+            string mensaje = "6/";
+            // We send just the code of the query to the server
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // We receive the server's response
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            this.BackColor = Color.White;
+            MessageBox.Show("The user has disconnected from the server.");
+        }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------- QUERIES --------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
         private void button2_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: button2_Click                                                                                   |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Handles different queries based on user input. It sends a request to the server based on the |
+        // | selected option and processes the server's response.                                                      |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output: Displays a message with the information retrieved from the server based on the selected query.    |
+        // |-----------------------------------------------------------------------------------------------------------|
         {
             if (SelectPlayers.Checked) 
             {
-                // Quiere saber la longitud
-                string mensaje = "3/"+gameBox.Text;
-                // Enviamos al servidor el nombre tecleado
+                // Select the players of a game
+                string mensaje = "3/" + gameBox.Text;
+                // We send the entered game to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+                // We receive the server's response
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show("The players selected for a game are:\n" + mensaje);
+                MessageBox.Show("The players taking part in the game are:\n" + mensaje);
             }
             else if (Puntuation.Checked)
             {
-                // Quiere saber si el nombre es bonito
+                // See the points of a game
                 string mensaje = "4/" + gameBox.Text;
-                // Enviamos al servidor el nombre tecleado
+                // We send the entered game to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+                // We receive the server's response
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
@@ -147,81 +238,44 @@ namespace ProyectoSO
             }
             else if (GamesPlayer.Checked) 
             {
-                // Quiere saber si el nombre es bonito
+                // See games played by a player
                 string mensaje = "5/" + IDPlayerBox.Text;
-                // Enviamos al servidor el nombre tecleado
+                // We send the entered player to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                //Recibimos la respuesta del servidor
+                // We receive the server's response
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show("The player played in games:\n" + mensaje);
+                MessageBox.Show("The player took part in games:\n" + mensaje);
             }
         }
 
-        private void LogIn_Button_Click(object sender, EventArgs e)
+        private void listPlayers_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: listPlayers_Click                                                                               |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: It sends a request to the server to retrieve the current list of players connected and       |
+        // | displays it in a message box.                                                                             |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output: Displays a message box containing the list of players received from the server.                   |
+        // |-----------------------------------------------------------------------------------------------------------|
         {
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse(IPBox.Text);
-            IPEndPoint ipep = new IPEndPoint(direc, Convert.ToInt32(PortBox.Text));
-
-
-            //Creamos el socket 
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                server.Connect(ipep);//Intentamos conectar el socket
-                this.BackColor = Color.LightGreen;
-                MessageBox.Show("Te has conectado al servidor.");
-            }
-            catch (SocketException)
-            {
-                //Si hay excepcion imprimimos error y salimos del programa con return 
-                MessageBox.Show("No se ha podido conectar con el servidor.");
-                return;
-            }
-            // Quiere saber la longitud
-            string mensaje = "2/" + Username_TextBox.Text + "/" + Password_TextBox.Text;
-            // Enviamos al servidor el nombre tecleado
+            // Show the list of players
+            string mensaje = "7/";
+            // We send just the code of the query to the server
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
-            //Recibimos la respuesta del servidor
+            // We receive the server's response
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            //MessageBox.Show(mensaje);
-
-        }
-
-        private void Disconnect_bttn_Click(object sender, EventArgs e)
-        {
-            // Quiere saber si el nombre es bonito
-            string mensaje = "6/";
-            // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            //Recibimos la respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-            this.BackColor = Color.White;
-            MessageBox.Show("Te has desconectado del servidor.");
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            MessageBox.Show("List of Players:\n" + mensaje);
         }
     }
 }

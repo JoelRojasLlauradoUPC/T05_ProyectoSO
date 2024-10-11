@@ -31,6 +31,7 @@
             this.Username_TextBox = new System.Windows.Forms.TextBox();
             this.Password_TextBox = new System.Windows.Forms.TextBox();
             this.LogIn_groupBox = new System.Windows.Forms.GroupBox();
+            this.Disconnect_bttn = new System.Windows.Forms.Button();
             this.LogIn_Button = new System.Windows.Forms.Button();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -57,12 +58,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.IDPlayerBox = new System.Windows.Forms.TextBox();
-            this.Disconnect_bttn = new System.Windows.Forms.Button();
             this.IPBox = new System.Windows.Forms.TextBox();
             this.PortBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listPlayers = new System.Windows.Forms.Button();
             this.LogIn_groupBox.SuspendLayout();
             this.Register_groupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,7 +77,6 @@
             this.Username_TextBox.Name = "Username_TextBox";
             this.Username_TextBox.Size = new System.Drawing.Size(164, 22);
             this.Username_TextBox.TabIndex = 0;
-            this.Username_TextBox.Text = "Joroll";
             // 
             // Password_TextBox
             // 
@@ -85,7 +85,6 @@
             this.Password_TextBox.PasswordChar = '*';
             this.Password_TextBox.Size = new System.Drawing.Size(164, 22);
             this.Password_TextBox.TabIndex = 1;
-            this.Password_TextBox.Text = "123";
             // 
             // LogIn_groupBox
             // 
@@ -100,7 +99,17 @@
             this.LogIn_groupBox.Size = new System.Drawing.Size(239, 283);
             this.LogIn_groupBox.TabIndex = 2;
             this.LogIn_groupBox.TabStop = false;
-            this.LogIn_groupBox.Text = "LogIn";
+            this.LogIn_groupBox.Text = "Log In";
+            // 
+            // Disconnect_bttn
+            // 
+            this.Disconnect_bttn.Location = new System.Drawing.Point(35, 214);
+            this.Disconnect_bttn.Name = "Disconnect_bttn";
+            this.Disconnect_bttn.Size = new System.Drawing.Size(164, 23);
+            this.Disconnect_bttn.TabIndex = 16;
+            this.Disconnect_bttn.Text = "Disconnect";
+            this.Disconnect_bttn.UseVisualStyleBackColor = true;
+            this.Disconnect_bttn.Click += new System.EventHandler(this.Disconnect_bttn_Click);
             // 
             // LogIn_Button
             // 
@@ -223,7 +232,7 @@
             // 
             this.GamesPlayer.AutoSize = true;
             this.GamesPlayer.Location = new System.Drawing.Point(15, 99);
-            this.GamesPlayer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GamesPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.GamesPlayer.Name = "GamesPlayer";
             this.GamesPlayer.Size = new System.Drawing.Size(213, 20);
             this.GamesPlayer.TabIndex = 12;
@@ -235,19 +244,19 @@
             // 
             this.Puntuation.AutoSize = true;
             this.Puntuation.Location = new System.Drawing.Point(15, 71);
-            this.Puntuation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Puntuation.Margin = new System.Windows.Forms.Padding(4);
             this.Puntuation.Name = "Puntuation";
-            this.Puntuation.Size = new System.Drawing.Size(201, 20);
+            this.Puntuation.Size = new System.Drawing.Size(176, 20);
             this.Puntuation.TabIndex = 10;
             this.Puntuation.TabStop = true;
-            this.Puntuation.Text = "See the puntuation of a game";
+            this.Puntuation.Text = "See the points of a game";
             this.Puntuation.UseVisualStyleBackColor = true;
             // 
             // SelectPlayers
             // 
             this.SelectPlayers.AutoSize = true;
             this.SelectPlayers.Location = new System.Drawing.Point(15, 43);
-            this.SelectPlayers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SelectPlayers.Margin = new System.Windows.Forms.Padding(4);
             this.SelectPlayers.Name = "SelectPlayers";
             this.SelectPlayers.Size = new System.Drawing.Size(198, 20);
             this.SelectPlayers.TabIndex = 11;
@@ -258,7 +267,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(108, 145);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 13;
@@ -282,7 +291,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 77);
+            this.label4.Location = new System.Drawing.Point(13, 73);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 16);
             this.label4.TabIndex = 12;
@@ -290,14 +299,14 @@
             // 
             // pointsBox
             // 
-            this.pointsBox.Location = new System.Drawing.Point(107, 77);
+            this.pointsBox.Location = new System.Drawing.Point(107, 73);
             this.pointsBox.Name = "pointsBox";
             this.pointsBox.Size = new System.Drawing.Size(164, 22);
             this.pointsBox.TabIndex = 11;
             // 
             // gameBox
             // 
-            this.gameBox.Location = new System.Drawing.Point(107, 124);
+            this.gameBox.Location = new System.Drawing.Point(107, 119);
             this.gameBox.Name = "gameBox";
             this.gameBox.Size = new System.Drawing.Size(164, 22);
             this.gameBox.TabIndex = 13;
@@ -314,7 +323,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 124);
+            this.label1.Location = new System.Drawing.Point(13, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 16);
             this.label1.TabIndex = 14;
@@ -360,16 +369,6 @@
             this.IDPlayerBox.Size = new System.Drawing.Size(164, 22);
             this.IDPlayerBox.TabIndex = 15;
             // 
-            // Disconnect_bttn
-            // 
-            this.Disconnect_bttn.Location = new System.Drawing.Point(35, 214);
-            this.Disconnect_bttn.Name = "Disconnect_bttn";
-            this.Disconnect_bttn.Size = new System.Drawing.Size(164, 23);
-            this.Disconnect_bttn.TabIndex = 16;
-            this.Disconnect_bttn.Text = "Disconnect";
-            this.Disconnect_bttn.UseVisualStyleBackColor = true;
-            this.Disconnect_bttn.Click += new System.EventHandler(this.Disconnect_bttn_Click);
-            // 
             // IPBox
             // 
             this.IPBox.Location = new System.Drawing.Point(47, 61);
@@ -377,7 +376,6 @@
             this.IPBox.Size = new System.Drawing.Size(119, 22);
             this.IPBox.TabIndex = 16;
             this.IPBox.Text = "192.168.56.102";
-            this.IPBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // PortBox
             // 
@@ -385,8 +383,7 @@
             this.PortBox.Name = "PortBox";
             this.PortBox.Size = new System.Drawing.Size(119, 22);
             this.PortBox.TabIndex = 17;
-            this.PortBox.Text = "4247";
-            this.PortBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.PortBox.Text = "9060";
             // 
             // groupBox3
             // 
@@ -401,15 +398,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Connection Manager";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(22, 16);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "IP:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -419,11 +407,31 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Port:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(22, 16);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "IP:";
+            // 
+            // listPlayers
+            // 
+            this.listPlayers.Location = new System.Drawing.Point(651, 272);
+            this.listPlayers.Name = "listPlayers";
+            this.listPlayers.Size = new System.Drawing.Size(221, 33);
+            this.listPlayers.TabIndex = 19;
+            this.listPlayers.Text = "Show the list of players";
+            this.listPlayers.UseVisualStyleBackColor = true;
+            this.listPlayers.Click += new System.EventHandler(this.listPlayers_Click);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1444, 569);
+            this.Controls.Add(this.listPlayers);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -482,6 +490,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button listPlayers;
     }
 }
 
