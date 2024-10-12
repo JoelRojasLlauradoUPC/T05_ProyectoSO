@@ -15,16 +15,20 @@ namespace ProyectoSO
 {
     public partial class WelcomeForm : Form
     {
-        Socket server;
+        Socket server; // Server
+        Thread receiveThread; // Thread to receive messages
 
         public WelcomeForm()
         {
             InitializeComponent();
+            receiveThread = new Thread(ReceiveMessages);
+            receiveThread.IsBackground = true;
+
         }
 
-// ---------------------------------------------------------------------------------------------------------------------
-// ---------------------------- REGISTER + LOG IN + CONNECTION / DISCONNECTION SERVER ----------------------------------
-// ---------------------------------------------------------------------------------------------------------------------
+        // ---------------------------------------------------------------------------------------------------------------------
+        // ---------------------------- REGISTER + LOG IN + CONNECTION / DISCONNECTION SERVER ----------------------------------
+        // ---------------------------------------------------------------------------------------------------------------------
         private void Register_Button_Click(object sender, EventArgs e)
         // |-----------------------------------------------------------------------------------------------------------|
         // | Function: Register_Button_Click                                                                           |
@@ -68,7 +72,6 @@ namespace ProyectoSO
 
             if (puntos_verificacion == 4) // If the username and passwords meet the requirements
             {
-
                 try
                 {
                     server.Connect(ipep); // We attempt to connect the socket
@@ -98,12 +101,8 @@ namespace ProyectoSO
                         {
                             MessageBox.Show("There was an error creating the user. Please try again later.");
                         }
-                        
                     }
 
-                    // The service has ended. Disconnecting.
-                    server.Shutdown(SocketShutdown.Both);
-                    server.Close();
                     this.BackColor = Color.White;
 
                 }
@@ -114,6 +113,7 @@ namespace ProyectoSO
                     return;
                 }
             }
+            
             else
             {
                 labelError.Visible = true;
@@ -142,13 +142,12 @@ namespace ProyectoSO
             try
             {
                 server.Connect(ipep);// We attempt to connect the socket
-                this.BackColor = Color.LightGreen;
-                MessageBox.Show("Connection to the server successful.");
+                                     // MessageBox.Show("Connection to the server successful.");
             }
             catch (SocketException)
             {
                 // If there is an exception, an error is printed and the program exits with return. 
-                MessageBox.Show("Connection to the server failed.");
+                // MessageBox.Show("Connection to the server failed.");
                 return;
             }
 
@@ -162,6 +161,25 @@ namespace ProyectoSO
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            if (mensaje == "1")
+            {
+                this.BackColor = Color.LightGreen;
+                MessageBox.Show("Log In successful.");
+                
+                //if (!receiveThread.IsAlive)
+                //{
+                //  receiveThread.Start();
+                //}
+            }
+            else if (mensaje == "0")
+            {
+                MessageBox.Show("Log In failed.");
+            }
+            else
+            {
+                MessageBox.Show("There was an error with the log in. Please try again later.");
+            }
         }
 
         private void Disconnect_bttn_Click(object sender, EventArgs e)
@@ -192,12 +210,12 @@ namespace ProyectoSO
             MessageBox.Show("The user has disconnected from the server.");
         }
 
-// ---------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------- QUERIES --------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------
-        private void button2_Click(object sender, EventArgs e)
+        // ---------------------------------------------------------------------------------------------------------------------
+        // ---------------------------------------------------- QUERIES --------------------------------------------------------
+        // ---------------------------------------------------------------------------------------------------------------------
+        private void enviar_bttn_Click(object sender, EventArgs e)
         // |-----------------------------------------------------------------------------------------------------------|
-        // | Function: button2_Click                                                                                   |
+        // | Function: enviar_bttn_Click                                                                               |
         // |-----------------------------------------------------------------------------------------------------------|
         // | Description: Handles different queries based on user input. It sends a request to the server based on the |
         // | selected option and processes the server's response.                                                      |
@@ -208,7 +226,7 @@ namespace ProyectoSO
         // | Output: Displays a message with the information retrieved from the server based on the selected query.    |
         // |-----------------------------------------------------------------------------------------------------------|
         {
-            if (SelectPlayers.Checked) 
+            if (SelectPlayers.Checked)
             {
                 // Select the players of a game
                 string mensaje = "3/" + gameBox.Text;
@@ -220,7 +238,7 @@ namespace ProyectoSO
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show("The players taking part in the game are:\n" + mensaje);
+                MessageBox.Show("The players of the game are:\n" + mensaje);
             }
             else if (Puntuation.Checked)
             {
@@ -236,7 +254,7 @@ namespace ProyectoSO
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show("The points of the game are:\n" + mensaje);
             }
-            else if (GamesPlayer.Checked) 
+            else if (GamesPlayer.Checked)
             {
                 // See games played by a player
                 string mensaje = "5/" + IDPlayerBox.Text;
@@ -276,6 +294,61 @@ namespace ProyectoSO
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             MessageBox.Show("List of Players:\n" + mensaje);
+        }
+
+        private void SendToAll_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: SendToAll_Click                                                                                 |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Sends a message to all connected players and updates the chat box to reflect the message.    |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                 |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output:                                                                                                   |
+        // |  - Sends the message to the server for broadcast to all players.                                          |
+        // |  - Updates the local chat window with the sent message.                                                   |
+        // |-----------------------------------------------------------------------------------------------------------|
+        {
+            string mensaje = "100/" + Username_TextBox.Text + "/" + MessageTextBox.Text;
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            ChatListBox.Items.Add("Me: " + MessageTextBox.Text);
+            MessageTextBox.Clear();
+        }
+
+        private void ReceiveMessages()
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: ReceiveMessages                                                                                 |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Continuously listens for incoming messages from the server and displays them in the chat.    |
+        // | If an error occurs (e.g., connection loss), it handles the exception and stops listening.                 |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input: None                                                                                               |
+        // | Output:                                                                                                   |
+        // |  - Displays incoming messages in the chat list box (ChatListBox).                                         |
+        // |  - Handles connection errors by showing an error message and exiting the loop.                            |
+        // |-----------------------------------------------------------------------------------------------------------|
+        {
+            while (true)
+            {
+                try
+                {
+                    byte[] msg2 = new byte[80];
+                    int bytesReceived = server.Receive(msg2);
+                    if (bytesReceived > 0)
+                    {
+                        string mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                        Invoke(new Action(() => ChatListBox.Items.Add(mensaje + Environment.NewLine)));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error receiving message: " + ex.Message);
+                    break;
+                }
+            }
         }
     }
 }

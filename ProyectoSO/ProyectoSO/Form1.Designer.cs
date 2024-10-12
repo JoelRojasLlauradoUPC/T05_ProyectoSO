@@ -47,7 +47,7 @@
             this.GamesPlayer = new System.Windows.Forms.RadioButton();
             this.Puntuation = new System.Windows.Forms.RadioButton();
             this.SelectPlayers = new System.Windows.Forms.RadioButton();
-            this.button2 = new System.Windows.Forms.Button();
+            this.enviar_bttn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pointsBox = new System.Windows.Forms.TextBox();
@@ -64,6 +64,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listPlayers = new System.Windows.Forms.Button();
+            this.SendToAll = new System.Windows.Forms.Button();
+            this.MessageTextBox = new System.Windows.Forms.TextBox();
+            this.ChatListBox = new System.Windows.Forms.ListBox();
             this.LogIn_groupBox.SuspendLayout();
             this.Register_groupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -264,21 +267,21 @@
             this.SelectPlayers.Text = "Select the players of a game";
             this.SelectPlayers.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // enviar_bttn
             // 
-            this.button2.Location = new System.Drawing.Point(108, 145);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Enviar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.enviar_bttn.Location = new System.Drawing.Point(108, 145);
+            this.enviar_bttn.Margin = new System.Windows.Forms.Padding(4);
+            this.enviar_bttn.Name = "enviar_bttn";
+            this.enviar_bttn.Size = new System.Drawing.Size(100, 28);
+            this.enviar_bttn.TabIndex = 13;
+            this.enviar_bttn.Text = "Accept";
+            this.enviar_bttn.UseVisualStyleBackColor = true;
+            this.enviar_bttn.Click += new System.EventHandler(this.enviar_bttn_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SelectPlayers);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.enviar_bttn);
             this.groupBox1.Controls.Add(this.Puntuation);
             this.groupBox1.Controls.Add(this.GamesPlayer);
             this.groupBox1.Location = new System.Drawing.Point(584, 23);
@@ -426,11 +429,43 @@
             this.listPlayers.UseVisualStyleBackColor = true;
             this.listPlayers.Click += new System.EventHandler(this.listPlayers_Click);
             // 
+            // SendToAll
+            // 
+            this.SendToAll.Location = new System.Drawing.Point(670, 377);
+            this.SendToAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SendToAll.Name = "SendToAll";
+            this.SendToAll.Size = new System.Drawing.Size(173, 41);
+            this.SendToAll.TabIndex = 20;
+            this.SendToAll.Text = "Send Message";
+            this.SendToAll.UseVisualStyleBackColor = true;
+            this.SendToAll.Click += new System.EventHandler(this.SendToAll_Click);
+            // 
+            // MessageTextBox
+            // 
+            this.MessageTextBox.Location = new System.Drawing.Point(670, 340);
+            this.MessageTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MessageTextBox.Name = "MessageTextBox";
+            this.MessageTextBox.Size = new System.Drawing.Size(377, 22);
+            this.MessageTextBox.TabIndex = 21;
+            // 
+            // ChatListBox
+            // 
+            this.ChatListBox.FormattingEnabled = true;
+            this.ChatListBox.ItemHeight = 16;
+            this.ChatListBox.Location = new System.Drawing.Point(1083, 334);
+            this.ChatListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChatListBox.Name = "ChatListBox";
+            this.ChatListBox.Size = new System.Drawing.Size(320, 196);
+            this.ChatListBox.TabIndex = 22;
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1444, 569);
+            this.Controls.Add(this.ChatListBox);
+            this.Controls.Add(this.MessageTextBox);
+            this.Controls.Add(this.SendToAll);
             this.Controls.Add(this.listPlayers);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -450,6 +485,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -473,7 +509,7 @@
         private System.Windows.Forms.RadioButton GamesPlayer;
         private System.Windows.Forms.RadioButton Puntuation;
         private System.Windows.Forms.RadioButton SelectPlayers;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button enviar_bttn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox pointsBox;
@@ -491,6 +527,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button listPlayers;
+        private System.Windows.Forms.Button SendToAll;
+        private System.Windows.Forms.TextBox MessageTextBox;
+        private System.Windows.Forms.ListBox ChatListBox;
     }
 }
 
