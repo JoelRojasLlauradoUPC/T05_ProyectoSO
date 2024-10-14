@@ -6,3 +6,4 @@
 "Version v2 generada por Ignasi Navas y Judit Martinez"
 "Version v3 generada por Alex Fernandez"
 "Versi√≥n v4 generada por Judit Martinez, Ignasi Navas y Alex Fernandez""Versi¢n v3.2-dev generada por Joel Rojas Llaurad¢" 
+"Versi¢n 3.4-dev generada por Joel Rojas Llaurad¢" 
