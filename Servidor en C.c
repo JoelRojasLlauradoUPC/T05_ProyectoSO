@@ -13,6 +13,8 @@
 int i;
 int sockets[100];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int dice1;
+int dice2;
 
 // DECLARATION OF STRUCTURES FOR THE LIST OF CLIENTS
 typedef struct {
@@ -125,9 +127,13 @@ void DameConectados(ListaConectados *lista, char conectados[300]) {
 // | Output:                                                                                                   |
 // |  - The string will contain the number of connected clients, followed by the client names.	    	       |
 // |-----------------------------------------------------------------------------------------------------------|
-	sprintf(conectados, "%d", lista->num);
+	conectados[0] = '\0';
+	// sprintf(conectados, "%d\n", lista->num);
 	for (int i = 0; i < lista->num; i++) {
-		sprintf(conectados, "%s/%s", conectados, lista->conectados[i].nombre);
+		if (i > 0) {
+			strcat(conectados, "\n");
+		}
+		strcat(conectados, lista->conectados[i].nombre);
 	}
 }
 
@@ -146,16 +152,28 @@ void EnviarATodos(ListaConectados *lista, char *mensaje, int emisor_socket) {
 // | Output:		                                                                                           |
 // |  - Sends the message to all clients.			                                                           |
 // |-----------------------------------------------------------------------------------------------------------|
+/*	pthread_mutex_lock(&mutex);*/
+/*	for (int i = 0; i < lista->num; i++) {*/
+/*		if (lista->conectados[i].socket != emisor_socket) {*/
+/*			write(lista->conectados[i].socket, mensaje, strlen(mensaje));*/
+/*		}*/
+/*	}*/
+/*	pthread_mutex_unlock(&mutex);*/
+	
 	pthread_mutex_lock(&mutex);
 	for (int i = 0; i < lista->num; i++) {
 		if (lista->conectados[i].socket != emisor_socket) {
-			write(lista->conectados[i].socket, mensaje, strlen(mensaje));
+			// Manejar el error en el write
+			if (write(lista->conectados[i].socket, mensaje, strlen(mensaje)) < 0) {
+				perror("Error enviando mensaje");
+				close(lista->conectados[i].socket);
+			}
 		}
 	}
 	pthread_mutex_unlock(&mutex);
 }
 
-void EnviarPrivado(ListaConectados *lista, char *receptor, char *mensaje) {
+/*void EnviarPrivado(ListaConectados *lista, char *receptor, char *mensaje) {*/
 // |-----------------------------------------------------------------------------------------------------------|
 // | Function: Send a private message to a specific connected client                                           |
 // |-----------------------------------------------------------------------------------------------------------|
@@ -169,13 +187,13 @@ void EnviarPrivado(ListaConectados *lista, char *receptor, char *mensaje) {
 // | Output:                                                                                                   |
 // |  - Sends the message to the specified recipient if they are found in the connected clients list.          |
 // |-----------------------------------------------------------------------------------------------------------|
-	pthread_mutex_lock(&mutex);
-	int pos = DamePosicion(lista, receptor);
-	if (pos != -1) {
-		write(lista->conectados[pos].socket, mensaje, strlen(mensaje));
-	}
-	pthread_mutex_unlock(&mutex);
-}
+/*	pthread_mutex_lock(&mutex);*/
+/*	int pos = DamePosicion(lista, receptor);*/
+/*	if (pos != -1) {*/
+/*		write(lista->conectados[pos].socket, mensaje, strlen(mensaje));*/
+/*	}*/
+/*	pthread_mutex_unlock(&mutex);*/
+/*}*/
 
 
 // DECLARATION OF PARAMETERS FOR THE CONCURRENT SERVER
@@ -225,7 +243,7 @@ void *AtenderCliente (void *socket)
 		printf("Peticion: %s\n", peticion);
 		
 		// Request
-		char *p = strtok( peticion, "/");
+		char *p = strtok(peticion, "/");
 		int codigo = atoi (p);
 		
 		char nombre[25];
@@ -235,9 +253,14 @@ void *AtenderCliente (void *socket)
 		if (codigo !=0)
 		{
 			p = strtok( NULL, "/");
-			strcpy (nombre, p);
-			// Request's code and users' name
-			printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+			if (p != NULL) {
+				strcpy(nombre, p);
+				printf("Código: %d, Nombre: %s\n", codigo, nombre);
+			} 
+			else {
+				printf("Código: %d, sin nombre adicional.\n", codigo);
+				nombre[0] = '\0';
+			}
 		}
 
 		if (codigo == 0) {
@@ -569,9 +592,9 @@ void *AtenderCliente (void *socket)
 		// |-----------------------------------------------------------------------------------------------------------|
 			srand(time(NULL));
 			
-			int dice1 = (rand() % 6) + 1;  // Primer dado
-			int dice2 = (rand() % 6) + 1;  // Segundo dado
-			
+			dice1 = (rand() % 6) + 1;  // First dice
+			dice2 = (rand() % 6) + 1;  // Second dice
+
 			snprintf(respuesta, sizeof(respuesta), "Dice rolls: %d, %d\n", dice1, dice2);
 			
 			// Print the final response
@@ -617,6 +640,45 @@ void *AtenderCliente (void *socket)
 			// Print the final response
 			printf("%s", respuesta);
 		}
+		
+		else if (codigo == 50) {
+		// |-----------------------------------------------------------------------------------------------------------|
+		// | Query: Update token's position                                                                            |
+		// |-----------------------------------------------------------------------------------------------------------|
+		// | Description: Receives the token's position (1/X/Y/Z/N), where the first number determines the color and   |
+		// |              the remaining numbers are used to create a response with the sum of two random dice rolls.   |
+		// |-----------------------------------------------------------------------------------------------------------|
+		// | Input: 50/1/X/Y/Z/N                                                                                       |
+		// |-----------------------------------------------------------------------------------------------------------|
+		// | Output:                                                                                                   |
+		// |  - Sends a response in the format of Color/X+i/Y+i/Z+i/N+i where i is the sum of the two dice rolls.      |
+		// |-----------------------------------------------------------------------------------------------------------|			
+			char* color;
+			
+			if (strcmp(nombre, "1") == 0) {
+				color = "Red";
+			} else if (strcmp(nombre, "2") == 0) {
+				color = "Blue";
+			} else if (strcmp(nombre, "3") == 0) {
+				color = "Green";
+			} else if (strcmp(nombre, "4") == 0) {
+				color = "Yellow";
+			} else {
+				color = "Invalid";
+			}
+			
+			char* x = strtok(NULL, "/");
+			char* y = strtok(NULL, "/");
+			char* z = strtok(NULL, "/");
+			char* n = strtok(NULL, "/");
+			
+			int sum = dice1 + dice2;
+			
+			snprintf(respuesta, sizeof(respuesta), "%s/%d/%d/%d/%d", color, atoi(x) + sum, atoi(y) + sum, atoi(z) + sum, atoi(n) + sum);
+			
+			// Print the final response
+			printf("%s", respuesta);
+		}
 
 		else if (codigo == 100) {
 		// |-----------------------------------------------------------------------------------------------------------|
@@ -638,11 +700,12 @@ void *AtenderCliente (void *socket)
 			
 			char mensaje_final[512];
 			sprintf(mensaje_final, "%s: %s\n", nombre, mensaje);
-
+			printf("Mensaje final: %s\n", mensaje_final);
+			sprintf(respuesta, mensaje_final);
 			EnviarATodos(&miLista, mensaje_final, sock_conn);
 		} 
 		
-		else if (codigo == 101) {
+/*		else if (codigo == 101) {*/
 		// |-----------------------------------------------------------------------------------------------------------|
 		// | Query: Send a private message to a specified user                                                         |
 		// |-----------------------------------------------------------------------------------------------------------|
@@ -656,18 +719,18 @@ void *AtenderCliente (void *socket)
 		// | Output:                                                                                                   |
 		// |  - Sends a private message to the specified user.                                                         |
 		// |-----------------------------------------------------------------------------------------------------------|
-			char mensaje[100];
-			char receptor[25];
-			p = strtok(NULL, "/");
-			strcpy(receptor, p);
-			p = strtok(NULL, "/");
-			strcpy(mensaje, p);
+/*			char mensaje[100];*/
+/*			char receptor[25];*/
+/*			p = strtok(NULL, "/");*/
+/*			strcpy(receptor, p);*/
+/*			p = strtok(NULL, "/");*/
+/*			strcpy(mensaje, p);*/
 
-			char mensaje_final[512];
-			sprintf(mensaje_final, "%s (privado): %s\n", nombre, mensaje);
+/*			char mensaje_final[512];*/
+/*			sprintf(mensaje_final, "%s (privado): %s\n", nombre, mensaje);*/
 			
-			EnviarPrivado(&miLista, receptor, mensaje_final);
-		}
+/*			EnviarPrivado(&miLista, receptor, mensaje_final);*/
+/*		}*/
 		
 		if (codigo != 0) {
 			// Send response to the client
@@ -677,6 +740,7 @@ void *AtenderCliente (void *socket)
 	
 	// Close connection for this client
 	close(sock_conn);
+	free(s);
 }
 
 
@@ -697,7 +761,7 @@ int main(int argc, char *argv[])
     memset(&serv_adr, 0, sizeof(serv_adr));  // Initialize serv_addr to zero
     serv_adr.sin_family = AF_INET;
     serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);  // Listen on any IP address
-    serv_adr.sin_port = htons(9160);  // Listen on port 9080
+    serv_adr.sin_port = htons(9060);  // Listen on port 9080
     
     if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
         printf ("Error on bind");
@@ -715,9 +779,10 @@ int main(int argc, char *argv[])
         sock_conn = accept(sock_listen, NULL, NULL);
         printf ("Received a connection\n");
 		
-		sockets[i] = sock_conn;
+		int *sock_conn_ptr = malloc(sizeof(int));
+		*sock_conn_ptr = sock_conn;
 		
-		pthread_create (&thread, NULL, AtenderCliente, &sockets[i]);
+		pthread_create(&thread, NULL, AtenderCliente, sock_conn_ptr);
 						
 		i = i+1;   
     }

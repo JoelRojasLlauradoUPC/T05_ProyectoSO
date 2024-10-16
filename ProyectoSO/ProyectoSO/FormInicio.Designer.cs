@@ -68,6 +68,11 @@
             this.MessageTextBox = new System.Windows.Forms.TextBox();
             this.ChatListBox = new System.Windows.Forms.ListBox();
             this.GUI_button = new System.Windows.Forms.Button();
+            this.start_chat_bttn = new System.Windows.Forms.Button();
+            this.dado_bttn = new System.Windows.Forms.Button();
+            this.movement_TextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.accept_bttn = new System.Windows.Forms.Button();
             this.LogIn_groupBox.SuspendLayout();
             this.Register_groupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -81,6 +86,7 @@
             this.Username_TextBox.Name = "Username_TextBox";
             this.Username_TextBox.Size = new System.Drawing.Size(164, 22);
             this.Username_TextBox.TabIndex = 0;
+            this.Username_TextBox.Text = "Alex";
             // 
             // Password_TextBox
             // 
@@ -89,6 +95,7 @@
             this.Password_TextBox.PasswordChar = '*';
             this.Password_TextBox.Size = new System.Drawing.Size(164, 22);
             this.Password_TextBox.TabIndex = 1;
+            this.Password_TextBox.Text = "host2";
             // 
             // LogIn_groupBox
             // 
@@ -432,10 +439,10 @@
             // 
             // SendToAll
             // 
-            this.SendToAll.Location = new System.Drawing.Point(670, 377);
+            this.SendToAll.Location = new System.Drawing.Point(670, 448);
             this.SendToAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SendToAll.Name = "SendToAll";
-            this.SendToAll.Size = new System.Drawing.Size(173, 41);
+            this.SendToAll.Size = new System.Drawing.Size(173, 28);
             this.SendToAll.TabIndex = 20;
             this.SendToAll.Text = "Send Message";
             this.SendToAll.UseVisualStyleBackColor = true;
@@ -443,7 +450,7 @@
             // 
             // MessageTextBox
             // 
-            this.MessageTextBox.Location = new System.Drawing.Point(670, 340);
+            this.MessageTextBox.Location = new System.Drawing.Point(670, 407);
             this.MessageTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MessageTextBox.Name = "MessageTextBox";
             this.MessageTextBox.Size = new System.Drawing.Size(377, 22);
@@ -467,13 +474,63 @@
             this.GUI_button.TabIndex = 23;
             this.GUI_button.Text = "Open Game GUI";
             this.GUI_button.UseVisualStyleBackColor = true;
-            this.GUI_button.Click += new System.EventHandler(this.GUI_Button_Click);
+            // 
+            // start_chat_bttn
+            // 
+            this.start_chat_bttn.Location = new System.Drawing.Point(670, 363);
+            this.start_chat_bttn.Name = "start_chat_bttn";
+            this.start_chat_bttn.Size = new System.Drawing.Size(91, 28);
+            this.start_chat_bttn.TabIndex = 24;
+            this.start_chat_bttn.Text = "Chat";
+            this.start_chat_bttn.UseVisualStyleBackColor = true;
+            this.start_chat_bttn.Click += new System.EventHandler(this.start_chat_bttn_Click);
+            // 
+            // dado_bttn
+            // 
+            this.dado_bttn.Location = new System.Drawing.Point(310, 366);
+            this.dado_bttn.Name = "dado_bttn";
+            this.dado_bttn.Size = new System.Drawing.Size(92, 38);
+            this.dado_bttn.TabIndex = 25;
+            this.dado_bttn.Text = "Dice";
+            this.dado_bttn.UseVisualStyleBackColor = true;
+            this.dado_bttn.Click += new System.EventHandler(this.dado_bttn_Click);
+            // 
+            // movement_TextBox
+            // 
+            this.movement_TextBox.Location = new System.Drawing.Point(310, 450);
+            this.movement_TextBox.Name = "movement_TextBox";
+            this.movement_TextBox.Size = new System.Drawing.Size(144, 22);
+            this.movement_TextBox.TabIndex = 26;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(307, 428);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(200, 16);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "To check the movement\'s query:";
+            // 
+            // accept_bttn
+            // 
+            this.accept_bttn.Location = new System.Drawing.Point(345, 478);
+            this.accept_bttn.Name = "accept_bttn";
+            this.accept_bttn.Size = new System.Drawing.Size(84, 29);
+            this.accept_bttn.TabIndex = 28;
+            this.accept_bttn.Text = "Accept";
+            this.accept_bttn.UseVisualStyleBackColor = true;
+            this.accept_bttn.Click += new System.EventHandler(this.accept_bttn_Click);
             // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1444, 569);
+            this.Controls.Add(this.accept_bttn);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.movement_TextBox);
+            this.Controls.Add(this.dado_bttn);
+            this.Controls.Add(this.start_chat_bttn);
             this.Controls.Add(this.GUI_button);
             this.Controls.Add(this.ChatListBox);
             this.Controls.Add(this.MessageTextBox);
@@ -543,6 +600,11 @@
         private System.Windows.Forms.TextBox MessageTextBox;
         private System.Windows.Forms.ListBox ChatListBox;
         private System.Windows.Forms.Button GUI_button;
+        private System.Windows.Forms.Button start_chat_bttn;
+        private System.Windows.Forms.Button dado_bttn;
+        private System.Windows.Forms.TextBox movement_TextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button accept_bttn;
     }
 }
 

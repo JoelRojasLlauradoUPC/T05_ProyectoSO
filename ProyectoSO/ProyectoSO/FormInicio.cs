@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Parchís;
+using System.Collections;
+//using Parchís;
 
 namespace ProyectoSO
 {
@@ -18,14 +19,13 @@ namespace ProyectoSO
     {
         Socket server; // Server
         Thread receiveThread; // Thread to receive messages
+        private bool threadRunning = false;
+        private readonly object socketLock = new object();
 
         public WelcomeForm()
         {
             InitializeComponent();
-            receiveThread = new Thread(ReceiveMessages);
-            receiveThread.IsBackground = true;
-
-        }
+         }
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ---------------------------- REGISTER + LOG IN + CONNECTION / DISCONNECTION SERVER ----------------------------------
@@ -143,12 +143,12 @@ namespace ProyectoSO
             try
             {
                 server.Connect(ipep);// We attempt to connect the socket
-                                     // MessageBox.Show("Connection to the server successful.");
+                // MessageBox.Show("Connection to the server successful.");
             }
             catch (SocketException)
             {
                 // If there is an exception, an error is printed and the program exits with return. 
-                // MessageBox.Show("Connection to the server failed.");
+                MessageBox.Show("Connection to the server failed.");
                 return;
             }
 
@@ -167,11 +167,6 @@ namespace ProyectoSO
             {
                 this.BackColor = Color.LightGreen;
                 MessageBox.Show("Log In successful.");
-                
-                //if (!receiveThread.IsAlive)
-                //{
-                //  receiveThread.Start();
-                //}
             }
             else if (mensaje == "0")
             {
@@ -233,11 +228,18 @@ namespace ProyectoSO
                 string mensaje = "3/" + gameBox.Text;
                 // We send the entered game to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+
+                lock (socketLock)
+                {
+                    server.Send(msg);
+                }
 
                 // We receive the server's response
                 byte[] msg2 = new byte[80];
-                server.Receive(msg2);
+                lock (socketLock)
+                {
+                    server.Receive(msg2);
+                }
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show("The players of the game are:\n" + mensaje);
             }
@@ -247,11 +249,17 @@ namespace ProyectoSO
                 string mensaje = "4/" + gameBox.Text;
                 // We send the entered game to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+                lock (socketLock)
+                {
+                    server.Send(msg);
+                }
 
                 // We receive the server's response
                 byte[] msg2 = new byte[80];
-                server.Receive(msg2);
+                lock (socketLock)
+                {
+                    server.Receive(msg2);
+                }
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show("The points of the game are:\n" + mensaje);
             }
@@ -261,11 +269,17 @@ namespace ProyectoSO
                 string mensaje = "5/" + IDPlayerBox.Text;
                 // We send the entered player to the server
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+                lock (socketLock)
+                {
+                    server.Send(msg);
+                }
 
                 // We receive the server's response
                 byte[] msg2 = new byte[80];
-                server.Receive(msg2);
+                lock (socketLock)
+                {
+                    server.Receive(msg2);
+                }
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show("The player took part in games:\n" + mensaje);
             }
@@ -288,11 +302,17 @@ namespace ProyectoSO
             string mensaje = "7/";
             // We send just the code of the query to the server
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
+            lock (socketLock)
+            {
+                server.Send(msg);
+            }
 
             // We receive the server's response
             byte[] msg2 = new byte[80];
-            server.Receive(msg2);
+            lock (socketLock)
+            {
+                server.Receive(msg2);
+            }
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             MessageBox.Show("List of Players:\n" + mensaje);
         }
@@ -311,13 +331,13 @@ namespace ProyectoSO
         // |  - Updates the local chat window with the sent message.                                                   |
         // |-----------------------------------------------------------------------------------------------------------|
         {
+            // Send a message to all the players
+            // We send just the code of the query to the server
             string mensaje = "100/" + Username_TextBox.Text + "/" + MessageTextBox.Text;
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
-
-            ChatListBox.Items.Add("Me: " + MessageTextBox.Text);
             MessageTextBox.Clear();
-        }
+           }
 
         private void ReceiveMessages()
         // |-----------------------------------------------------------------------------------------------------------|
@@ -332,16 +352,23 @@ namespace ProyectoSO
         // |  - Handles connection errors by showing an error message and exiting the loop.                            |
         // |-----------------------------------------------------------------------------------------------------------|
         {
-            while (true)
+            // Displays the received message
+            while (threadRunning)
             {
                 try
                 {
                     byte[] msg2 = new byte[80];
-                    int bytesReceived = server.Receive(msg2);
-                    if (bytesReceived > 0)
+                    if (server.Poll(1000, SelectMode.SelectRead))
                     {
-                        string mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                        Invoke(new Action(() => ChatListBox.Items.Add(mensaje + Environment.NewLine)));
+                        lock (socketLock)
+                        {
+                            int bytesReceived = server.Receive(msg2);
+                            if (bytesReceived > 0)
+                            {
+                                string mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                                Invoke(new Action(() => ChatListBox.Items.Add(mensaje)));
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -349,14 +376,101 @@ namespace ProyectoSO
                     MessageBox.Show("Error receiving message: " + ex.Message);
                     break;
                 }
+                Thread.Sleep(100);
             }
         }
 
-        private void GUI_Button_Click(object sender, EventArgs e)
+        //private void GUI_Button_Click(object sender, EventArgs e)
+        //{
+            //FormPartida formularioPartida = new FormPartida();  // Aquí corregí el nombre
+            //formularioPartida.Show();
+        //}
+
+        private void start_chat_bttn_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: start_chat_bttn_Click                                                                           |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Manages the thread that listens for incoming messages from the server. If a listening thread |
+        // | is already active, it safely stops it before starting a new one.                                          |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                                |
+        // |  - EventArgs e: The event data.                                                                           |
+        // | Output:                                                                                                   |
+        // |  - Starts a new thread to receive messages if none is currently running.                                  |
+        // |-----------------------------------------------------------------------------------------------------------|
         {
-            FormPartida formularioPartida = new FormPartida();  // Aquí corregí el nombre
-            formularioPartida.Show();
+            // We check if the thread is already running
+            if (receiveThread != null && receiveThread.IsAlive)
+            {
+                // If it is running, we try to stop it
+                threadRunning = false;
+                receiveThread.Join();
+            }
+
+            // We start the new thread
+            receiveThread = new Thread(ReceiveMessages);
+            receiveThread.IsBackground = true;
+            threadRunning = true;
+            receiveThread.Start();
         }
 
+        private void dado_bttn_Click(object sender, EventArgs e)
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Function: dado_bttn_Click                                                                                 |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Description: Sends a request to the server to roll the dice and displays the result in a message box.     |
+        // |-----------------------------------------------------------------------------------------------------------|
+        // | Input:                                                                                                    |
+        // |  - object sender: The source of the event (button click).                                                                |
+        // |  - EventArgs e: Event arguments for the click event.                                                      |
+        // | Output:                                                                                                   |
+        // |  - Displays a message box containing the result of the dice roll received from the server.                |
+        // |-----------------------------------------------------------------------------------------------------------|
+        {
+            // Roll the dice
+            string mensaje = "9/";
+            // We send just the code of the query to the server
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            lock (socketLock)
+            {
+                server.Send(msg);
+            }
+            // We receive the server's response
+            byte[] msg2 = new byte[80];
+            lock (socketLock)
+            {
+                server.Receive(msg2);
+            }
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            MessageBox.Show(mensaje);
+        }
+
+        private void accept_bttn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Update the position of the tokens
+                string mensaje = "50/" + movement_TextBox.Text;
+                // We send the code of the query to the server and the information related to the token's color and position
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                lock (socketLock)
+                {
+                    server.Send(msg);
+                }
+                // We receive the server's response
+                byte[] msg2 = new byte[80];
+                lock (socketLock)
+                {
+                    server.Receive(msg2);
+                }
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show(mensaje);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error receiving message: " + ex.Message);
+            }
+        }
     }
 }
