@@ -101,3 +101,6 @@ C:\Users\navas\OneDrive\Escritorio\SO\SOProyecto\ProyectoSO\ProyectoSO\obj\Debug
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\Parchís.exe
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\Parchís.pdb
 C:\Users\joelr\Documents\UNI\SO\T05_ProyectoSO_Git\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.CopyComplete
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\Parchís.exe
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\bin\Debug\Parchís.pdb
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ProyectoSO\obj\Debug\ProyectoSO.csproj.Up2Date

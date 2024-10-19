@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|c:\\users\\usuario\\onedrive\\escritorio\\project_so_t5\\t05_proyectoso\\proyectoso\\proyectoso\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|solutionrelative:proyectoso\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\proyectoso\\forminicio.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA2D7629-2929-4C45-AA8B-D3283859BEF6}|ProyectoSO\\ProyectoSO.csproj|solutionrelative:proyectoso\\forminicio.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,21 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormInicio.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\FormInicio.Designer.cs",
-              "RelativeDocumentMoniker": "ProyectoSO\\FormInicio.Designer.cs",
-              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\FormInicio.Designer.cs",
-              "RelativeToolTip": "ProyectoSO\\FormInicio.Designer.cs",
-              "ViewState": "AgIAAOEBAAAAAAAAAAAEwO8BAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T14:40:17.331Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -45,7 +28,7 @@
               "RelativeDocumentMoniker": "ProyectoSO\\FormInicio.cs",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\T05_ProyectoSO\\ProyectoSO\\ProyectoSO\\FormInicio.cs",
               "RelativeToolTip": "ProyectoSO\\FormInicio.cs",
-              "ViewState": "AgIAALwBAAAAAAAAAAAgwL8BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALYBAAAAAAAAAAAqwIwBAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-16T14:17:33.554Z",
               "EditorCaption": ""

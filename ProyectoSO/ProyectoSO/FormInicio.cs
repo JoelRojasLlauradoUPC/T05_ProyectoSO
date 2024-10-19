@@ -394,7 +394,7 @@ namespace ProyectoSO
         // | is already active, it safely stops it before starting a new one.                                          |
         // |-----------------------------------------------------------------------------------------------------------|
         // | Input:                                                                                                    |
-        // |  - object sender: The source of the event (button click).                                                                |
+        // |  - object sender: The source of the event (button click).                                                 |
         // |  - EventArgs e: The event data.                                                                           |
         // | Output:                                                                                                   |
         // |  - Starts a new thread to receive messages if none is currently running.                                  |
@@ -422,7 +422,7 @@ namespace ProyectoSO
         // | Description: Sends a request to the server to roll the dice and displays the result in a message box.     |
         // |-----------------------------------------------------------------------------------------------------------|
         // | Input:                                                                                                    |
-        // |  - object sender: The source of the event (button click).                                                                |
+        // |  - object sender: The source of the event (button click).                                                 |
         // |  - EventArgs e: Event arguments for the click event.                                                      |
         // | Output:                                                                                                   |
         // |  - Displays a message box containing the result of the dice roll received from the server.                |

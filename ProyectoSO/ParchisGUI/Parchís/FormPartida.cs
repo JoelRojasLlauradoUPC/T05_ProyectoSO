@@ -402,7 +402,7 @@ namespace Parchís
 
         private void messageSenderButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("HAS PULSADO UN BOTÓN");
+            MessageBox.Show("Host unreachable");
             FinalizarCasillas("1");
             string numeroCasilla = chatInputTextBox.Text;
 

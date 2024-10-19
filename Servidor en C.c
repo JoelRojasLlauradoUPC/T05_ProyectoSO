@@ -114,26 +114,28 @@ int Elimina (ListaConectados *lista, char nombre[20]) {
 	}
 }
 
-void DameConectados(ListaConectados *lista, char conectados[300]) {
+void DameConectados(ListaConectados *lista, char conectados[300], char user[300]) {
 // |-----------------------------------------------------------------------------------------------------------|
 // | Function: DameConectados                                                                                  |
 // |-----------------------------------------------------------------------------------------------------------|
-// | Description: Retrieves the list of connected clients and stores them in a string.		                   |
+// | Description: Retrieves the list of connected clients (excluding the current user).                        |
 // |-----------------------------------------------------------------------------------------------------------|
 // | Input:                                                                                                    |
 // |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char conectados[300]: String buffer where the result will be stored.                                   |
+// |  - char conectados[300]: String buffer where the result will be stored.  								   |
+// |  - const char *username: The username of the client executing the command.								   |
 // |-----------------------------------------------------------------------------------------------------------|
 // | Output:                                                                                                   |
-// |  - The string will contain the number of connected clients, followed by the client names.	    	       |
+// |  - The string will contain the client names, excluding the current user's username.	    	    	   |
 // |-----------------------------------------------------------------------------------------------------------|
 	conectados[0] = '\0';
-	// sprintf(conectados, "%d\n", lista->num);
 	for (int i = 0; i < lista->num; i++) {
-		if (i > 0) {
-			strcat(conectados, "\n");
-		}
+		if (strcmp(lista->conectados[i].nombre, user) != 0) {
+			if (conectados[0] != '\0') {
+				strcat(conectados, "\n");
+			}
 		strcat(conectados, lista->conectados[i].nombre);
+		}
 	}
 }
 
@@ -248,7 +250,7 @@ void *AtenderCliente (void *socket)
 		
 		char nombre[25];
 		char password[25];
-		
+		char username[300];
 		
 		if (codigo !=0)
 		{
@@ -256,6 +258,10 @@ void *AtenderCliente (void *socket)
 			if (p != NULL) {
 				strcpy(nombre, p);
 				printf("Código: %d, Nombre: %s\n", codigo, nombre);
+				if (codigo == 2) {
+					strcpy(username, nombre);
+				}
+					
 			} 
 			else {
 				printf("Código: %d, sin nombre adicional.\n", codigo);
@@ -519,10 +525,17 @@ void *AtenderCliente (void *socket)
 		// | Output:                                                                                                   |
 		// |  - Introduces in 'respuesta' the list of connected clients.                                               |
 		// |-----------------------------------------------------------------------------------------------------------|
+			pthread_mutex_lock( &mutex );
 			char misConectados[512];
-			DameConectados(&miLista, misConectados);
-			strcpy(respuesta, misConectados);
+			DameConectados(&miLista, misConectados, username);
+			if (misConectados[0] != '\0') {
+				strcpy(respuesta, misConectados);
+			}
+			else {
+				strcpy(respuesta, "You are the only player!");
+			}
 			printf("%s\n", respuesta);
+			pthread_mutex_unlock( &mutex);
 		}
 		
 		else if (codigo == 8) {
@@ -761,7 +774,7 @@ int main(int argc, char *argv[])
     memset(&serv_adr, 0, sizeof(serv_adr));  // Initialize serv_addr to zero
     serv_adr.sin_family = AF_INET;
     serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);  // Listen on any IP address
-    serv_adr.sin_port = htons(9060);  // Listen on port 9080
+    serv_adr.sin_port = htons(9080);  // Listen on port 9080
     
     if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
         printf ("Error on bind");

@@ -8,3 +8,13 @@ C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parch�
 C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.exe
 C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.pdb
 C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.FormPartida.resources
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\bin\Debug\Parchís.exe.config
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\bin\Debug\Parchís.exe
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\bin\Debug\Parchís.pdb
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.AssemblyReference.cache
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.FormPartida.resources
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.Properties.Resources.resources
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.GenerateResource.cache
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.exe
+C:\Users\Usuario\OneDrive\Escritorio\PROJECT_SO_T5\T05_ProyectoSO\ProyectoSO\ParchisGUI\Parchís\obj\Debug\Parchís.pdb
