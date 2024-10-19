@@ -472,5 +472,10 @@ namespace ProyectoSO
                 MessageBox.Show("Error receiving message: " + ex.Message);
             }
         }
+
+        private void GUI_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
