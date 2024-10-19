@@ -1,0 +1,10 @@
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\bin\Debug\Parchís.exe.config
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\bin\Debug\Parchís.exe
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\bin\Debug\Parchís.pdb
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.AssemblyReference.cache
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.Properties.Resources.resources
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.GenerateResource.cache
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.csproj.CoreCompileInputs.cache
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.exe
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.pdb
+C:\Users\joelr\Documents\UNI\SO\Project_GUI\ParchisGUI\Parchís\obj\Debug\Parchís.FormPartida.resources

@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
-//using Parchís;
+using Parchís;
 
 namespace ProyectoSO
 {
@@ -475,7 +475,8 @@ namespace ProyectoSO
 
         private void GUI_button_Click(object sender, EventArgs e)
         {
-
+            FormPartida formularioPartida = new FormPartida();  
+            formularioPartida.Show();
         }
     }
 }

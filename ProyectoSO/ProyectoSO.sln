@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSO", "ProyectoSO\ProyectoSO.csproj", "{FA2D7629-2929-4C45-AA8B-D3283859BEF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parchís", "..\..\..\Project_GUI\ParchisGUI\Parchís\Parchís.csproj", "{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parchís", "ParchisGUI\Parchís\Parchís.csproj", "{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

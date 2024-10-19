@@ -10,3 +10,4 @@
 "Versi¢n 3.4-dev generada por Joel Rojas Llaurad¢" 
 "Versi¢n 3.7-dev generada por Judit Martinez y Alex Fernandez" 
 "Versi¢n v3.8-dev generada por Ignasi Navas" 
+"Versi¢n 3.9-dev generada por Joel Rojas Llaurad¢" 
