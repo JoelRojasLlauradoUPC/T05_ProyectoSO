@@ -15,3 +15,5 @@
 "Version v3.12-dev verificada por Ignasi Navas"
 "Version v3.12-dev comunicada por Judit Martinez" 
 URL: https://youtu.be/JC3DqKRNITA
+"Version v3.12-dev Interfaz Gráfica comunicada por Joel Rojas Llauradó"
+URL: https://youtu.be/CyVWJf2snvo
