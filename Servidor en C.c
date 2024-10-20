@@ -257,14 +257,14 @@ void *AtenderCliente (void *socket)
 			p = strtok( NULL, "/");
 			if (p != NULL) {
 				strcpy(nombre, p);
-				printf("Código: %d, Nombre: %s\n", codigo, nombre);
+				printf("C digo: %d, Nombre: %s\n", codigo, nombre);
 				if (codigo == 2) {
 					strcpy(username, nombre);
 				}
 					
 			} 
 			else {
-				printf("Código: %d, sin nombre adicional.\n", codigo);
+				printf("C digo: %d, sin nombre adicional.\n", codigo);
 				nombre[0] = '\0';
 			}
 		}
@@ -597,6 +597,8 @@ void *AtenderCliente (void *socket)
 		// | Query: Generate random dice rolls                                                                         |
 		// |-----------------------------------------------------------------------------------------------------------|
 		// | Description: Generates two random integers simulating dice rolls, with each number ranging from 1 to 6.   |
+		// | With double 1, 2, 3, 4, 5, or 6, you can roll again. If you roll doubles three times in a row, the        | 
+		// | player's most advanced token is sent back home.                                                           |           
 		// |-----------------------------------------------------------------------------------------------------------|
 		// | Input: 9/                                                                                                 |
 		// |-----------------------------------------------------------------------------------------------------------|
@@ -607,9 +609,67 @@ void *AtenderCliente (void *socket)
 			
 			dice1 = (rand() % 6) + 1;  // First dice
 			dice2 = (rand() % 6) + 1;  // Second dice
-
-			snprintf(respuesta, sizeof(respuesta), "Dice rolls: %d, %d\n", dice1, dice2);
 			
+			static int doubleCounter = 0;  // Variable to count doubles
+			
+			if (dice1 == dice2) {
+				doubleCounter++;  // Increment the double counter
+				// If the player rolled doubles three times in a row
+				if (doubleCounter == 3) {
+					snprintf(respuesta, sizeof(respuesta), "You rolled doubles three times in a row. Your most advanced token returns home.\n");
+					
+					// Get the token positions
+					char* x = strtok(NULL, "/");
+					char* y = strtok(NULL, "/");
+					char* z = strtok(NULL, "/");
+					char* n = strtok(NULL, "/");
+					char* color;
+					
+					int posX = atoi(x);
+					int posY = atoi(y);
+					int posZ = atoi(z);
+					int posN = atoi(n);
+					
+					// Identify the most advanced token
+					int max_pos = posX;
+					char most_advanced_token = 'X';
+					if (posY > max_pos) {
+						max_pos = posY;
+						most_advanced_token = 'Y';
+					}
+					if (posZ > max_pos) {
+						max_pos = posZ;
+						most_advanced_token = 'Z';
+					}
+					if (posN > max_pos) {
+						most_advanced_token = 'N';
+					}
+					// Send the most advanced token back to home (position 0)
+					if (most_advanced_token == 'X') {
+						posX = 0;
+					} else if (most_advanced_token == 'Y') {
+						posY = 0;
+					} else if (most_advanced_token == 'Z') {
+						posZ = 0;
+					} else if (most_advanced_token == 'N') {
+						posN = 0;
+					}
+					// Reset the double counter after three consecutive doubles
+					doubleCounter = 0;
+					// Send the updated positions of the tokens
+					snprintf(respuesta, sizeof(respuesta), "%s/%d/%d/%d/%d", color, posX, posY, posZ, posN);
+					
+				} 
+				else {
+					// If the player hasn't rolled doubles three times, allow another roll
+					snprintf(respuesta, sizeof(respuesta), "You rolled doubles: %d, %d. You can roll again.\n", dice1, dice2);
+				}
+			} 
+			else {
+				// If no doubles are rolled, reset the counter
+				doubleCounter = 0;
+				snprintf(respuesta, sizeof(respuesta), "Roll: %d, %d\n", dice1, dice2);
+			}
 			// Print the final response
 			printf("%s", respuesta);
 		}
@@ -774,7 +834,7 @@ int main(int argc, char *argv[])
     memset(&serv_adr, 0, sizeof(serv_adr));  // Initialize serv_addr to zero
     serv_adr.sin_family = AF_INET;
     serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);  // Listen on any IP address
-    serv_adr.sin_port = htons(9080);  // Listen on port 9080
+    serv_adr.sin_port = htons(9060);  // Listen on port 9080
     
     if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
         printf ("Error on bind");

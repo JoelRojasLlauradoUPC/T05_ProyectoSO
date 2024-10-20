@@ -11,4 +11,6 @@
 "Version 3.7-dev generada por Judit Martinez y Alex Fernandez" 
 "Version v3.8-dev generada por Ignasi Navas" 
 "Version 3.9-dev generada por Joel Rojas Llaurado"
-"Version v3.10-dev generada por Judit Martinez y Alex Fernandez" 
+"Version v3.10-dev generada por Judit Martinez y Alex Fernandez"
+"Version v3.10-dev comunicada por Judit Martinez" 
+URL: https://youtu.be/JC3DqKRNITA
