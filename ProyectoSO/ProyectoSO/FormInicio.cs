@@ -475,8 +475,10 @@ namespace ProyectoSO
 
         private void GUI_button_Click(object sender, EventArgs e)
         {
-            FormPartida formularioPartida = new FormPartida();  
+            FormPartida formularioPartida = new FormPartida();
+            formularioPartida.giveCurrentUserData(Username_TextBox.Text);
             formularioPartida.Show();
         }
+
     }
 }
