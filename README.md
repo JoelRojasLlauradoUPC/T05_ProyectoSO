@@ -18,7 +18,7 @@ URL: https://youtu.be/JC3DqKRNITA
 "Version v3.12-dev Interfaz Gráfica comunicada por Joel Rojas Llauradó"
 URL: https://youtu.be/CyVWJf2snvo
 "Version 3.14-dev generada por Joel Rojas Llaurado"
-"Version 3.15-dev generada por Judit Martinez, Ignasi Navas y Alex Fernandez"
+"Version 3.15-dev generada por Ignasi Navas, Judit Martinez y Alex Fernandez"
 "Version v3.15-dev verificada por Judit Martinez"
 "Version v3.15-dev comunicada por Alex Fernandez"
 URL: https://youtu.be/cM8sgKqnaMo
