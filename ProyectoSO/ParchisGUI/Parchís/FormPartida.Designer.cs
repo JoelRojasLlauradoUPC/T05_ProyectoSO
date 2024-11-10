@@ -54,6 +54,31 @@
             this.groupBox_Game = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.gamePanel = new System.Windows.Forms.Panel();
+            this.panel_Bienvenida = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PortBox = new System.Windows.Forms.TextBox();
+            this.IPBox = new System.Windows.Forms.TextBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.Register_groupBox = new System.Windows.Forms.GroupBox();
+            this.labelError = new System.Windows.Forms.Label();
+            this.labelRepeatPassword = new System.Windows.Forms.Label();
+            this.RepeatRegisterBox = new System.Windows.Forms.TextBox();
+            this.Register_Button = new System.Windows.Forms.Button();
+            this.labelPassword2 = new System.Windows.Forms.Label();
+            this.labelUsername1 = new System.Windows.Forms.Label();
+            this.PassRegisterBox = new System.Windows.Forms.TextBox();
+            this.UserRegisterBox = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.LogIn_groupBox = new System.Windows.Forms.GroupBox();
+            this.Disconnect_bttn = new System.Windows.Forms.Button();
+            this.LogIn_Button = new System.Windows.Forms.Button();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.Password_TextBox = new System.Windows.Forms.TextBox();
+            this.Username_TextBox = new System.Windows.Forms.TextBox();
             this.panelCasillas = new System.Windows.Forms.Panel();
             this.fila3 = new System.Windows.Forms.Panel();
             this.baseAmarilla = new System.Windows.Forms.Panel();
@@ -183,37 +208,14 @@
             this.margenSuperior = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ChatReceiverBox = new System.Windows.Forms.GroupBox();
-            this.panel_Bienvenida = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.LogIn_groupBox = new System.Windows.Forms.GroupBox();
-            this.Disconnect_bttn = new System.Windows.Forms.Button();
-            this.LogIn_Button = new System.Windows.Forms.Button();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.labelUsername = new System.Windows.Forms.Label();
-            this.Password_TextBox = new System.Windows.Forms.TextBox();
-            this.Username_TextBox = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.Register_groupBox = new System.Windows.Forms.GroupBox();
-            this.labelError = new System.Windows.Forms.Label();
-            this.labelRepeatPassword = new System.Windows.Forms.Label();
-            this.RepeatRegisterBox = new System.Windows.Forms.TextBox();
-            this.Register_Button = new System.Windows.Forms.Button();
-            this.labelPassword2 = new System.Windows.Forms.Label();
-            this.labelUsername1 = new System.Windows.Forms.Label();
-            this.PassRegisterBox = new System.Windows.Forms.TextBox();
-            this.UserRegisterBox = new System.Windows.Forms.TextBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.PortBox = new System.Windows.Forms.TextBox();
-            this.IPBox = new System.Windows.Forms.TextBox();
-            this.chatViewerTextBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ConnectedPlayersTextBox = new System.Windows.Forms.TextBox();
+            this.btt_pos_send = new System.Windows.Forms.Button();
+            this.pos_rec = new System.Windows.Forms.TextBox();
             this.chatSenderBox = new System.Windows.Forms.GroupBox();
             this.messageSenderButton = new System.Windows.Forms.Button();
             this.chatInputTextBox = new System.Windows.Forms.TextBox();
-            this.pos_rec = new System.Windows.Forms.TextBox();
-            this.btt_pos_send = new System.Windows.Forms.Button();
+            this.chatViewerTextBox = new System.Windows.Forms.ListBox();
             this.panelStatus.SuspendLayout();
             this.panel_Estadisticas.SuspendLayout();
             this.groupBox_P4.SuspendLayout();
@@ -234,6 +236,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.color_P1)).BeginInit();
             this.panel2.SuspendLayout();
             this.gamePanel.SuspendLayout();
+            this.panel_Bienvenida.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.Register_groupBox.SuspendLayout();
+            this.LogIn_groupBox.SuspendLayout();
             this.panelCasillas.SuspendLayout();
             this.fila3.SuspendLayout();
             this.casillasInferiores.SuspendLayout();
@@ -261,11 +268,6 @@
             this.casillaSuperior1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.ChatReceiverBox.SuspendLayout();
-            this.panel_Bienvenida.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.LogIn_groupBox.SuspendLayout();
-            this.Register_groupBox.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.chatSenderBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -573,6 +575,256 @@
             this.gamePanel.Name = "gamePanel";
             this.gamePanel.Size = new System.Drawing.Size(1635, 895);
             this.gamePanel.TabIndex = 1;
+            // 
+            // panel_Bienvenida
+            // 
+            this.panel_Bienvenida.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Bienvenida.Controls.Add(this.panel5);
+            this.panel_Bienvenida.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Bienvenida.Location = new System.Drawing.Point(466, 46);
+            this.panel_Bienvenida.Name = "panel_Bienvenida";
+            this.panel_Bienvenida.Size = new System.Drawing.Size(1169, 849);
+            this.panel_Bienvenida.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.Controls.Add(this.groupBox3);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.Register_groupBox);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.LogIn_groupBox);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1169, 335);
+            this.panel5.TabIndex = 4;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.PortBox);
+            this.groupBox3.Controls.Add(this.IPBox);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox3.Location = new System.Drawing.Point(878, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(239, 335);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Connection Manager";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 16);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Port:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(22, 16);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "IP:";
+            // 
+            // PortBox
+            // 
+            this.PortBox.Location = new System.Drawing.Point(47, 103);
+            this.PortBox.Name = "PortBox";
+            this.PortBox.Size = new System.Drawing.Size(119, 22);
+            this.PortBox.TabIndex = 17;
+            this.PortBox.Text = "9060";
+            // 
+            // IPBox
+            // 
+            this.IPBox.Location = new System.Drawing.Point(47, 61);
+            this.IPBox.Name = "IPBox";
+            this.IPBox.Size = new System.Drawing.Size(119, 22);
+            this.IPBox.TabIndex = 16;
+            this.IPBox.Text = "192.168.56.102";
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(678, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(200, 335);
+            this.panel7.TabIndex = 8;
+            // 
+            // Register_groupBox
+            // 
+            this.Register_groupBox.Controls.Add(this.labelError);
+            this.Register_groupBox.Controls.Add(this.labelRepeatPassword);
+            this.Register_groupBox.Controls.Add(this.RepeatRegisterBox);
+            this.Register_groupBox.Controls.Add(this.Register_Button);
+            this.Register_groupBox.Controls.Add(this.labelPassword2);
+            this.Register_groupBox.Controls.Add(this.labelUsername1);
+            this.Register_groupBox.Controls.Add(this.PassRegisterBox);
+            this.Register_groupBox.Controls.Add(this.UserRegisterBox);
+            this.Register_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Register_groupBox.Location = new System.Drawing.Point(439, 0);
+            this.Register_groupBox.Name = "Register_groupBox";
+            this.Register_groupBox.Size = new System.Drawing.Size(239, 335);
+            this.Register_groupBox.TabIndex = 7;
+            this.Register_groupBox.TabStop = false;
+            this.Register_groupBox.Text = "Register";
+            // 
+            // labelError
+            // 
+            this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelError.ForeColor = System.Drawing.Color.Red;
+            this.labelError.Location = new System.Drawing.Point(6, 257);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(227, 57);
+            this.labelError.TabIndex = 7;
+            this.labelError.Text = "Username and Password files must not be empty and passwords must coincide.";
+            this.labelError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelError.Visible = false;
+            // 
+            // labelRepeatPassword
+            // 
+            this.labelRepeatPassword.AutoSize = true;
+            this.labelRepeatPassword.Location = new System.Drawing.Point(37, 157);
+            this.labelRepeatPassword.Name = "labelRepeatPassword";
+            this.labelRepeatPassword.Size = new System.Drawing.Size(118, 16);
+            this.labelRepeatPassword.TabIndex = 6;
+            this.labelRepeatPassword.Text = "Repeat Password:";
+            // 
+            // RepeatRegisterBox
+            // 
+            this.RepeatRegisterBox.Location = new System.Drawing.Point(37, 176);
+            this.RepeatRegisterBox.Name = "RepeatRegisterBox";
+            this.RepeatRegisterBox.PasswordChar = '*';
+            this.RepeatRegisterBox.Size = new System.Drawing.Size(164, 22);
+            this.RepeatRegisterBox.TabIndex = 5;
+            // 
+            // Register_Button
+            // 
+            this.Register_Button.Location = new System.Drawing.Point(35, 214);
+            this.Register_Button.Name = "Register_Button";
+            this.Register_Button.Size = new System.Drawing.Size(164, 30);
+            this.Register_Button.TabIndex = 4;
+            this.Register_Button.Text = "Register";
+            this.Register_Button.UseVisualStyleBackColor = true;
+            this.Register_Button.Click += new System.EventHandler(this.Register_Button_Click);
+            // 
+            // labelPassword2
+            // 
+            this.labelPassword2.AutoSize = true;
+            this.labelPassword2.Location = new System.Drawing.Point(35, 106);
+            this.labelPassword2.Name = "labelPassword2";
+            this.labelPassword2.Size = new System.Drawing.Size(70, 16);
+            this.labelPassword2.TabIndex = 3;
+            this.labelPassword2.Text = "Password:";
+            // 
+            // labelUsername1
+            // 
+            this.labelUsername1.AutoSize = true;
+            this.labelUsername1.Location = new System.Drawing.Point(35, 43);
+            this.labelUsername1.Name = "labelUsername1";
+            this.labelUsername1.Size = new System.Drawing.Size(73, 16);
+            this.labelUsername1.TabIndex = 2;
+            this.labelUsername1.Text = "Username:";
+            // 
+            // PassRegisterBox
+            // 
+            this.PassRegisterBox.Location = new System.Drawing.Point(35, 125);
+            this.PassRegisterBox.Name = "PassRegisterBox";
+            this.PassRegisterBox.PasswordChar = '*';
+            this.PassRegisterBox.Size = new System.Drawing.Size(164, 22);
+            this.PassRegisterBox.TabIndex = 1;
+            // 
+            // UserRegisterBox
+            // 
+            this.UserRegisterBox.Location = new System.Drawing.Point(35, 65);
+            this.UserRegisterBox.Name = "UserRegisterBox";
+            this.UserRegisterBox.Size = new System.Drawing.Size(164, 22);
+            this.UserRegisterBox.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.ForeColor = System.Drawing.Color.Transparent;
+            this.panel6.Location = new System.Drawing.Point(239, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(200, 335);
+            this.panel6.TabIndex = 5;
+            // 
+            // LogIn_groupBox
+            // 
+            this.LogIn_groupBox.Controls.Add(this.Disconnect_bttn);
+            this.LogIn_groupBox.Controls.Add(this.LogIn_Button);
+            this.LogIn_groupBox.Controls.Add(this.labelPassword);
+            this.LogIn_groupBox.Controls.Add(this.labelUsername);
+            this.LogIn_groupBox.Controls.Add(this.Password_TextBox);
+            this.LogIn_groupBox.Controls.Add(this.Username_TextBox);
+            this.LogIn_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LogIn_groupBox.Location = new System.Drawing.Point(0, 0);
+            this.LogIn_groupBox.Name = "LogIn_groupBox";
+            this.LogIn_groupBox.Size = new System.Drawing.Size(239, 335);
+            this.LogIn_groupBox.TabIndex = 4;
+            this.LogIn_groupBox.TabStop = false;
+            this.LogIn_groupBox.Text = "Log In";
+            // 
+            // Disconnect_bttn
+            // 
+            this.Disconnect_bttn.Location = new System.Drawing.Point(35, 214);
+            this.Disconnect_bttn.Name = "Disconnect_bttn";
+            this.Disconnect_bttn.Size = new System.Drawing.Size(164, 23);
+            this.Disconnect_bttn.TabIndex = 16;
+            this.Disconnect_bttn.Text = "Disconnect";
+            this.Disconnect_bttn.UseVisualStyleBackColor = true;
+            this.Disconnect_bttn.Click += new System.EventHandler(this.Disconnect_bttn_Click);
+            // 
+            // LogIn_Button
+            // 
+            this.LogIn_Button.Location = new System.Drawing.Point(35, 163);
+            this.LogIn_Button.Name = "LogIn_Button";
+            this.LogIn_Button.Size = new System.Drawing.Size(164, 30);
+            this.LogIn_Button.TabIndex = 4;
+            this.LogIn_Button.Text = "Log In";
+            this.LogIn_Button.UseVisualStyleBackColor = true;
+            this.LogIn_Button.Click += new System.EventHandler(this.LogIn_Button_Click);
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(35, 106);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(70, 16);
+            this.labelPassword.TabIndex = 3;
+            this.labelPassword.Text = "Password:";
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(35, 43);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(73, 16);
+            this.labelUsername.TabIndex = 2;
+            this.labelUsername.Text = "Username:";
+            // 
+            // Password_TextBox
+            // 
+            this.Password_TextBox.Location = new System.Drawing.Point(35, 125);
+            this.Password_TextBox.Name = "Password_TextBox";
+            this.Password_TextBox.PasswordChar = '*';
+            this.Password_TextBox.Size = new System.Drawing.Size(164, 22);
+            this.Password_TextBox.TabIndex = 1;
+            this.Password_TextBox.Text = "host2";
+            // 
+            // Username_TextBox
+            // 
+            this.Username_TextBox.Location = new System.Drawing.Point(35, 65);
+            this.Username_TextBox.Name = "Username_TextBox";
+            this.Username_TextBox.Size = new System.Drawing.Size(164, 22);
+            this.Username_TextBox.TabIndex = 0;
+            this.Username_TextBox.Text = "Alex";
             // 
             // panelCasillas
             // 
@@ -2003,6 +2255,8 @@
             // 
             // ChatReceiverBox
             // 
+            this.ChatReceiverBox.Controls.Add(this.label1);
+            this.ChatReceiverBox.Controls.Add(this.ConnectedPlayersTextBox);
             this.ChatReceiverBox.Controls.Add(this.btt_pos_send);
             this.ChatReceiverBox.Controls.Add(this.pos_rec);
             this.ChatReceiverBox.Controls.Add(this.chatSenderBox);
@@ -2018,266 +2272,46 @@
             this.ChatReceiverBox.Text = "Chat";
             this.ChatReceiverBox.Visible = false;
             // 
-            // panel_Bienvenida
+            // label1
             // 
-            this.panel_Bienvenida.BackColor = System.Drawing.Color.Transparent;
-            this.panel_Bienvenida.Controls.Add(this.panel5);
-            this.panel_Bienvenida.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Bienvenida.Location = new System.Drawing.Point(466, 46);
-            this.panel_Bienvenida.Name = "panel_Bienvenida";
-            this.panel_Bienvenida.Size = new System.Drawing.Size(1169, 849);
-            this.panel_Bienvenida.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.label1.Location = new System.Drawing.Point(7, 697);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Connected Players:";
             // 
-            // panel5
+            // ConnectedPlayersTextBox
             // 
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.Controls.Add(this.groupBox3);
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Controls.Add(this.Register_groupBox);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.LogIn_groupBox);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1169, 335);
-            this.panel5.TabIndex = 4;
+            this.ConnectedPlayersTextBox.Location = new System.Drawing.Point(8, 716);
+            this.ConnectedPlayersTextBox.Multiline = true;
+            this.ConnectedPlayersTextBox.Name = "ConnectedPlayersTextBox";
+            this.ConnectedPlayersTextBox.Size = new System.Drawing.Size(252, 102);
+            this.ConnectedPlayersTextBox.TabIndex = 3;
             // 
-            // LogIn_groupBox
+            // btt_pos_send
             // 
-            this.LogIn_groupBox.Controls.Add(this.Disconnect_bttn);
-            this.LogIn_groupBox.Controls.Add(this.LogIn_Button);
-            this.LogIn_groupBox.Controls.Add(this.labelPassword);
-            this.LogIn_groupBox.Controls.Add(this.labelUsername);
-            this.LogIn_groupBox.Controls.Add(this.Password_TextBox);
-            this.LogIn_groupBox.Controls.Add(this.Username_TextBox);
-            this.LogIn_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LogIn_groupBox.Location = new System.Drawing.Point(0, 0);
-            this.LogIn_groupBox.Name = "LogIn_groupBox";
-            this.LogIn_groupBox.Size = new System.Drawing.Size(239, 335);
-            this.LogIn_groupBox.TabIndex = 4;
-            this.LogIn_groupBox.TabStop = false;
-            this.LogIn_groupBox.Text = "Log In";
+            this.btt_pos_send.BackColor = System.Drawing.Color.Black;
+            this.btt_pos_send.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btt_pos_send.Location = new System.Drawing.Point(4, 656);
+            this.btt_pos_send.Name = "btt_pos_send";
+            this.btt_pos_send.Size = new System.Drawing.Size(259, 23);
+            this.btt_pos_send.TabIndex = 27;
+            this.btt_pos_send.Text = "Simulate position reception";
+            this.btt_pos_send.UseVisualStyleBackColor = false;
+            this.btt_pos_send.Click += new System.EventHandler(this.btt_pos_send_Click_1);
             // 
-            // Disconnect_bttn
+            // pos_rec
             // 
-            this.Disconnect_bttn.Location = new System.Drawing.Point(35, 214);
-            this.Disconnect_bttn.Name = "Disconnect_bttn";
-            this.Disconnect_bttn.Size = new System.Drawing.Size(164, 23);
-            this.Disconnect_bttn.TabIndex = 16;
-            this.Disconnect_bttn.Text = "Disconnect";
-            this.Disconnect_bttn.UseVisualStyleBackColor = true;
-            this.Disconnect_bttn.Click += new System.EventHandler(this.Disconnect_bttn_Click);
-            // 
-            // LogIn_Button
-            // 
-            this.LogIn_Button.Location = new System.Drawing.Point(35, 163);
-            this.LogIn_Button.Name = "LogIn_Button";
-            this.LogIn_Button.Size = new System.Drawing.Size(164, 30);
-            this.LogIn_Button.TabIndex = 4;
-            this.LogIn_Button.Text = "Log In";
-            this.LogIn_Button.UseVisualStyleBackColor = true;
-            this.LogIn_Button.Click += new System.EventHandler(this.LogIn_Button_Click);
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(35, 106);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(70, 16);
-            this.labelPassword.TabIndex = 3;
-            this.labelPassword.Text = "Password:";
-            // 
-            // labelUsername
-            // 
-            this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(35, 43);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(73, 16);
-            this.labelUsername.TabIndex = 2;
-            this.labelUsername.Text = "Username:";
-            // 
-            // Password_TextBox
-            // 
-            this.Password_TextBox.Location = new System.Drawing.Point(35, 125);
-            this.Password_TextBox.Name = "Password_TextBox";
-            this.Password_TextBox.PasswordChar = '*';
-            this.Password_TextBox.Size = new System.Drawing.Size(164, 22);
-            this.Password_TextBox.TabIndex = 1;
-            this.Password_TextBox.Text = "host2";
-            // 
-            // Username_TextBox
-            // 
-            this.Username_TextBox.Location = new System.Drawing.Point(35, 65);
-            this.Username_TextBox.Name = "Username_TextBox";
-            this.Username_TextBox.Size = new System.Drawing.Size(164, 22);
-            this.Username_TextBox.TabIndex = 0;
-            this.Username_TextBox.Text = "Alex";
-            // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.ForeColor = System.Drawing.Color.Transparent;
-            this.panel6.Location = new System.Drawing.Point(239, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 335);
-            this.panel6.TabIndex = 5;
-            // 
-            // Register_groupBox
-            // 
-            this.Register_groupBox.Controls.Add(this.labelError);
-            this.Register_groupBox.Controls.Add(this.labelRepeatPassword);
-            this.Register_groupBox.Controls.Add(this.RepeatRegisterBox);
-            this.Register_groupBox.Controls.Add(this.Register_Button);
-            this.Register_groupBox.Controls.Add(this.labelPassword2);
-            this.Register_groupBox.Controls.Add(this.labelUsername1);
-            this.Register_groupBox.Controls.Add(this.PassRegisterBox);
-            this.Register_groupBox.Controls.Add(this.UserRegisterBox);
-            this.Register_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Register_groupBox.Location = new System.Drawing.Point(439, 0);
-            this.Register_groupBox.Name = "Register_groupBox";
-            this.Register_groupBox.Size = new System.Drawing.Size(239, 335);
-            this.Register_groupBox.TabIndex = 7;
-            this.Register_groupBox.TabStop = false;
-            this.Register_groupBox.Text = "Register";
-            // 
-            // labelError
-            // 
-            this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelError.ForeColor = System.Drawing.Color.Red;
-            this.labelError.Location = new System.Drawing.Point(6, 257);
-            this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(227, 57);
-            this.labelError.TabIndex = 7;
-            this.labelError.Text = "Username and Password files must not be empty and passwords must coincide.";
-            this.labelError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelError.Visible = false;
-            // 
-            // labelRepeatPassword
-            // 
-            this.labelRepeatPassword.AutoSize = true;
-            this.labelRepeatPassword.Location = new System.Drawing.Point(37, 157);
-            this.labelRepeatPassword.Name = "labelRepeatPassword";
-            this.labelRepeatPassword.Size = new System.Drawing.Size(118, 16);
-            this.labelRepeatPassword.TabIndex = 6;
-            this.labelRepeatPassword.Text = "Repeat Password:";
-            // 
-            // RepeatRegisterBox
-            // 
-            this.RepeatRegisterBox.Location = new System.Drawing.Point(37, 176);
-            this.RepeatRegisterBox.Name = "RepeatRegisterBox";
-            this.RepeatRegisterBox.PasswordChar = '*';
-            this.RepeatRegisterBox.Size = new System.Drawing.Size(164, 22);
-            this.RepeatRegisterBox.TabIndex = 5;
-            // 
-            // Register_Button
-            // 
-            this.Register_Button.Location = new System.Drawing.Point(35, 214);
-            this.Register_Button.Name = "Register_Button";
-            this.Register_Button.Size = new System.Drawing.Size(164, 30);
-            this.Register_Button.TabIndex = 4;
-            this.Register_Button.Text = "Register";
-            this.Register_Button.UseVisualStyleBackColor = true;
-            this.Register_Button.Click += new System.EventHandler(this.Register_Button_Click);
-            // 
-            // labelPassword2
-            // 
-            this.labelPassword2.AutoSize = true;
-            this.labelPassword2.Location = new System.Drawing.Point(35, 106);
-            this.labelPassword2.Name = "labelPassword2";
-            this.labelPassword2.Size = new System.Drawing.Size(70, 16);
-            this.labelPassword2.TabIndex = 3;
-            this.labelPassword2.Text = "Password:";
-            // 
-            // labelUsername1
-            // 
-            this.labelUsername1.AutoSize = true;
-            this.labelUsername1.Location = new System.Drawing.Point(35, 43);
-            this.labelUsername1.Name = "labelUsername1";
-            this.labelUsername1.Size = new System.Drawing.Size(73, 16);
-            this.labelUsername1.TabIndex = 2;
-            this.labelUsername1.Text = "Username:";
-            // 
-            // PassRegisterBox
-            // 
-            this.PassRegisterBox.Location = new System.Drawing.Point(35, 125);
-            this.PassRegisterBox.Name = "PassRegisterBox";
-            this.PassRegisterBox.PasswordChar = '*';
-            this.PassRegisterBox.Size = new System.Drawing.Size(164, 22);
-            this.PassRegisterBox.TabIndex = 1;
-            // 
-            // UserRegisterBox
-            // 
-            this.UserRegisterBox.Location = new System.Drawing.Point(35, 65);
-            this.UserRegisterBox.Name = "UserRegisterBox";
-            this.UserRegisterBox.Size = new System.Drawing.Size(164, 22);
-            this.UserRegisterBox.TabIndex = 0;
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(678, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(200, 335);
-            this.panel7.TabIndex = 8;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.PortBox);
-            this.groupBox3.Controls.Add(this.IPBox);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox3.Location = new System.Drawing.Point(878, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(239, 335);
-            this.groupBox3.TabIndex = 19;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Connection Manager";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 16);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Port:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(22, 16);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "IP:";
-            // 
-            // PortBox
-            // 
-            this.PortBox.Location = new System.Drawing.Point(47, 103);
-            this.PortBox.Name = "PortBox";
-            this.PortBox.Size = new System.Drawing.Size(119, 22);
-            this.PortBox.TabIndex = 17;
-            this.PortBox.Text = "9060";
-            // 
-            // IPBox
-            // 
-            this.IPBox.Location = new System.Drawing.Point(47, 61);
-            this.IPBox.Name = "IPBox";
-            this.IPBox.Size = new System.Drawing.Size(119, 22);
-            this.IPBox.TabIndex = 16;
-            this.IPBox.Text = "192.168.56.102";
-            // 
-            // chatViewerTextBox
-            // 
-            this.chatViewerTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chatViewerTextBox.FormattingEnabled = true;
-            this.chatViewerTextBox.ItemHeight = 16;
-            this.chatViewerTextBox.Location = new System.Drawing.Point(4, 19);
-            this.chatViewerTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chatViewerTextBox.Name = "chatViewerTextBox";
-            this.chatViewerTextBox.Size = new System.Drawing.Size(259, 356);
-            this.chatViewerTextBox.TabIndex = 24;
+            this.pos_rec.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pos_rec.Location = new System.Drawing.Point(4, 585);
+            this.pos_rec.Margin = new System.Windows.Forms.Padding(4);
+            this.pos_rec.Multiline = true;
+            this.pos_rec.Name = "pos_rec";
+            this.pos_rec.Size = new System.Drawing.Size(259, 71);
+            this.pos_rec.TabIndex = 26;
+            this.pos_rec.Text = "57/3/11/64/22/1/46/66/16/33/61/24/48/43/19/61";
             // 
             // chatSenderBox
             // 
@@ -2316,28 +2350,16 @@
             this.chatInputTextBox.Size = new System.Drawing.Size(251, 139);
             this.chatInputTextBox.TabIndex = 1;
             // 
-            // pos_rec
+            // chatViewerTextBox
             // 
-            this.pos_rec.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pos_rec.Location = new System.Drawing.Point(4, 585);
-            this.pos_rec.Margin = new System.Windows.Forms.Padding(4);
-            this.pos_rec.Multiline = true;
-            this.pos_rec.Name = "pos_rec";
-            this.pos_rec.Size = new System.Drawing.Size(259, 71);
-            this.pos_rec.TabIndex = 26;
-            this.pos_rec.Text = "57/3/11/64/22/1/46/66/16/33/61/24/48/43/19/61";
-            // 
-            // btt_pos_send
-            // 
-            this.btt_pos_send.BackColor = System.Drawing.Color.Black;
-            this.btt_pos_send.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btt_pos_send.Location = new System.Drawing.Point(4, 656);
-            this.btt_pos_send.Name = "btt_pos_send";
-            this.btt_pos_send.Size = new System.Drawing.Size(259, 23);
-            this.btt_pos_send.TabIndex = 27;
-            this.btt_pos_send.Text = "Simulate position reception";
-            this.btt_pos_send.UseVisualStyleBackColor = false;
-            this.btt_pos_send.Click += new System.EventHandler(this.btt_pos_send_Click_1);
+            this.chatViewerTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chatViewerTextBox.FormattingEnabled = true;
+            this.chatViewerTextBox.ItemHeight = 16;
+            this.chatViewerTextBox.Location = new System.Drawing.Point(4, 19);
+            this.chatViewerTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chatViewerTextBox.Name = "chatViewerTextBox";
+            this.chatViewerTextBox.Size = new System.Drawing.Size(259, 356);
+            this.chatViewerTextBox.TabIndex = 24;
             // 
             // FormPartida
             // 
@@ -2371,6 +2393,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.color_P1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.gamePanel.ResumeLayout(false);
+            this.panel_Bienvenida.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.Register_groupBox.ResumeLayout(false);
+            this.Register_groupBox.PerformLayout();
+            this.LogIn_groupBox.ResumeLayout(false);
+            this.LogIn_groupBox.PerformLayout();
             this.panelCasillas.ResumeLayout(false);
             this.fila3.ResumeLayout(false);
             this.casillasInferiores.ResumeLayout(false);
@@ -2399,14 +2429,6 @@
             this.panel3.ResumeLayout(false);
             this.ChatReceiverBox.ResumeLayout(false);
             this.ChatReceiverBox.PerformLayout();
-            this.panel_Bienvenida.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.LogIn_groupBox.ResumeLayout(false);
-            this.LogIn_groupBox.PerformLayout();
-            this.Register_groupBox.ResumeLayout(false);
-            this.Register_groupBox.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.chatSenderBox.ResumeLayout(false);
             this.chatSenderBox.PerformLayout();
             this.ResumeLayout(false);
@@ -2600,6 +2622,8 @@
         private System.Windows.Forms.Button messageSenderButton;
         private System.Windows.Forms.TextBox chatInputTextBox;
         private System.Windows.Forms.ListBox chatViewerTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ConnectedPlayersTextBox;
     }
 }
 

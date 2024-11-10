@@ -25,7 +25,7 @@ namespace ProyectoSO
         public WelcomeForm()
         {
             InitializeComponent();
-         }
+        }
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ---------------------------- REGISTER + LOG IN + CONNECTION / DISCONNECTION SERVER ----------------------------------
@@ -192,7 +192,7 @@ namespace ProyectoSO
         // |-----------------------------------------------------------------------------------------------------------|
         {
             // Disconnect
-            string mensaje = "6/";
+            string mensaje = "0/";
             // We send just the code of the query to the server
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);

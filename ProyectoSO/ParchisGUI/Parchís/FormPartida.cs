@@ -19,6 +19,7 @@ namespace Parchís
     {
         Socket server; // Server
         Thread receiveThread; // Thread to receive messages
+        Thread attend; // Thread to attend the server's response
         private bool threadRunning = false;
         private readonly object socketLock = new object();
         int allowed_to_paint = 0;
@@ -32,13 +33,74 @@ namespace Parchís
         int current_vector_pos = 0;
         string[] trozos;
         string currentUsername;
-
+        // delegate void DelegadoParaEscribir(string mensaje);
 
 
         public FormPartida()
         {
             InitializeComponent();
             medioCentro.Paint += new PaintEventHandler(medioCentro_Paint);
+            //CheckForIllegalCrossThreadCalls = false;
+        }
+
+        //public void PonConectados(string mensaje)
+        //{
+        //    ConnectedPlayersTextBox.Text = mensaje;
+        //}
+
+        private void AttendServer()
+        {
+            while (true)
+            {
+                // We receive the server's response
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                string[] trozos = Encoding.ASCII.GetString(msg2).Split('/');
+                int codigo = Convert.ToInt32(trozos[0]);
+                MessageBox.Show(trozos[0]);
+                string mensaje = trozos[1].Split('\0')[0];
+                switch (codigo)
+                {
+                    case 1:
+                        if (mensaje == "1")
+                        {
+                            MessageBox.Show("User created successfully.");
+                        }
+                        else if (mensaje == "0")
+                        {
+                            MessageBox.Show("The entered username is already registered.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("There was an error creating the user. Please try again later.");
+                        }
+                        break;
+
+                    case 2:
+                        if (mensaje == "1")
+                        {
+                            this.BackColor = Color.LightGreen;
+                            MessageBox.Show("Log In successful.");
+
+                        }
+                        else if (mensaje == "0")
+                        {
+                            MessageBox.Show("Log In failed.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("There was an error with the log in. Please try again later.");
+                        }
+                        break;
+
+                    case 7:
+                        //DelegadoParaEscribir delegado = new DelegadoParaEscribir(PonConectados);
+                        //ConnectedPlayersTextBox.Invoke(delegado, new object[] { mensaje });
+                        ConnectedPlayersTextBox.Text = mensaje;
+                        break;
+
+                }
+            }
         }
 
         public void giveCurrentUserData(string givenName)
@@ -55,7 +117,6 @@ namespace Parchís
             medioCentro.Refresh();
             //panelCasillas.Visible = true; //MOSTRAR EL FORMULARIO UNA VEZ SE HAYA TERMINADO DE GENERAR
         }
-
 
         private void CrearTablon()
         {
@@ -520,32 +581,30 @@ namespace Parchís
 
         }
 
-        private void messageSenderButton_Click(object sender, EventArgs e)
-        {
-            // |-----------------------------------------------------------------------------------------------------------|
-            // | Function: SendToAll_Click                                                                                 |
-            // |-----------------------------------------------------------------------------------------------------------|
-            // | Description: Sends a message to all connected players and updates the chat box to reflect the message.    |
-            // |-----------------------------------------------------------------------------------------------------------|
-            // | Input:                                                                                                    |
-            // |  - object sender: The source of the event (button click).                                                 |
-            // |  - EventArgs e: Event arguments for the click event.                                                      |
-            // | Output:                                                                                                   |
-            // |  - Sends the message to the server for broadcast to all players.                                          |
-            // |  - Updates the local chat window with the sent message.                                                   |
-            // |-----------------------------------------------------------------------------------------------------------|
-            {
-                // Send a message to all the players
-                // We send just the code of the query to the server
-                string mensaje = "100/" + currentUsername + "/" + chatInputTextBox.Text;
+        //private void messageSenderButton_Click(object sender, EventArgs e)
+        //{
+        //    // |-----------------------------------------------------------------------------------------------------------|
+        //    // | Function: SendToAll_Click                                                                                 |
+        //    // |-----------------------------------------------------------------------------------------------------------|
+        //    // | Description: Sends a message to all connected players and updates the chat box to reflect the message.    |
+        //    // |-----------------------------------------------------------------------------------------------------------|
+        //    // | Input:                                                                                                    |
+        //    // |  - object sender: The source of the event (button click).                                                 |
+        //    // |  - EventArgs e: Event arguments for the click event.                                                      |
+        //    // | Output:                                                                                                   |
+        //    // |  - Sends the message to the server for broadcast to all players.                                          |
+        //    // |  - Updates the local chat window with the sent message.                                                   |
+        //    // |-----------------------------------------------------------------------------------------------------------|
+        //    {
+        //        // Send a message to all the players
+        //        // We send just the code of the query to the server
+        //        string mensaje = "100/" + currentUsername + "/" + chatInputTextBox.Text;
                 
-                chatInputTextBox.Clear();
-                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                //server.Send(msg);
-            }
-
-
-        }
+        //        chatInputTextBox.Clear();
+        //        byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+        //        //server.Send(msg);
+        //    }
+        //}
 
         private void InicializarCasillas(string sufijo_casilla)
         {
@@ -801,25 +860,26 @@ namespace Parchís
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
-            // We receive the server's response
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            //// We receive the server's response
+            //byte[] msg2 = new byte[80];
+            //server.Receive(msg2);
+            //mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-            if (mensaje == "1")
-            {
-                this.BackColor = Color.LightGreen;
-                MessageBox.Show("Log In successful.");
+            //if (mensaje == "1")
+            //{
+            //    this.BackColor = Color.LightGreen;
+            //    MessageBox.Show("Log In successful.");
 
-            }
-            else if (mensaje == "0")
-            {
-                MessageBox.Show("Log In failed.");
-            }
-            else
-            {
-                MessageBox.Show("There was an error with the log in. Please try again later.");
-            }
+            //}
+            //else if (mensaje == "0")
+            //{
+            //    MessageBox.Show("Log In failed.");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("There was an error with the log in. Please try again later.");
+            //}
+
         }
 
         private void Disconnect_bttn_Click(object sender, EventArgs e)
@@ -836,10 +896,12 @@ namespace Parchís
         // |-----------------------------------------------------------------------------------------------------------|
         {
             // Disconnect
-            string mensaje = "6/";
+            string mensaje = "0/";
             // We send just the code of the query to the server
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
+            // Disconnection
+            attend.Abort();
 
             // We receive the server's response
             byte[] msg2 = new byte[80];
@@ -905,26 +967,24 @@ namespace Parchís
                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                         server.Send(msg);
 
-                        // We receive the server's response
-                        byte[] msg2 = new byte[80];
-                        server.Receive(msg2);
-                        mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                        //// We receive the server's response
+                        //byte[] msg2 = new byte[80];
+                        //server.Receive(msg2);
+                        //mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
 
-                        if (mensaje == "1")
-                        {
-                            MessageBox.Show("User created successfully.");
-                        }
-                        else if (mensaje == "0")
-                        {
-                            MessageBox.Show("The entered username is already registered.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("There was an error creating the user. Please try again later.");
-                        }
+                        //if (mensaje == "1")
+                        //{
+                        //    MessageBox.Show("User created successfully.");
+                        //}
+                        //else if (mensaje == "0")
+                        //{
+                        //    MessageBox.Show("The entered username is already registered.");
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("There was an error creating the user. Please try again later.");
+                        //}
                     }
-
-                    this.BackColor = Color.White;
 
                 }
                 catch (SocketException)
@@ -933,6 +993,11 @@ namespace Parchís
                     MessageBox.Show("Connection to the server failed.");
                     return;
                 }
+
+                // We start the thread devoted to attend the server's messages
+                ThreadStart ts = delegate { AttendServer(); };
+                attend = new Thread(ts);
+                attend.Start();
             }
 
             else
