@@ -7,876 +7,1001 @@
 #include <stdio.h>
 #include <mysql.h>
 #include <pthread.h>
-#include <time.h>
 
-// DECLARATION OF VARIABLES:
-int i;
-int sockets[100];
+#define PORT 50071 // port from which we will listen
+#define MAX_CLIENTS 100 // maximum nuber of pending petitions
+
+
+struct thread_data {
+	int sock_conn;
+	int IdentificadorPartida;
+	int IdentificadorJugadorPartida;
+	MYSQL* conn;
+	char username[20];
+};
+
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-int dice1;
-int dice2;
+char connected_players[MAX_CLIENTS][20];
+int player_count = 0;
+int client_count = 0;
+struct thread_data* sockets[MAX_CLIENTS];
 
-// DECLARATION OF STRUCTURES FOR THE LIST OF CLIENTS
-typedef struct {
-	char nombre [20];
-	int socket;
-} Conectado;
+//INTERNAL FUNCTIONS
+MYSQL* init_mysql_connection();
+void* handle_client(void* data);
+void process_request(char* request, char* response, MYSQL* conn, char* username, int sender_sock);
+void add_player(char* username);
+void remove_player(char* username);
+void get_connected_players(char* response);
 
-typedef struct {
-	Conectado conectados [100];
-	int num;
-} ListaConectados;
+//INTERACCION
+void register_user(char* username, char* password, char* response, MYSQL* conn);
+void login_user(char* username, char* password, char* response, MYSQL* conn);
 
-ListaConectados miLista;
-
-// DECLARATION OF FUNCTIONS FOR THE LIST OF CLIENTS
-int Pon (ListaConectados *lista, char nombre[20], int socket) {
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: Pon                                                                                             |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: Add a new client to the connected list.                                                      |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char nombre[20]: The name of the client to be added.                                                   |
-// |  - int socket: The socket descriptor associated with the client.                                          |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:                                                                                                   |
-// |  - Returns 0 if the client was added successfully.                                                        |
-// |  - Returns -1 if the list was already full and the client could not be added.                             |
-// |-----------------------------------------------------------------------------------------------------------|
-	if (lista->num == 100)
-		return -1;
-	else {
-		strcpy(lista->conectados[lista->num].nombre, nombre);
-		lista->conectados[lista->num].socket = socket;
-		lista->num++;
-		return 0;
-	}
-}
-
-int DamePosicion (ListaConectados *lista, char nombre[20]) {
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: DamePosicion                                                                                    |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: Find the position of a client in the connected list by their name.                           |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char nombre[20]: The name of the client whose position is being searched for.                          |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:                                                                                                   |
-// |  - Returns the position of the client in the list if found.                                               |
-// |  - Returns -1 if the client is not found in the list.                                                     |
-// |-----------------------------------------------------------------------------------------------------------|
-	int i = 0;
-	int encontrado = 0;
-	while ((i < lista->num) && !encontrado)
-	{
-		if (strcmp(lista->conectados[i].nombre, nombre) == 0)
-			encontrado = 1;
-		if (!encontrado)
-			i = i + 1;
-	}
-	if (encontrado)
-		return i;
-	else
-		return -1;
-}
-
-int Elimina (ListaConectados *lista, char nombre[20]) {
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: Elimina                                                                                         |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: Removes a client from the connected list by their name.                                      |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char nombre[20]: The name of the client to be removed.                                                 |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:                                                                                                   |
-// |  - Returns 0 if the client was successfully removed from the list.                                        |
-// |  - Returns -1 if the client is not found in the list.                                                     |
-// |-----------------------------------------------------------------------------------------------------------|
-	int pos = DamePosicion (lista, nombre);
-	if (pos == -1)
-		return -1;
-	else {
-		int i;
-		for (i=pos; i < lista->num-1; i++)
-		{
-			lista->conectados[i] = lista->conectados[i+1];
-			// strcpy (lista->conectados[i].nombre, lista->conectados[i+1].nombre);
-			// lista->conectados[i].socket = lista->conectados[i+1].socket;
-		}
-		lista->num--;
-		return 0;
-	}
-}
-
-void DameConectados(ListaConectados *lista, char conectados[300], char user[300]) {
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: DameConectados                                                                                  |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: Retrieves the list of connected clients (excluding the current user).                        |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char conectados[300]: String buffer where the result will be stored.  								   |
-// |  - const char *username: The username of the client executing the command.								   |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:                                                                                                   |
-// |  - The string will contain the client names, excluding the current user's username.	    	    	   |
-// |-----------------------------------------------------------------------------------------------------------|
-	conectados[0] = '\0';
-	for (int i = 0; i < lista->num; i++) {
-		if (conectados[0] != '\0') {
-			strcat(conectados, "\n");
-		}
-		strcat(conectados, lista->conectados[i].nombre);
-	}
-}
-
-// DECLARATION OF FUNCTIONS FOR THE CHAT
-void EnviarATodos(ListaConectados *lista, char *mensaje, int emisor_socket) {
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: Send message to all connected clients		                                                   |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: Iterates through the list of connected clients and sends a specified message to all clients. |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char *mensaje: The message to be sent to the clients.                                                  |
-// |  - int emisor_socket: The socket descriptor of the client that sent the original message.                 |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:		                                                                                           |
-// |  - Sends the message to all clients.			                                                           |
-// |-----------------------------------------------------------------------------------------------------------|
-/*	pthread_mutex_lock(&mutex);*/
-/*	for (int i = 0; i < lista->num; i++) {*/
-/*		if (lista->conectados[i].socket != emisor_socket) {*/
-/*			write(lista->conectados[i].socket, mensaje, strlen(mensaje));*/
-/*		}*/
-/*	}*/
-/*	pthread_mutex_unlock(&mutex);*/
-	
+//FUNCTION TO ADD PLAYER TO THE CONNECTED LIST
+void add_player(char* username)
+{
 	pthread_mutex_lock(&mutex);
-	for (int i = 0; i < lista->num; i++) {
-		if (lista->conectados[i].socket != emisor_socket) {
-			// Manejar el error en el write
-			if (write(lista->conectados[i].socket, mensaje, strlen(mensaje)) < 0) {
-				perror("Error enviando mensaje");
-				close(lista->conectados[i].socket);
-			}
-		}
+
+	if (player_count < MAX_CLIENTS)
+    {
+		strcpy(connected_players[player_count], username);
+		player_count++;
 	}
+
 	pthread_mutex_unlock(&mutex);
 }
 
-/*void EnviarPrivado(ListaConectados *lista, char *receptor, char *mensaje) {*/
-// |-----------------------------------------------------------------------------------------------------------|
-// | Function: Send a private message to a specific connected client                                           |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Description: This function sends a private message to a specified recipient if they are connected.        |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Input:                                                                                                    |
-// |  - ListaConectados *lista: Pointer to the list of connected clients.                                      |
-// |  - char *receptor: The name of the recipient client to whom the message is being sent.                    |
-// |  - char *mensaje: The message to be sent to the recipient.                                                |
-// |-----------------------------------------------------------------------------------------------------------|
-// | Output:                                                                                                   |
-// |  - Sends the message to the specified recipient if they are found in the connected clients list.          |
-// |-----------------------------------------------------------------------------------------------------------|
-/*	pthread_mutex_lock(&mutex);*/
-/*	int pos = DamePosicion(lista, receptor);*/
-/*	if (pos != -1) {*/
-/*		write(lista->conectados[pos].socket, mensaje, strlen(mensaje));*/
-/*	}*/
-/*	pthread_mutex_unlock(&mutex);*/
-/*}*/
-
-
-// DECLARATION OF PARAMETERS FOR THE CONCURRENT SERVER
-void *AtenderCliente (void *socket)
+//FUNCTION TO REMOVE PLAYER FROM THE CONNECTED LIST
+void remove_player(char* username)
 {
-	int sock_conn;
-	int *s;
-	s= (int *) socket;
-	sock_conn= *s;
-	
-	// int socket_conn = * (int *) socket;
-	
-	char peticion[512];
-	char respuesta[512];
-	int ret;
-	
-	MYSQL *conn;
-	int err;
-	
-	// Create a connection to the MYSQL server
-	conn = mysql_init(NULL);
-	if (conn == NULL) {
-		printf ("Error creating connection: %u %s\n",
-				mysql_errno(conn), mysql_error(conn));
-		exit (1);
-	}
-	
-	// Initialize the connection, entering our access keys and the database name
-	conn = mysql_real_connect (conn, "shiva2.upc.es", "root", "mysql", "T5_BBDDJuego", 0, NULL, 0);
-	if (conn == NULL) {
-		printf ("Error initializing the connection: %u %s\n",
-				mysql_errno(conn), mysql_error(conn));
-		exit (1);
-	}
-	
-	int terminar = 0;
-	// We enter a loop to handle all requests from this client until they disconnect
-	while (terminar == 0)
+	pthread_mutex_lock(&mutex);
+
+	for (int i = 0; i < player_count; i++)
 	{
-		// We receive the request
-		ret=read(sock_conn,peticion, sizeof(peticion));
-		printf ("Recibido\n");
-		
-		// We need to add the null terminator to prevent it from writing beyond the buffer
-		peticion[ret]='\0';
-		
-		printf("Peticion: %s\n", peticion);
-		
-		// Request
-		char *p = strtok(peticion, "/");
-		int codigo = atoi (p);
-		
-		char nombre[25];
-		char password[25];
-		char username[300];
-		
-		if (codigo !=0)
-		{
-			p = strtok( NULL, "/");
-			if (p != NULL) {
-				strcpy(nombre, p);
-				printf("Codigo: %d, Nombre: %s\n", codigo, nombre);
-				if (codigo == 2) {
-					strcpy(username, nombre);
-				}
-					
-			} 
-			else {
-				printf("Codigo: %d.\n", codigo);
-				nombre[0] = '\0';
+		if (strcmp(connected_players[i], username) == 0)
+        {
+			for (int j = i; j < player_count - 1; j++)
+            {
+				strcpy(connected_players[j], connected_players[j + 1]);
 			}
-		}
 
-		if (codigo == 0) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Close connection + Delete a client from the list of clients                                        |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Handles the request to disconnect a client and remove them from the list.                    |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 0/                                                                                                 |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sets 'terminar' to 1 to indicate the process should terminate.                                         |
-		// |  - Calls the Elimina function to remove the specified client from the list.                               |
-		// |-----------------------------------------------------------------------------------------------------------|
-			terminar = 1;
-			Elimina(&miLista, nombre);
-		} 
-		
-		else if (codigo == 1) { 
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Register	                                                                                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Handles user registration.			                            					       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 1/Username/Password                                                                                |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sets 'respuesta' to 0 if the username already exists.                                                  |
-		// |  - Sets 'respuesta' to 1 if the user is registered successfully.                                          |
-		// |-----------------------------------------------------------------------------------------------------------|
-			p = strtok(NULL, "/");
-			strcpy(password, p);
-			printf("Password: %s\n", password);
-			
-			// Check if the user already exists
-			char query[256];
-			sprintf(query, "SELECT Username FROM Users WHERE Username='%s'", nombre);
-			err = mysql_query(conn, query);
-			
-			if (err != 0) {
-				printf ("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			MYSQL_RES *result = mysql_store_result(conn);
-			int num_rows = mysql_num_rows(result);
-			mysql_free_result(result);
-			
-			if (num_rows > 0) {
-				sprintf(respuesta, "1/0");  // Username already exists
-			} 
-			else {
-				// Insert the new user into the database
-				sprintf(query, "INSERT INTO Users (Username, Password) VALUES ('%s', '%s')", nombre, password);
-				err = mysql_query(conn, query);
-				
-				if (err != 0) {
-					printf ("Error inserting data into database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-					exit(1);
-				} else {
-					sprintf(respuesta, "1/1");  // User registered successfully
-					
-				}
-			}
-		} 
-		
-		else if (codigo == 2) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Log In + Insert a client in the list of clients                                                    |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Handles user login by checking if the username exists and if the provided password matches.  |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 2/Username/Password                                                                                |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sets 'respuesta' to 0 if the login fails (username or password does not match).                        |
-		// |  - Sets 'respuesta' to 1 if the login is successful.                                                      |
-		// |  - Calls the Pon function to add the user to the list of connected users if login is successful.          |
-		// |-----------------------------------------------------------------------------------------------------------|
-			p = strtok(NULL, "/");
-			strcpy(password, p);
-			
-			// Check if the user exists and password matches
-			char query[256];
-			sprintf(query, "SELECT Username, Password FROM Users WHERE Username='%s' AND Password='%s'", nombre, password);
-			err = mysql_query(conn, query);
-			
-			if (err != 0) {
-				printf ("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			MYSQL_RES *result = mysql_store_result(conn);
-			int num_rows = mysql_num_rows(result);
-			mysql_free_result(result);
-			
-			if (num_rows == 0) {
-				sprintf(respuesta, "2/0");  // Login failed
-			} else {
-				sprintf(respuesta, "2/1");  // Login successful
-				Pon(&miLista, nombre, sock_conn);
-			}
-			
-		}
-		
-		else if (codigo == 3) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Select players of a game	                                                                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Retrieves the usernames of players participating in a specific game.                         |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 3/Game_ID                                                                                          |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Includes in 'respuesta' the usernames of players in the specified game.       	                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-			int game_id = atoi(p);
-			
-			// Prepare the query
-			char select_query[256];
-			snprintf(select_query, sizeof(select_query), "SELECT DISTINCT Users.Username FROM Users JOIN Game_Record ON Users.Player_ID = Game_Record.Player_ID WHERE Game_Record.Game_ID = %d", game_id);
-			
-			// Execute the query
-			int err = mysql_query(conn, select_query);
-			if (err != 0) {
-				printf("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Store results
-			MYSQL_RES *result = mysql_store_result(conn);
-			if (result == NULL) {
-				printf("Error retrieving results: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Process results
-			MYSQL_ROW row;
-			respuesta[0] = '\0'; // Initialize the response string
-			while ((row = mysql_fetch_row(result)) != NULL) {
-				if (row[0] != NULL) {
-					strncat(respuesta, row[0], sizeof(respuesta) - strlen(respuesta) - 1);
-					strncat(respuesta, "\n", sizeof(respuesta) - strlen(respuesta) - 1);
-				}
-			}
-			sprintf(respuesta, "3/%s", respuesta);
-			
-			// Free results
-			mysql_free_result(result);
-			
-			// Print the final response
-			printf("Player IDs for Game ID %d:\n%s", game_id, respuesta);
-		}
-		
-		else if (codigo == 4) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: See points of a game                                                                               |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Retrieves the points scored by a player in a specific game.                                  |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 4/Game_ID                                                          			                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Includes in 'respuesta' the points scored in the specified game.                                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-			int game_id = atoi(p);
-			
-			// Prepare the query
-			char query[256];
-			snprintf(query, sizeof(query), "SELECT Points FROM Game_Record WHERE Game_ID = %d", game_id);
-			
-			// Execute the query
-			int err = mysql_query(conn, query);
-			if (err != 0) {
-				printf("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Store results
-			MYSQL_RES *result = mysql_store_result(conn);
-			if (result == NULL) {
-				printf("Error retrieving results: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Process results
-			MYSQL_ROW row;
-			respuesta[0] = '\0'; // Initialize the response string
-			while ((row = mysql_fetch_row(result)) != NULL) {
-				if (row[0] != NULL) {
-					strncat(respuesta, row[0], sizeof(respuesta) - strlen(respuesta) - 1);
-					strncat(respuesta, "\n", sizeof(respuesta) - strlen(respuesta) - 1);
-				}
-			}
-			sprintf(respuesta, "4/%s", respuesta);
-			
-			// Free results
-			mysql_free_result(result);
-			
-			// Print the final response
-			printf("Points:\n%s", respuesta);
-		}
-		
-		else if (codigo == 5) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: See games played by a player                                                	                   |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Retrieves the games played by a specific player.    					                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 5/Player_ID                                                                                        |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Introduces in 'respuesta' the games played by the specified player.   		                           |
-		// |-----------------------------------------------------------------------------------------------------------|
-			int player_id = atoi(p);
-			
-			// Prepare the query
-			char query[256];
-			snprintf(query, sizeof(query), "SELECT Game_ID FROM Game_Record WHERE Player_ID = %d", player_id);
-			
-			// Execute the query
-			int err = mysql_query(conn, query);
-			if (err != 0) {
-				printf("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Store results
-			MYSQL_RES *result = mysql_store_result(conn);
-			if (result == NULL) {
-				printf("Error retrieving results: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Process results
-			MYSQL_ROW row;
-			respuesta[0] = '\0'; // Initialize the response string
-			while ((row = mysql_fetch_row(result)) != NULL) {
-				if (row[0] != NULL) {
-					strncat(respuesta, row[0], sizeof(respuesta) - strlen(respuesta) - 1);
-					strncat(respuesta, "\n", sizeof(respuesta) - strlen(respuesta) - 1);
-				}
-			}
-			sprintf(respuesta, "5/%s", respuesta);
-			
-			// Free results
-			mysql_free_result(result);
-			
-			// Print the final response
-			printf("Played Games:\n%s", respuesta);
-		}
-		
-/*		else if (codigo == 7) {*/
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Show list of clients                                                                               |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Retrieves the list of clients.							     							   |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 7/                                                                                                 |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Introduces in 'respuesta' the list of connected clients.                                               |
-		// |-----------------------------------------------------------------------------------------------------------|
-/*			pthread_mutex_lock( &mutex );*/
-/*			char misConectados[512];*/
-/*			DameConectados(&miLista, misConectados, username);*/
-/*			if (misConectados[0] != '\0') {*/
-/*				strcpy(respuesta, misConectados);*/
-/*			}*/
-/*			else {*/
-/*				strcpy(respuesta, "You are the only player!");*/
-/*			}*/
-/*			printf("%s\n", respuesta);*/
-/*			pthread_mutex_unlock( &mutex);*/
-/*		}*/
-		
-		else if (codigo == 8) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Count players in a game                                                                            |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Checks how many players are participating in a specific game.					               |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 8/Game_ID                                                                                          |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sets 'respuesta' to 1 if 2 <= number of players <= 4.	                                               |
-		// |  - Sets 'respuesta' to 0 otherwise.								     								   |
-		// |-----------------------------------------------------------------------------------------------------------|
-			int game_id = atoi(p);
-			
-			// Prepare the query
-			char query[256];
-			snprintf(query, sizeof(query), "SELECT COUNT(Player_ID) FROM Game_Record WHERE Game_ID = %d", game_id);
-			
-			// Execute the query
-			int err = mysql_query(conn, query);
-			if (err != 0) {
-				printf("Error querying data from database: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Store results
-			MYSQL_RES *result = mysql_store_result(conn);
-			if (result == NULL) {
-				printf("Error retrieving results: %u %s\n", mysql_errno(conn), mysql_error(conn));
-				exit(1);
-			}
-			
-			// Process results
-			MYSQL_ROW row;
-			respuesta[0] = '\0'; // Initialize the response string
-			if ((row = mysql_fetch_row(result)) != NULL) {
-				if (row[0] != NULL) {
-					int num_players = atoi(row[0]);
-					if (num_players >= 2 && num_players <= 4) {
-						snprintf(respuesta, sizeof(respuesta), "8/1\n");
-					} 
-					else {
-						snprintf(respuesta, sizeof(respuesta), "8/0\n");
-					}
-				}
-			}
-			
-			// Free results
-			mysql_free_result(result);
-			
-			// Print the final response
-			printf("%s", respuesta);
-		}
-		
-		else if (codigo == 9) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Generate random dice rolls                                                                         |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Generates two random integers simulating dice rolls, with each number ranging from 1 to 6.   |
-		// | With double 1, 2, 3, 4, 5, or 6, you can roll again. If you roll doubles three times in a row, the        | 
-		// | player's most advanced token is sent back home.                                                           |           
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 9/                                                                                                 |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Introduces in 'respuesta' the results of the dice rolls (to random numbers).                           |
-		// |-----------------------------------------------------------------------------------------------------------|
-			srand(time(NULL));
-			
-			dice1 = (rand() % 6) + 1;  // First dice
-			dice2 = (rand() % 6) + 1;  // Second dice
-			
-			static int doubleCounter = 0;  // Variable to count doubles
-			
-			if (dice1 == dice2) {
-				doubleCounter++;  // Increment the double counter
-				// If the player rolled doubles three times in a row
-				if (doubleCounter == 3) {
-					snprintf(respuesta, sizeof(respuesta), "9/You rolled doubles three times in a row. Your most advanced token returns home.\n");
-					
-					// Get the token positions
-					char* x = strtok(NULL, "/");
-					char* y = strtok(NULL, "/");
-					char* z = strtok(NULL, "/");
-					char* n = strtok(NULL, "/");
-					char* color;
-					
-					int posX = atoi(x);
-					int posY = atoi(y);
-					int posZ = atoi(z);
-					int posN = atoi(n);
-					
-					// Identify the most advanced token
-					int max_pos = posX;
-					char most_advanced_token = 'X';
-					if (posY > max_pos) {
-						max_pos = posY;
-						most_advanced_token = 'Y';
-					}
-					if (posZ > max_pos) {
-						max_pos = posZ;
-						most_advanced_token = 'Z';
-					}
-					if (posN > max_pos) {
-						most_advanced_token = 'N';
-					}
-					// Send the most advanced token back to home (position 0)
-					if (most_advanced_token == 'X') {
-						posX = 0;
-					} else if (most_advanced_token == 'Y') {
-						posY = 0;
-					} else if (most_advanced_token == 'Z') {
-						posZ = 0;
-					} else if (most_advanced_token == 'N') {
-						posN = 0;
-					}
-					// Reset the double counter after three consecutive doubles
-					doubleCounter = 0;
-					// Send the updated positions of the tokens
-					snprintf(respuesta, sizeof(respuesta), "9/%s/%d/%d/%d/%d", color, posX, posY, posZ, posN);
-					
-				} 
-				else {
-					// If the player hasn't rolled doubles three times, allow another roll
-					snprintf(respuesta, sizeof(respuesta), "9/You rolled doubles: %d, %d. You can roll again.\n", dice1, dice2);
-				}
-			} 
-			else {
-				// If no doubles are rolled, reset the counter
-				doubleCounter = 0;
-				snprintf(respuesta, sizeof(respuesta), "9/Roll: %d, %d\n", dice1, dice2);
-			}
-			// Print the final response
-			printf("%s", respuesta);
-		}
-		
-		else if (codigo == 10) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Determine the player with the highest score                                                        |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Parses a series of scores and player IDs, identifying the player with the highest score.     |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 10/Points(i)/Player_ID(i) --> 1 <= i <= 4                                                          |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Introduces in 'respuesta' the player ID and points of the player with the highest score.               |
-		// |-----------------------------------------------------------------------------------------------------------|
-			int max_score = -1;
-			int max_player = -1;
-			int current_score, player_id;
-
-			for (int i = 0; i < 4 && *p != '\0'; i++) {
-				current_score = atoi(p);
-				while (*p != '/' && *p != '\0') p++;
-				if (*p == '/') p++;
-				
-				player_id = atoi(p);
-				while (*p != '/' && *p != '\0') p++;
-				if (*p == '/') p++;
-				
-				if (current_score > max_score) {
-					max_score = current_score;
-					max_player = player_id;
-				}
-			}
-			
-			if (max_player != -1) {
-				snprintf(respuesta, sizeof(respuesta), "10/Player with highest score: %d (Score: %d)\n", max_player, max_score);
-			} else {
-				snprintf(respuesta, sizeof(respuesta), "10/No valid players found.\n");
-			}
-			
-			// Print the final response
-			printf("%s", respuesta);
-		}
-		
-		else if (codigo == 50) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Update token's position                                                                            |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Receives the token's position (1/X/Y/Z/N), where the first number determines the color and   |
-		// |              the remaining numbers are used to create a response with the sum of two random dice rolls.   |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input: 50/1/X/Y/Z/N                                                                                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sends a response in the format of Color/X+i/Y+i/Z+i/N+i where i is the sum of the two dice rolls.      |
-		// |-----------------------------------------------------------------------------------------------------------|			
-			char* color;
-			
-			if (strcmp(nombre, "1") == 0) {
-				color = "Red";
-			} else if (strcmp(nombre, "2") == 0) {
-				color = "Blue";
-			} else if (strcmp(nombre, "3") == 0) {
-				color = "Green";
-			} else if (strcmp(nombre, "4") == 0) {
-				color = "Yellow";
-			} else {
-				color = "Invalid";
-			}
-			
-			char* x = strtok(NULL, "/");
-			char* y = strtok(NULL, "/");
-			char* z = strtok(NULL, "/");
-			char* n = strtok(NULL, "/");
-			
-			int sum = dice1 + dice2;
-			
-			snprintf(respuesta, sizeof(respuesta), "50/%s/%d/%d/%d/%d", color, atoi(x) + sum, atoi(y) + sum, atoi(z) + sum, atoi(n) + sum);
-			
-			// Print the final response
-			printf("%s", respuesta);
-		}
-
-		else if (codigo == 100) {
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Broadcast a message to all connected clients                                                       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: Handles broadcasting a message from the sender to all connected clients.  	    	       |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input:                                                                                                    |
-		// |  - p: A pointer used to parse the incoming command string.                                                |
-		// |  - mensaje: A temporary buffer to store the incoming message.                                             |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sends a message to all connected clients.     		                                                   |
-		// |-----------------------------------------------------------------------------------------------------------|
-			char mensaje[100];
-			p = strtok(NULL, "/");
-			strcpy(mensaje, p);
-			printf("Mensaje a todos: %s\n", mensaje);
-			
-			char mensaje_final[512];
-			sprintf(mensaje_final, "%s: %s\n", nombre, mensaje);
-			printf("Mensaje final: %s\n", mensaje_final);
-			sprintf(respuesta, mensaje_final);
-			EnviarATodos(&miLista, mensaje_final, sock_conn);
-		} 
-		
-/*		else if (codigo == 101) {*/
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Query: Send a private message to a specified user                                                         |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Description: This block of code handles sending a private message from the sender to a specific user.     |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Input:                                                                                                    |
-		// |  - p: A pointer used to parse the incoming command string.                                                |
-		// |  - receptor: A buffer to store the name of the user receiving the message.                                |
-		// |  - mensaje: A buffer to hold the message extracted from the command.                                      |
-		// |-----------------------------------------------------------------------------------------------------------|
-		// | Output:                                                                                                   |
-		// |  - Sends a private message to the specified user.                                                         |
-		// |-----------------------------------------------------------------------------------------------------------|
-/*			char mensaje[100];*/
-/*			char receptor[25];*/
-/*			p = strtok(NULL, "/");*/
-/*			strcpy(receptor, p);*/
-/*			p = strtok(NULL, "/");*/
-/*			strcpy(mensaje, p);*/
-
-/*			char mensaje_final[512];*/
-/*			sprintf(mensaje_final, "%s (privado): %s\n", nombre, mensaje);*/
-			
-/*			EnviarPrivado(&miLista, receptor, mensaje_final);*/
-/*		}*/
-		
-		if (codigo != 0) {
-			// Send response to the client
-			write(sock_conn, respuesta, strlen(respuesta));
-		}
-		
-		if (codigo == 2) {
-			pthread_mutex_lock( &mutex );
-			char misConectados[512];
-			DameConectados(&miLista, misConectados, username);
-			
-			
-			// Notify to all the connected clients
-			char notificacion[512];
-			sprintf(notificacion, "7/%s\n", misConectados);
-			int j;
-			for (j=0; j<i; j++)
-				write(sockets[j], notificacion, strlen(notificacion));
-			
-			pthread_mutex_unlock( &mutex);
+			player_count--;
+			break;
 		}
 	}
-	
-	// Close connection for this client
-	close(sock_conn);
-	free(s);
+
+	pthread_mutex_unlock(&mutex);
 }
 
-
-// MAIN
-int main(int argc, char *argv[])
+//FUNCTION TO GET THE LIST OF CONNECTED PLAYERS
+void get_connected_players(char* response)
 {
-    // Create the socket
-    int sock_conn, sock_listen;
-	int puerto = 50071;  // Listen on port 50070 to 50074
-    struct sockaddr_in serv_adr;
-    
+	pthread_mutex_lock(&mutex);
 
-    // INITIALIZATIONS
-    // Open the socket
-    if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-        printf("Error creating socket");
-    
-    // Bind to the port
-    memset(&serv_adr, 0, sizeof(serv_adr));  // Initialize serv_addr to zero
-    serv_adr.sin_family = AF_INET;
-    serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);  // Listen on any IP address
-    serv_adr.sin_port = htons(puerto);  // Listen on port 50070 a 50074
-    
-    if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
-        printf ("Error on bind");
+	if (player_count == 0)
+    {
+		strcpy(response, "7/0\n");
+	}
+	else
+    {
+		strcpy(response, "7/");
+		
+		for (int i = 0; i < player_count; i++) //Generate the vector
+		{
+			strcat(response, connected_players[i]);
+			strcat(response, "-");
+			printf("Respuesta: ");
+			printf(response);
+			printf("\n");
+		}
+		
+		for (int j=0; j<client_count; j++) {
+			
+			if (sockets[j] != NULL){
+				write(sockets[j]->sock_conn, response, strlen(response)); // Enviar el mensaje a cada cliente
+			}
+		}
+	}
 
-    // The queue of pending requests cannot exceed 4
-    if (listen(sock_listen, 4) < 0)
-        printf("Error on listen");	
+	pthread_mutex_unlock(&mutex);
+}
+
+// CLIENT'S REQUEST
+void process_request(char* request, char* response, MYSQL* conn, char* username, int sender_sock)
+{
+    char* p = strtok(request, "/");
+    int codigo = atoi(p);
+	char password[60];
+	char chat_message[200];
+    int numero;
 	
-	i = 0;
-	pthread_t thread;
-    
-    for (;;) {
-        printf ("Listening\n");
+    switch (codigo)
+    {
+        case 1: //REGISTER
+			p = strtok(NULL, "/");
+			if (p == NULL)
+            {
+				strcpy(response, "Invalid request format for registration\n");
+				return;
+			}
+			strcpy(username, p);
+			p = strtok(NULL, "/");
+			if (p == NULL)
+            {
+				strcpy(response, "Invalid request format for registration\n");
+				return;
+			}
+			strcpy(password, p);
+			register_user(username, password, response, conn);
+			break;
 
-        sock_conn = accept(sock_listen, NULL, NULL);
-        printf ("Received a connection\n");
+        case 2: //LOGIN
+			p = strtok(NULL, "/");
+			if (p == NULL)
+            {
+				strcpy(response, "Invalid request format for login\n");
+				return;
+			}
+			strcpy(username, p);
+			p = strtok(NULL, "/");
+			if (p == NULL)
+            {
+				strcpy(response, "Invalid request format for login\n");
+				return;
+			}
+			strcpy(password, p);
+			login_user(username, password, response, conn);
+			break;
+
+		case 7: //CONNECTED PLAYERS LIST
+			printf("Request received for listing connected players\n");
+			get_connected_players(response);
+			break;
+			
+		case 100: //CHAT
+			p = strtok(NULL, "/");
+			if (p == NULL) {
+				strcpy(response, "Invalid request format for chat\n");
+				return;
+			}
+			strcpy(username, p);
+			p = strtok(NULL, "/");
+			if (p == NULL) {
+				strcpy(response, "Invalid request format for chat\n");
+				return;
+			}
+			strcpy(chat_message, p);
+			broadcast_message_chat(chat_message,username,response, sender_sock);
+			break;
+
+		case 200: //Create a new game
+			p = strtok(NULL, "/");
+			if (p == NULL) {
+				strcpy(response, "Invalid request format for game creation\n");
+				return;
+			}
+			strcpy(username, p);
+			//printf("CASO 200\n");
+			create_new_game(username, response, conn, sender_sock);
+			break;
+
+		case 210: //Process Invite
+			p = strtok(NULL, "/");
+			printf(p);
+			printf("\n");
+			invite_player(p);
+
+			break;
+
+		case 220: //Player is joining
+			p = strtok(NULL, "/");
+			printf(p);
+			printf("\n");
+			joinGame(p, response, conn, sender_sock);
+
+			break;
+
+		case 230: //Ready to start the game
+			p = strtok(NULL, "/");
+			printf(p);
+			printf("\n");
+			if (p != NULL)
+			{
+				readyToStartGame(p, response, conn, sender_sock);
+			}
+			printf("FINAL 230\n");
+
+			break;
+
+		case 300: //Dado tirado
+			p = strtok(NULL, "/");
+			printf(p);
+			printf("\n");
+			if (p != NULL)
+			{
+				moveToken(p, response, conn);
+			}
+			printf("FINAL 300\n");
+
+			break;
 		
-		int *sock_conn_ptr = malloc(sizeof(int));
-		*sock_conn_ptr = sock_conn;
-		
-		pthread_create(&thread, NULL, AtenderCliente, sock_conn_ptr);
-						
-		i = i+1;   
+		case 0:
+			p = strtok(NULL, "/");
+			if (p != NULL) {
+				remove_player(p);
+				strcpy(response, "End of connection\n");
+			}
+			else {
+				strcpy(response, "Player not specified for disconecction\n");
+			}
+            break;
+		default:
+            strcpy(response, "Invalid code\n");
+			break;
     }
 }
+
+// CLIENT
+void* handle_client(void* data) {
+	struct thread_data* t_data = (struct thread_data*)data;
+	int sock_conn = t_data->sock_conn;
+	MYSQL* conn = t_data->conn;
+	
+	char request[512];
+	char response[512];
+	int ret;
+	int terminar = 0;
+	
+	while (!terminar) {
+		ret = read(sock_conn, request, sizeof(request) -1);
+		request[ret] = '\0';
+
+		
+		printf("Received request: %s\n", request);
+		
+		process_request(request, response, conn, t_data->username,sock_conn);
+		write(sock_conn, response, strlen(response));
+		
+		if (strcmp(request, "0") == 0) {
+			terminar = 1;
+		}
+	}
+	close(sock_conn);
+	free(t_data); //freeinf memory of the thread data 
+	pthread_exit(NULL); //end the thread
+}
+
+// REGISTER A NEW USER
+void register_user(char* username, char* password, char* response, MYSQL* conn) {
+	char query[512];
+	MYSQL_RES* resultado;
+	MYSQL_ROW row;
+	
+	// check if the username already exists
+	snprintf(query, sizeof(query),
+			 "SELECT Username FROM Users WHERE Username='%s'", username);
+	
+	if (mysql_query(conn, query) != 0) {
+		snprintf(response, 512, "Error verifying user: %u %s\n",
+				 mysql_errno(conn), mysql_error(conn));
+		return;
+	}
+	resultado = mysql_store_result(conn);
+	if (resultado == NULL) {
+		snprintf(response, 512, "Error obtaining result: %u %s\n",
+				 mysql_errno(conn), mysql_error(conn));
+		return;
+	}
+	
+	if (mysql_num_rows(resultado) > 0) {
+		strcpy(response, "This user already exists.\n");
+		mysql_free_result(resultado);
+		return;
+	}
+	mysql_free_result(resultado);
+	
+	// Insert the new user
+	snprintf(query, sizeof(query),
+			 "INSERT INTO Users (Username, Password) VALUES ('%s', '%s');", username, password);
+	if (mysql_query(conn, query) == 0) {
+		// Obtain the ID
+		my_ulonglong inserted_id = mysql_insert_id(conn);
+		snprintf(response, 512, "1/1");
+		add_player(username);
+	} else {
+		snprintf(response, 512, "Error registering: %u %s\n",
+				 mysql_errno(conn), mysql_error(conn));
+	}
+}
+	
+// LOGIN AN EXISTING USER
+void login_user(char* username, char* password, char* response, MYSQL* conn) {
+    char query[400];
+    MYSQL_RES* resultado;
+
+    sprintf(query, "SELECT Username, Password FROM Users WHERE Username='%s' AND Password='%s'", username, password);
+    mysql_query(conn, query);
+    resultado = mysql_store_result(conn);
+	
+
+    if (mysql_num_rows(resultado) == 1) //Si coinciden con BBDD
+    {
+        strcpy(response, "2/1\n");
+		add_player(username);
+		printf("%s logged in and added to the list\n", username);
+	}
+    else //No coincide con BBDD
+    {
+        strcpy(response, "2/0\n");
+    }
+    mysql_free_result(resultado);
+}
+
+//CREATE A NEW GAME REGISTER
+void create_new_game(char* username, char* response, MYSQL* conn, int SenderSockID)
+{
+    printf("ENTRADO EN CREACION JUEGO\n");
+
+    char query0[400];
+    MYSQL_RES* resultado;
+    MYSQL_ROW row;
+
+    // Construcción de la consulta SELECT para obtener Player_ID
+    snprintf(query0, sizeof(query0), "SELECT Users.Player_ID FROM Users WHERE Users.Username = '%s';", username);
+
+    // Ejecución de la consulta SELECT
+    if (mysql_query(conn, query0)) {
+        fprintf(stderr, "Error en la consulta SELECT: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener los resultados de la consulta SELECT
+    resultado = mysql_store_result(conn);
+    if (resultado == NULL) {
+        fprintf(stderr, "Error al almacenar resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener la primera fila de los resultados
+    row = mysql_fetch_row(resultado);
+    if (row == NULL) {
+        fprintf(stderr, "No se encontró el usuario con el nombre proporcionado.\n");
+        mysql_free_result(resultado);
+        return;
+    }
+
+    // Obtener el Player_ID (suponiendo que es un valor numérico)
+    int player_id = atoi(row[0]);  // Convertimos el Player_ID de string a int
+    printf("Player_ID: %d\n", player_id);
+
+    // Limpiar resultados de la consulta SELECT de Player_ID
+    mysql_free_result(resultado);
+
+    // Ahora insertamos el registro en la tabla Game
+    char query1[400];
+    snprintf(query1, sizeof(query1), "INSERT INTO Game (GameStatus, PosicionFichas, GameAdmin) VALUES (2, '0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0', %d);", player_id);
+
+    // Ejecutar la consulta INSERT
+    if (mysql_query(conn, query1)) {
+        fprintf(stderr, "Error en la consulta INSERT: %s\n", mysql_error(conn));
+        return;
+    }
+    printf("Juego creado con éxito. ID de juego insertado.\n");
+
+    // Conseguimos el identificador del juego insertado
+    char query2[400];
+    MYSQL_RES* resultado2;
+    MYSQL_ROW row2;
+
+    // Construcción de la consulta SELECT para obtener el MAX(Game_ID)
+    snprintf(query2, sizeof(query2), "SELECT MAX(Game_ID) FROM Game;");
+
+    // Ejecutar la consulta SELECT para obtener el MAX(Game_ID)
+    if (mysql_query(conn, query2)) {
+        fprintf(stderr, "Error en la consulta SELECT MAX(Game_ID): %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener los resultados de la consulta SELECT
+    resultado2 = mysql_store_result(conn);
+    if (resultado2 == NULL) {
+        fprintf(stderr, "Error al almacenar resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener la primera fila de los resultados
+    row2 = mysql_fetch_row(resultado2);
+    if (row2 == NULL || row2[0] == NULL) {
+        fprintf(stderr, "No se encontraron registros en la tabla Game.\n");
+        mysql_free_result(resultado2);
+        return;
+    }
+
+    // Obtener el valor de MAX(Game_ID) y convertirlo a entero
+    int max_game_id = atoi(row2[0]);  // Convertir el valor de MAX(Game_ID) a int
+    printf("El valor máximo de Game_ID es: %d\n", max_game_id);
+
+    // Limpiar los resultados de la consulta SELECT para MAX(Game_ID)
+    mysql_free_result(resultado2);
+
+    // Insertar el registro en la tabla Game_Members
+    char query3[400];
+    snprintf(query3, sizeof(query3), "INSERT INTO Game_Members (Game_ID, Player_ID, PlayerNumber) VALUES (%d, %d, 1);", max_game_id, player_id);
+
+    // Ejecutar la consulta INSERT en Game_Members
+    if (mysql_query(conn, query3)) {
+        fprintf(stderr, "Error en la consulta INSERT: %s\n", mysql_error(conn));
+        return;
+    }
+
+    printf("Registro insertado correctamente en Game_Members.\n");
+	memset(response, 0, sizeof(response));  // Vacía el contenido de response
+	snprintf(response, sizeof(response), "%s", "201/");
+
+	// Luego, concatenamos el valor de max_game_id a la respuesta
+	snprintf(response + strlen(response), sizeof(response) - strlen(response), "%d", max_game_id);
+
+	int currentSearchingSocket = 0;
+	bool encontrado = false;
+
+	while ((sockets[currentSearchingSocket] != NULL)&&(!encontrado))
+	{
+		if (sockets[currentSearchingSocket]->sock_conn == SenderSockID)
+		{
+			sockets[currentSearchingSocket]->IdentificadorJugadorPartida = 1;
+			printf("PONGO IDJP\n");
+			sockets[currentSearchingSocket]->IdentificadorPartida = max_game_id;
+			encontrado = true;
+			printf("PONGO IP\n");
+		}
+		currentSearchingSocket++;
+	}
+
+
+	
+	
+
+	printf("\n");
+	
+	printf("ENVIADO 201\n");
+	printf(response);
+	printf("\n");
+}
+
+void invite_player(char* mensajer)
+{
+    printf("ENTRADO INVITACION\n");
+    printf("%s\n", mensajer);
+
+    // Definir variables necesarias
+    char* jugadorinvitado = NULL;
+    bool socketEncontrado = false;
+    int currentSearchingSocket = 0;
+
+    // Definir una variable intermedia para almacenar el mensaje que se va a reenviar
+    char mensaje_intermedio[1024];
+    strncpy(mensaje_intermedio, mensajer, sizeof(mensaje_intermedio) - 1);  // Copiar mensaje a la variable intermedia
+    mensaje_intermedio[sizeof(mensaje_intermedio) - 1] = '\0';  // Asegurarse de que esté correctamente terminado en null
+
+    // Saltar el primer token (id respuesta) con strtok
+    jugadorinvitado = strtok(mensajer, "-");  // Obtener primer token, se descarta
+
+    // Obtener el tercer token (jugadorinvitado)
+    jugadorinvitado = strtok(NULL, "-");  // Obtener el tercer token
+
+    // Verificar si se obtuvo un jugador invitado
+    if (jugadorinvitado == NULL) {
+        printf("Error: No se encontró el jugador invitado en el mensaje.\n");
+        return;
+    }
+
+    // Bucle para buscar el socket correspondiente
+    while (currentSearchingSocket < player_count && !socketEncontrado) {
+        if (strcmp(sockets[currentSearchingSocket]->username, jugadorinvitado) == 0) {
+            socketEncontrado = true;
+            // Asegurarse de que el socket sea válido antes de escribir
+            if (sockets[currentSearchingSocket]->sock_conn > 0) {
+                // Formatear el mensaje con snprintf
+                char result_invite[1024];
+                snprintf(result_invite, sizeof(result_invite), "211/%s", mensaje_intermedio);
+
+                // Enviar el mensaje al socket
+                write(sockets[currentSearchingSocket]->sock_conn, result_invite, strlen(result_invite));
+                printf("Invitación enviada a %s.\n", jugadorinvitado);
+                printf("El jugador que ha sido invitado recibirá: %s\n", result_invite);  // Mostrar el mensaje que se enviará
+            } else {
+                printf("Error: Socket inválido para el jugador %s.\n", jugadorinvitado);
+            }
+        }
+        currentSearchingSocket++;
+    }
+
+    if (!socketEncontrado) {
+        printf("Jugador %s no encontrado.\n", jugadorinvitado);
+    }
+}
+
+void joinGame(const char* input, char* response, MYSQL* conn, int SenderSockID)
+{
+    printf("ENTRANDO EN UNIRSE A PARTIDA\n");
+
+    // Validación de parámetros
+    if (input == NULL || conn == NULL) {
+        fprintf(stderr, "Parámetros inválidos.\n");
+        return;
+    }
+
+    // Copiar el input porque strtok modifica la cadena
+    char input_copy[200];
+    strncpy(input_copy, input, sizeof(input_copy) - 1);
+    input_copy[sizeof(input_copy) - 1] = '\0';
+
+    // Separar `username` y `game_id`
+    char* usernamedado = strtok(input_copy, "-");
+    char* game_id_str = strtok(NULL, "-");
+
+    if (usernamedado == NULL || game_id_str == NULL) {
+        fprintf(stderr, "Formato inválido de entrada: %s. Se esperaba 'username-idpartida'.\n", input);
+        return;
+    }
+
+    printf("GAME ID: %s\n", game_id_str);
+    printf("User to invite: %s\n", usernamedado);
+
+    int game_id = atoi(game_id_str); // Convertir el ID de partida a entero
+
+
+    // Variables para las consultas
+    char query[400];
+    MYSQL_RES* resultado;
+    MYSQL_ROW row;
+
+    // Construir la consulta
+    snprintf(query, sizeof(query), "SELECT Users.Player_ID FROM Users WHERE Users.Username = '%s';", usernamedado);
+
+    //printf("Consulta: %s\n", query);
+
+    // Ejecución de la consulta SELECT
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "Error en la consulta SELECT: %s\n", mysql_error(conn));
+        return;
+    }
+    // Obtener los resultados de la consulta SELECT
+    resultado = mysql_store_result(conn);
+    if (resultado == NULL) {
+        fprintf(stderr, "Error al almacenar resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener la primera fila de los resultados
+    row = mysql_fetch_row(resultado);
+    if (row == NULL) {
+        fprintf(stderr, "No se encontró el usuario con el nombre proporcionado.\n");
+        mysql_free_result(resultado);
+        return;
+    }
+	// Obtener el Player_ID (suponiendo que es un valor numérico)
+    int player_id = atoi(row[0]);  // Convertimos el Player_ID de string a int
+    printf("Player_ID: %d\n", player_id);
+
+    // Obtener el PlayerNumber máximo de la partida
+    snprintf(query, sizeof(query), 
+             "SELECT MAX(PlayerNumber) FROM Game_Members WHERE Game_ID = %d;", game_id);
+
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "Error en la consulta SELECT MAX(PlayerNumber): %s\n", mysql_error(conn));
+        return;
+    }
+
+    resultado = mysql_store_result(conn);
+    if (resultado == NULL) {
+        fprintf(stderr, "Error al almacenar resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    row = mysql_fetch_row(resultado);
+    int player_number = (row && row[0]) ? atoi(row[0]) + 1 : 1;
+    mysql_free_result(resultado); // Limpiar resultados de la segunda consulta
+
+    // Verificar si hay espacio en la partida
+    if (player_number > 4) {
+        printf("JUEGO LLENO\n");
+        return;
+    }
+    // Insertar el registro en Game_Members
+    snprintf(query, sizeof(query), 
+             "INSERT INTO Game_Members (Game_ID, Player_ID, PlayerNumber) "
+             "VALUES (%d, %d, %d);", game_id, player_id, player_number);
+
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "Error en la consulta INSERT: %s\n", mysql_error(conn));
+        return;
+    }
+
+    printf("Registro insertado correctamente en Game_Members.\n");
+
+    // Consulta para obtener los usernames de los jugadores en el juego dado
+    snprintf(query, sizeof(query), 
+             "SELECT Users.Username FROM Game_Members "
+             "JOIN Users ON Game_Members.Player_ID = Users.Player_ID "
+             "WHERE Game_Members.Game_ID = %d;", game_id);
+
+    printf("Consulta: %s\n", query);
+
+    // Ejecutar la consulta
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "Error en la consulta SELECT Game_Members: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Almacenar el resultado de la consulta
+    resultado = mysql_store_result(conn);
+    if (resultado == NULL) {
+        fprintf(stderr, "Error al almacenar resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Crear una cadena para almacenar todos los usernames concatenados
+    char usernames[1000] = "";  // Asegúrate de que el tamaño sea suficiente para almacenar los usernames
+
+    // Recorrer las filas de resultados
+    while ((row = mysql_fetch_row(resultado))) {
+        // Concatenar el username a la cadena, separándolos por "-"
+        if (strlen(usernames) > 0) {
+            strcat(usernames, "-");  // Agregar el separador "-"
+        }
+        strcat(usernames, row[0]);  // Concatenar el username
+    }
+
+    // Mostrar el resultado
+    printf("Usernames del juego (Game_ID = %d): %s\n", game_id, usernames);
+
+    // Liberar recursos
+    mysql_free_result(resultado);
+
+	//MODIFICAR INFORMACION ADICIONAL LISTA SOCKETS
+	int currentSearchingSocket = 0;
+	bool encontrado = false;
+
+	while ((sockets[currentSearchingSocket] != NULL)&&(!encontrado))
+	{
+		if (sockets[currentSearchingSocket]->sock_conn == SenderSockID)
+		{
+			sockets[currentSearchingSocket]->IdentificadorJugadorPartida = player_number;
+			printf("PONGO IDJP\n");
+			sockets[currentSearchingSocket]->IdentificadorPartida = game_id;
+			encontrado = true;
+			printf("PONGO IP\n");
+		}
+		currentSearchingSocket++;
+	}
+
+	//MANDAR A SOCKETS DE PARTIDA
+	currentSearchingSocket = 0;
+	while (currentSearchingSocket < player_count)
+	{
+        if (sockets[currentSearchingSocket]->IdentificadorPartida == game_id)
+		{
+            
+            char result_invite[1024];
+            snprintf(result_invite, sizeof(result_invite), "221/%s", usernames);
+
+            // Enviar el mensaje al socket
+            write(sockets[currentSearchingSocket]->sock_conn, result_invite, strlen(result_invite));
+			//printf("ENVIADO A PLAYER");
+        }
+        currentSearchingSocket++;
+    }
+
+}
+
+
+void readyToStartGame(const char* input, char* response, MYSQL* conn, int SenderSockID)
+{
+	printf("GAME ");
+	printf(input);
+	printf(" REQUESTED TO START\n");
+
+	// Insertar el registro en la tabla Game_Members
+    char query0[400];
+    snprintf(query0, sizeof(query0), 
+             "UPDATE Game SET GameStatus = %d WHERE Game_ID = %d;", 
+             1, atoi(input));
+
+    // Ejecutar la consulta INSERT en Game_Members
+    if (mysql_query(conn, query0)) {
+        fprintf(stderr, "Error en la consulta INSERT: %s\n", mysql_error(conn));
+        return;
+    }
+
+    printf("Estado de partida actualizado a 1\n");
+
+	//MANDAR A SOCKETS DE PARTIDA
+	int currentSearchingSocket = 0;
+	while (currentSearchingSocket < player_count)
+	{
+        if (sockets[currentSearchingSocket]->IdentificadorPartida == atoi(input))
+		{
+            
+            char result_startGame[1024];
+            snprintf(result_startGame, sizeof(result_startGame), "231/");
+
+            // Enviar el mensaje al socket
+            write(sockets[currentSearchingSocket]->sock_conn, result_startGame, strlen(result_startGame));
+        }
+        currentSearchingSocket++;
+    }
+
+	sendPositionsToGame(atoi(input), response, conn);
+
+}
+
+void sendPositionsToGame(int gameIDToSend, char* response, MYSQL* conn)
+{
+	printf("ENTERED TO SEND POSITIONS TO GAME");
+	char query[256];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Construir la consulta SQL
+    snprintf(query, sizeof(query), "SELECT Game.PosicionFichas FROM Game WHERE Game.Game_ID = %d;", gameIDToSend);
+
+    // Ejecutar la consulta
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "Error al ejecutar la consulta: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener los resultados
+    result = mysql_store_result(conn);
+    if (result == NULL) {
+        fprintf(stderr, "Error al obtener resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Procesar los resultados
+    if ((row = mysql_fetch_row(result)) != NULL) {
+        printf("PosicionFichas para Game_ID %d: %s\n", gameIDToSend, row[0]);
+    } else {
+        printf("No se encontró ningún resultado para Game_ID %d\n", gameIDToSend);
+    }
+
+    
+
+
+	//MANDAR A SOCKETS DE PARTIDA
+	int currentSearchingSocket = 0;
+	while (currentSearchingSocket < player_count)
+	{
+        if (sockets[currentSearchingSocket]->IdentificadorPartida == gameIDToSend)
+		{
+            
+            char result_sendPosition[1024];
+            snprintf(result_sendPosition, sizeof(result_sendPosition), "241/%s-", row[0]);
+
+
+            // Enviar el mensaje al socket
+            write(sockets[currentSearchingSocket]->sock_conn, result_sendPosition, strlen(result_sendPosition));
+        }
+        currentSearchingSocket++;
+    }
+
+	// Liberar los resultados
+    mysql_free_result(result);
+
+}
+
+
+void moveToken(const char* input, char* response, MYSQL* conn)
+{
+    char currentGameID[100];
+    char jugadorInteractuando[100];  // Variable para guardar el segundo token
+    int numeroAleatorio;
+
+    // Usamos strtok para separar la cadena
+    char *token = strtok(input, "-");
+    strcpy(currentGameID, token);  // El primer token es el currentGameID
+
+    // El segundo token es el jugadorInteractuando
+    token = strtok(NULL, "-");
+    strcpy(jugadorInteractuando, token);  // Guardamos el segundo token
+
+    // El tercer token es el numeroAleatorio
+    token = strtok(NULL, "-");
+    numeroAleatorio = atoi(token);  // Convertimos el tercer token a entero
+
+    // Imprimir los resultados
+    printf("currentGameID: %s\n", currentGameID);
+    printf("jugadorInteractuando: %s\n", jugadorInteractuando);
+    printf("numeroAleatorio: %d\n", numeroAleatorio);
+
+	char query0[256];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Construir la consulta SQL
+    snprintf(query0, sizeof(query0), "SELECT Game.PosicionFichas FROM Game WHERE Game.Game_ID = %d;", atoi(currentGameID));
+
+    // Ejecutar la consulta
+    if (mysql_query(conn, query0)) {
+        fprintf(stderr, "Error al ejecutar la consulta: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Obtener los resultados
+    result = mysql_store_result(conn);
+    if (result == NULL) {
+        fprintf(stderr, "Error al obtener resultados: %s\n", mysql_error(conn));
+        return;
+    }
+
+    // Procesar los resultados
+    if ((row = mysql_fetch_row(result)) != NULL) {
+        printf("PosicionFichas para Game_ID %d: %s\n", atoi(currentGameID), row[0]);
+    } else {
+        printf("No se encontró ningún resultado para Game_ID %d\n", atoi(currentGameID));
+    }
+
+
+	// Crear una copia de la cadena original para trabajar
+    char temp[254];
+    strcpy(temp, row[0]);
+
+    // Crear un puntero para el token
+    char *tokenS = strtok(temp, "-");
+
+    // Convertir el primer token (número) a entero
+    int pos0 = atoi(tokenS);
+
+    // Sumar el valor aleatorio
+    pos0 += numeroAleatorio;
+
+    // Convertir el número modificado de nuevo a cadena
+    char num_str[10];
+    sprintf(num_str, "%d", pos0);
+
+    // Construir la nueva cadena
+    char nuevaCadena[20];
+    strcpy(nuevaCadena, num_str); // Copiar el nuevo número
+
+    // Agregar los tokens restantes si es necesario
+    tokenS = strtok(NULL, ""); // Tomar el resto de la cadena original
+    if (tokenS != NULL) {
+        strcat(nuevaCadena, "-");
+        strcat(nuevaCadena, tokenS);
+    }
+
+    // Imprimir la cadena resultante
+    printf("Cadena modificada: %s\n", nuevaCadena);
+
+	char newPosicionFichas[256];
+
+
+
+	// Prepara la consulta SQL con el nuevo valor de PosicionFichas y el Game_ID
+    char query1[512];
+    snprintf(query1, sizeof(query1), 
+        "UPDATE Game SET PosicionFichas = '%s' WHERE Game_ID = %d;", 
+        nuevaCadena, atoi(currentGameID));
+
+    // Ejecutar la consulta
+    if (mysql_query(conn, query1)) {
+        fprintf(stderr, "Error al ejecutar la consulta: %s\n", mysql_error(conn));
+        return;
+    }
+
+
+
+    // Mostrar la consulta generada (esto es solo para ver cómo quedó la consulta)
+    printf("Consulta SQL: %s\n", query1);
+	sendPositionsToGame(atoi(currentGameID), response, conn);
+    printf("ENVIADO");
+
+}
+
+
+// FUNCTION TO INITIALIZE THE CONNECTION WITH MYSQL
+MYSQL* init_mysql_connection() {
+	MYSQL* conn = mysql_init(NULL);
+	if (conn == NULL)
+    {
+		printf("Error creating the connection with MySQL: %u %s\n", mysql_errno(conn), mysql_error(conn));
+		exit(1);
+	}
+	conn = mysql_real_connect(conn,"shiva2.upc.es", "root", "mysql", "T5_BBDDJuego", 0, NULL, 0);
+	if (conn == NULL)
+    {
+		printf("Error initializing the connection with MySQL: %u %s\n", mysql_errno(conn), mysql_error(conn));
+		exit(1);
+	}
+	return conn;
+}
+
+//chat send
+void broadcast_message_chat(char* chat_message, char* username, char* response,int sender_sock) {
+	pthread_mutex_lock(&mutex); // Bloqueo para evitar problemas de concurrencia
+	sprintf(response, "101/%s:%s\n",username,chat_message); 
+	for (int j= 0;j<client_count; j++) {
+		
+		if (sockets[j] != NULL){
+			if (sockets[j]->sock_conn != sender_sock) 
+				write(sockets[j]->sock_conn, response, strlen(response)); // Enviar el mensaje a cada cliente
+		}
+	}
+	pthread_mutex_unlock(&mutex); // Desbloqueo
+}
+	
+// MAIN
+int main() {
+	int sock_listen, sock_conn;
+	struct sockaddr_in serv_adr;
+	MYSQL* conn;
+	pthread_t threads[MAX_CLIENTS]; //Array of threads
+	//Number of connected clients
+	
+	// conection with MYSQL
+	conn = init_mysql_connection();
+	
+	// create socket
+	if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    {
+		printf("Error connecting to socket\n");
+		exit(1);
+	}
+	
+	// configuration of the server
+	memset(&serv_adr, 0, sizeof(serv_adr));
+	serv_adr.sin_family = AF_INET;
+	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
+	serv_adr.sin_port = htons(PORT);
+	
+	// asign socket to port
+	if (bind(sock_listen, (struct sockaddr*)&serv_adr, sizeof(serv_adr)) < 0)
+    {
+		printf("Error doing the bind\n");
+		exit(1);
+	}
+	
+	// Listen connections
+	if (listen(sock_listen, MAX_CLIENTS) < 0)
+    {
+		printf("Error in listen\n");
+		exit(1);
+	}
+	
+	printf("=======================================\n");
+	printf("========== T05 - PROYECTO SO ==========\n");
+	printf("========== SERVIDOR ACTIVADO ==========\n");
+	printf("=======================================\n");
+
+	
+	// loop to habdle connections
+	while (1)
+    {
+		sock_conn = accept(sock_listen, NULL, NULL);
+		printf("Connection recieved\n");
+		sockets[client_count] = sock_conn;
+		
+		//structure to pass the parameters to the thread
+		struct thread_data* t_data = (struct thread_data*)malloc(sizeof(struct thread_data));
+		t_data->sock_conn = sock_conn;
+		t_data->conn = conn;
+		strcpy(t_data->username, "");
+		
+		sockets[client_count] = t_data;
+		
+		//thread to manage the client
+		pthread_create(&threads[client_count], NULL, handle_client, (void*)t_data);
+		
+		client_count++;
+		
+		//limit the number of connected clients
+		if (client_count >= MAX_CLIENTS) {
+			client_count = 0;
+		}
+	}
+	
+	mysql_close(conn);
+	return 0;
+ }
