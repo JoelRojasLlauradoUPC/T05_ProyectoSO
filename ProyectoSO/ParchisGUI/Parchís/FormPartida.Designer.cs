@@ -33,17 +33,17 @@
             this.panel_Estadisticas = new System.Windows.Forms.Panel();
             this.groupBox_P4 = new System.Windows.Forms.GroupBox();
             this.turno_P4 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.dadoP4 = new System.Windows.Forms.PictureBox();
             this.color_P4 = new System.Windows.Forms.PictureBox();
             this.labelName_P4 = new System.Windows.Forms.Label();
             this.groupBox_P3 = new System.Windows.Forms.GroupBox();
             this.turno_P3 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.dadoP3 = new System.Windows.Forms.PictureBox();
             this.color_P3 = new System.Windows.Forms.PictureBox();
             this.labelName_P3 = new System.Windows.Forms.Label();
             this.groupBox_P2 = new System.Windows.Forms.GroupBox();
             this.turno_P2 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.dadoP2 = new System.Windows.Forms.PictureBox();
             this.color_P2 = new System.Windows.Forms.PictureBox();
             this.labelName_P2 = new System.Windows.Forms.Label();
             this.groupBox_P1 = new System.Windows.Forms.GroupBox();
@@ -221,6 +221,7 @@
             this.labelInvitar = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ChatReceiverBox = new System.Windows.Forms.GroupBox();
+            this.buttonIniciarPartida = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ConnectedPlayersTextBox = new System.Windows.Forms.TextBox();
             this.btt_pos_send = new System.Windows.Forms.Button();
@@ -233,15 +234,15 @@
             this.panel_Estadisticas.SuspendLayout();
             this.groupBox_P4.SuspendLayout();
             this.turno_P4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P4)).BeginInit();
             this.groupBox_P3.SuspendLayout();
             this.turno_P3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P3)).BeginInit();
             this.groupBox_P2.SuspendLayout();
             this.turno_P2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P2)).BeginInit();
             this.groupBox_P1.SuspendLayout();
             this.turno_P1.SuspendLayout();
@@ -296,8 +297,9 @@
             this.panelStatus.Controls.Add(this.groupBox_Game);
             this.panelStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelStatus.Location = new System.Drawing.Point(0, 0);
+            this.panelStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(1426, 130);
+            this.panelStatus.Size = new System.Drawing.Size(2139, 200);
             this.panelStatus.TabIndex = 0;
             this.panelStatus.Visible = false;
             // 
@@ -308,9 +310,10 @@
             this.panel_Estadisticas.Controls.Add(this.groupBox_P2);
             this.panel_Estadisticas.Controls.Add(this.groupBox_P1);
             this.panel_Estadisticas.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_Estadisticas.Location = new System.Drawing.Point(200, 0);
+            this.panel_Estadisticas.Location = new System.Drawing.Point(300, 0);
+            this.panel_Estadisticas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel_Estadisticas.Name = "panel_Estadisticas";
-            this.panel_Estadisticas.Size = new System.Drawing.Size(800, 130);
+            this.panel_Estadisticas.Size = new System.Drawing.Size(1200, 200);
             this.panel_Estadisticas.TabIndex = 3;
             this.panel_Estadisticas.Visible = false;
             // 
@@ -320,39 +323,45 @@
             this.groupBox_P4.Controls.Add(this.color_P4);
             this.groupBox_P4.Controls.Add(this.labelName_P4);
             this.groupBox_P4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox_P4.Location = new System.Drawing.Point(600, 0);
+            this.groupBox_P4.Location = new System.Drawing.Point(900, 0);
+            this.groupBox_P4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_P4.Name = "groupBox_P4";
-            this.groupBox_P4.Size = new System.Drawing.Size(200, 130);
+            this.groupBox_P4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox_P4.Size = new System.Drawing.Size(300, 200);
             this.groupBox_P4.TabIndex = 3;
             this.groupBox_P4.TabStop = false;
             this.groupBox_P4.Text = "Player-4";
             // 
             // turno_P4
             // 
-            this.turno_P4.Controls.Add(this.pictureBox4);
-            this.turno_P4.Location = new System.Drawing.Point(7, 38);
+            this.turno_P4.Controls.Add(this.dadoP4);
+            this.turno_P4.Location = new System.Drawing.Point(10, 59);
+            this.turno_P4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.turno_P4.Name = "turno_P4";
-            this.turno_P4.Size = new System.Drawing.Size(90, 90);
+            this.turno_P4.Size = new System.Drawing.Size(135, 139);
             this.turno_P4.TabIndex = 2;
             this.turno_P4.Visible = false;
             // 
-            // pictureBox4
+            // dadoP4
             // 
-            this.pictureBox4.Image = global::Parchís.Properties.Resources.dice_roll_dice;
-            this.pictureBox4.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(70, 70);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
+            this.dadoP4.Image = global::Parchís.Properties.Resources.dice_roll_dice;
+            this.dadoP4.Location = new System.Drawing.Point(15, 15);
+            this.dadoP4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dadoP4.Name = "dadoP4";
+            this.dadoP4.Size = new System.Drawing.Size(105, 108);
+            this.dadoP4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dadoP4.TabIndex = 3;
+            this.dadoP4.TabStop = false;
+            this.dadoP4.Click += new System.EventHandler(this.dadoP4_Click);
             // 
             // color_P4
             // 
             this.color_P4.BackColor = System.Drawing.Color.Transparent;
             this.color_P4.Image = global::Parchís.Properties.Resources.cubo_amarillo;
-            this.color_P4.Location = new System.Drawing.Point(104, 38);
+            this.color_P4.Location = new System.Drawing.Point(156, 59);
+            this.color_P4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.color_P4.Name = "color_P4";
-            this.color_P4.Size = new System.Drawing.Size(90, 90);
+            this.color_P4.Size = new System.Drawing.Size(135, 139);
             this.color_P4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.color_P4.TabIndex = 1;
             this.color_P4.TabStop = false;
@@ -361,9 +370,10 @@
             // 
             this.labelName_P4.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelName_P4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName_P4.Location = new System.Drawing.Point(3, 16);
+            this.labelName_P4.Location = new System.Drawing.Point(4, 24);
+            this.labelName_P4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName_P4.Name = "labelName_P4";
-            this.labelName_P4.Size = new System.Drawing.Size(194, 16);
+            this.labelName_P4.Size = new System.Drawing.Size(292, 25);
             this.labelName_P4.TabIndex = 0;
             this.labelName_P4.Text = "PLAYER4-NAME------";
             this.labelName_P4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -374,39 +384,45 @@
             this.groupBox_P3.Controls.Add(this.color_P3);
             this.groupBox_P3.Controls.Add(this.labelName_P3);
             this.groupBox_P3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox_P3.Location = new System.Drawing.Point(400, 0);
+            this.groupBox_P3.Location = new System.Drawing.Point(600, 0);
+            this.groupBox_P3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_P3.Name = "groupBox_P3";
-            this.groupBox_P3.Size = new System.Drawing.Size(200, 130);
+            this.groupBox_P3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox_P3.Size = new System.Drawing.Size(300, 200);
             this.groupBox_P3.TabIndex = 2;
             this.groupBox_P3.TabStop = false;
             this.groupBox_P3.Text = "Player-3";
             // 
             // turno_P3
             // 
-            this.turno_P3.Controls.Add(this.pictureBox3);
-            this.turno_P3.Location = new System.Drawing.Point(7, 38);
+            this.turno_P3.Controls.Add(this.dadoP3);
+            this.turno_P3.Location = new System.Drawing.Point(10, 59);
+            this.turno_P3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.turno_P3.Name = "turno_P3";
-            this.turno_P3.Size = new System.Drawing.Size(90, 90);
+            this.turno_P3.Size = new System.Drawing.Size(135, 139);
             this.turno_P3.TabIndex = 2;
             this.turno_P3.Visible = false;
             // 
-            // pictureBox3
+            // dadoP3
             // 
-            this.pictureBox3.Image = global::Parchís.Properties.Resources.dice_roll_dice;
-            this.pictureBox3.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(70, 70);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.dadoP3.Image = global::Parchís.Properties.Resources.dice_roll_dice;
+            this.dadoP3.Location = new System.Drawing.Point(15, 15);
+            this.dadoP3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dadoP3.Name = "dadoP3";
+            this.dadoP3.Size = new System.Drawing.Size(105, 108);
+            this.dadoP3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dadoP3.TabIndex = 3;
+            this.dadoP3.TabStop = false;
+            this.dadoP3.Click += new System.EventHandler(this.dadoP3_Click);
             // 
             // color_P3
             // 
             this.color_P3.BackColor = System.Drawing.Color.Transparent;
             this.color_P3.Image = ((System.Drawing.Image)(resources.GetObject("color_P3.Image")));
-            this.color_P3.Location = new System.Drawing.Point(104, 38);
+            this.color_P3.Location = new System.Drawing.Point(156, 59);
+            this.color_P3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.color_P3.Name = "color_P3";
-            this.color_P3.Size = new System.Drawing.Size(90, 90);
+            this.color_P3.Size = new System.Drawing.Size(135, 139);
             this.color_P3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.color_P3.TabIndex = 1;
             this.color_P3.TabStop = false;
@@ -415,9 +431,10 @@
             // 
             this.labelName_P3.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelName_P3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName_P3.Location = new System.Drawing.Point(3, 16);
+            this.labelName_P3.Location = new System.Drawing.Point(4, 24);
+            this.labelName_P3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName_P3.Name = "labelName_P3";
-            this.labelName_P3.Size = new System.Drawing.Size(194, 16);
+            this.labelName_P3.Size = new System.Drawing.Size(292, 25);
             this.labelName_P3.TabIndex = 0;
             this.labelName_P3.Text = "PLAYER3-NAME------";
             this.labelName_P3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -428,39 +445,45 @@
             this.groupBox_P2.Controls.Add(this.color_P2);
             this.groupBox_P2.Controls.Add(this.labelName_P2);
             this.groupBox_P2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox_P2.Location = new System.Drawing.Point(200, 0);
+            this.groupBox_P2.Location = new System.Drawing.Point(300, 0);
+            this.groupBox_P2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_P2.Name = "groupBox_P2";
-            this.groupBox_P2.Size = new System.Drawing.Size(200, 130);
+            this.groupBox_P2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox_P2.Size = new System.Drawing.Size(300, 200);
             this.groupBox_P2.TabIndex = 1;
             this.groupBox_P2.TabStop = false;
             this.groupBox_P2.Text = "Player-2";
             // 
             // turno_P2
             // 
-            this.turno_P2.Controls.Add(this.pictureBox2);
-            this.turno_P2.Location = new System.Drawing.Point(7, 38);
+            this.turno_P2.Controls.Add(this.dadoP2);
+            this.turno_P2.Location = new System.Drawing.Point(10, 59);
+            this.turno_P2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.turno_P2.Name = "turno_P2";
-            this.turno_P2.Size = new System.Drawing.Size(90, 90);
+            this.turno_P2.Size = new System.Drawing.Size(135, 139);
             this.turno_P2.TabIndex = 2;
             this.turno_P2.Visible = false;
             // 
-            // pictureBox2
+            // dadoP2
             // 
-            this.pictureBox2.Image = global::Parchís.Properties.Resources.dice_roll_dice;
-            this.pictureBox2.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(70, 70);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
+            this.dadoP2.Image = global::Parchís.Properties.Resources.dice_roll_dice;
+            this.dadoP2.Location = new System.Drawing.Point(15, 15);
+            this.dadoP2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dadoP2.Name = "dadoP2";
+            this.dadoP2.Size = new System.Drawing.Size(105, 108);
+            this.dadoP2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dadoP2.TabIndex = 3;
+            this.dadoP2.TabStop = false;
+            this.dadoP2.Click += new System.EventHandler(this.dadoP2_Click);
             // 
             // color_P2
             // 
             this.color_P2.BackColor = System.Drawing.Color.Transparent;
             this.color_P2.Image = global::Parchís.Properties.Resources.cubo_rojo;
-            this.color_P2.Location = new System.Drawing.Point(104, 38);
+            this.color_P2.Location = new System.Drawing.Point(156, 59);
+            this.color_P2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.color_P2.Name = "color_P2";
-            this.color_P2.Size = new System.Drawing.Size(90, 90);
+            this.color_P2.Size = new System.Drawing.Size(135, 139);
             this.color_P2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.color_P2.TabIndex = 1;
             this.color_P2.TabStop = false;
@@ -469,9 +492,10 @@
             // 
             this.labelName_P2.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelName_P2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName_P2.Location = new System.Drawing.Point(3, 16);
+            this.labelName_P2.Location = new System.Drawing.Point(4, 24);
+            this.labelName_P2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName_P2.Name = "labelName_P2";
-            this.labelName_P2.Size = new System.Drawing.Size(194, 16);
+            this.labelName_P2.Size = new System.Drawing.Size(292, 25);
             this.labelName_P2.TabIndex = 0;
             this.labelName_P2.Text = "PLAYER2-NAME------";
             this.labelName_P2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,8 +508,10 @@
             this.groupBox_P1.Controls.Add(this.labelName_P1);
             this.groupBox_P1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox_P1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_P1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_P1.Name = "groupBox_P1";
-            this.groupBox_P1.Size = new System.Drawing.Size(200, 130);
+            this.groupBox_P1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox_P1.Size = new System.Drawing.Size(300, 200);
             this.groupBox_P1.TabIndex = 0;
             this.groupBox_P1.TabStop = false;
             this.groupBox_P1.Text = "Player-1";
@@ -493,18 +519,20 @@
             // turno_P1
             // 
             this.turno_P1.Controls.Add(this.dadoP1);
-            this.turno_P1.Location = new System.Drawing.Point(7, 38);
+            this.turno_P1.Location = new System.Drawing.Point(10, 59);
+            this.turno_P1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.turno_P1.Name = "turno_P1";
-            this.turno_P1.Size = new System.Drawing.Size(90, 90);
+            this.turno_P1.Size = new System.Drawing.Size(135, 139);
             this.turno_P1.TabIndex = 2;
             this.turno_P1.Visible = false;
             // 
             // dadoP1
             // 
             this.dadoP1.Image = global::Parchís.Properties.Resources.dice_roll_dice;
-            this.dadoP1.Location = new System.Drawing.Point(10, 10);
+            this.dadoP1.Location = new System.Drawing.Point(15, 15);
+            this.dadoP1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dadoP1.Name = "dadoP1";
-            this.dadoP1.Size = new System.Drawing.Size(70, 70);
+            this.dadoP1.Size = new System.Drawing.Size(105, 108);
             this.dadoP1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.dadoP1.TabIndex = 3;
             this.dadoP1.TabStop = false;
@@ -514,9 +542,10 @@
             // 
             this.color_P1.BackColor = System.Drawing.Color.Transparent;
             this.color_P1.Image = global::Parchís.Properties.Resources.Cubo_verde;
-            this.color_P1.Location = new System.Drawing.Point(104, 38);
+            this.color_P1.Location = new System.Drawing.Point(156, 59);
+            this.color_P1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.color_P1.Name = "color_P1";
-            this.color_P1.Size = new System.Drawing.Size(90, 90);
+            this.color_P1.Size = new System.Drawing.Size(135, 139);
             this.color_P1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.color_P1.TabIndex = 1;
             this.color_P1.TabStop = false;
@@ -525,9 +554,10 @@
             // 
             this.labelName_P1.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelName_P1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName_P1.Location = new System.Drawing.Point(3, 16);
+            this.labelName_P1.Location = new System.Drawing.Point(4, 24);
+            this.labelName_P1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName_P1.Name = "labelName_P1";
-            this.labelName_P1.Size = new System.Drawing.Size(194, 16);
+            this.labelName_P1.Size = new System.Drawing.Size(292, 25);
             this.labelName_P1.TabIndex = 0;
             this.labelName_P1.Text = "PLAYER1-NAME------";
             this.labelName_P1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -536,8 +566,10 @@
             // 
             this.groupBox_Game.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox_Game.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Game.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_Game.Name = "groupBox_Game";
-            this.groupBox_Game.Size = new System.Drawing.Size(200, 130);
+            this.groupBox_Game.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox_Game.Size = new System.Drawing.Size(300, 200);
             this.groupBox_Game.TabIndex = 2;
             this.groupBox_Game.TabStop = false;
             this.groupBox_Game.Text = "Statistics";
@@ -547,9 +579,10 @@
             this.panel2.Controls.Add(this.gamePanel);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 130);
+            this.panel2.Location = new System.Drawing.Point(0, 200);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1426, 727);
+            this.panel2.Size = new System.Drawing.Size(2139, 1119);
             this.panel2.TabIndex = 2;
             // 
             // gamePanel
@@ -562,9 +595,10 @@
             this.gamePanel.Controls.Add(this.margenSuperior);
             this.gamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gamePanel.ForeColor = System.Drawing.Color.Black;
-            this.gamePanel.Location = new System.Drawing.Point(200, 0);
+            this.gamePanel.Location = new System.Drawing.Point(300, 0);
+            this.gamePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gamePanel.Name = "gamePanel";
-            this.gamePanel.Size = new System.Drawing.Size(1226, 727);
+            this.gamePanel.Size = new System.Drawing.Size(1839, 1119);
             this.gamePanel.TabIndex = 1;
             // 
             // panelSeleccionPartidas
@@ -574,10 +608,10 @@
             this.panelSeleccionPartidas.Controls.Add(this.SeleccionarOpcionPanel);
             this.panelSeleccionPartidas.Controls.Add(this.panel_infoSeleccionar);
             this.panelSeleccionPartidas.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelSeleccionPartidas.Location = new System.Drawing.Point(1256, 37);
-            this.panelSeleccionPartidas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSeleccionPartidas.Location = new System.Drawing.Point(1884, 58);
+            this.panelSeleccionPartidas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSeleccionPartidas.Name = "panelSeleccionPartidas";
-            this.panelSeleccionPartidas.Size = new System.Drawing.Size(730, 690);
+            this.panelSeleccionPartidas.Size = new System.Drawing.Size(1095, 1061);
             this.panelSeleccionPartidas.TabIndex = 4;
             this.panelSeleccionPartidas.Visible = false;
             // 
@@ -590,13 +624,13 @@
             this.nombreJugador,
             this.columnAccion});
             this.dataGridInvitar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridInvitar.Location = new System.Drawing.Point(0, 159);
-            this.dataGridInvitar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridInvitar.Location = new System.Drawing.Point(0, 246);
+            this.dataGridInvitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridInvitar.Name = "dataGridInvitar";
             this.dataGridInvitar.RowHeadersVisible = false;
             this.dataGridInvitar.RowHeadersWidth = 51;
             this.dataGridInvitar.RowTemplate.Height = 24;
-            this.dataGridInvitar.Size = new System.Drawing.Size(542, 531);
+            this.dataGridInvitar.Size = new System.Drawing.Size(813, 815);
             this.dataGridInvitar.TabIndex = 4;
             this.dataGridInvitar.Visible = false;
             this.dataGridInvitar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvitar_CellContentClick);
@@ -607,7 +641,7 @@
             this.nombreJugador.MinimumWidth = 6;
             this.nombreJugador.Name = "nombreJugador";
             this.nombreJugador.ReadOnly = true;
-            this.nombreJugador.Width = 116;
+            this.nombreJugador.Width = 172;
             // 
             // columnAccion
             // 
@@ -615,15 +649,15 @@
             this.columnAccion.MinimumWidth = 6;
             this.columnAccion.Name = "columnAccion";
             this.columnAccion.ReadOnly = true;
-            this.columnAccion.Width = 65;
+            this.columnAccion.Width = 93;
             // 
             // panel_invitarJugadores
             // 
             this.panel_invitarJugadores.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_invitarJugadores.Location = new System.Drawing.Point(0, 111);
-            this.panel_invitarJugadores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_invitarJugadores.Location = new System.Drawing.Point(0, 172);
+            this.panel_invitarJugadores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_invitarJugadores.Name = "panel_invitarJugadores";
-            this.panel_invitarJugadores.Size = new System.Drawing.Size(730, 48);
+            this.panel_invitarJugadores.Size = new System.Drawing.Size(1095, 74);
             this.panel_invitarJugadores.TabIndex = 3;
             this.panel_invitarJugadores.Visible = false;
             // 
@@ -633,19 +667,19 @@
             this.SeleccionarOpcionPanel.Controls.Add(this.panel_separacionOpciones);
             this.SeleccionarOpcionPanel.Controls.Add(this.bttn_crearPartida);
             this.SeleccionarOpcionPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SeleccionarOpcionPanel.Location = new System.Drawing.Point(0, 48);
-            this.SeleccionarOpcionPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeleccionarOpcionPanel.Location = new System.Drawing.Point(0, 74);
+            this.SeleccionarOpcionPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SeleccionarOpcionPanel.Name = "SeleccionarOpcionPanel";
-            this.SeleccionarOpcionPanel.Size = new System.Drawing.Size(730, 63);
+            this.SeleccionarOpcionPanel.Size = new System.Drawing.Size(1095, 98);
             this.SeleccionarOpcionPanel.TabIndex = 2;
             // 
             // bttn_unirsePartida
             // 
             this.bttn_unirsePartida.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bttn_unirsePartida.Location = new System.Drawing.Point(197, 0);
-            this.bttn_unirsePartida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bttn_unirsePartida.Location = new System.Drawing.Point(295, 0);
+            this.bttn_unirsePartida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bttn_unirsePartida.Name = "bttn_unirsePartida";
-            this.bttn_unirsePartida.Size = new System.Drawing.Size(105, 63);
+            this.bttn_unirsePartida.Size = new System.Drawing.Size(158, 98);
             this.bttn_unirsePartida.TabIndex = 2;
             this.bttn_unirsePartida.Text = "Unirse a Partida Existente";
             this.bttn_unirsePartida.UseVisualStyleBackColor = true;
@@ -653,19 +687,19 @@
             // panel_separacionOpciones
             // 
             this.panel_separacionOpciones.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_separacionOpciones.Location = new System.Drawing.Point(115, 0);
-            this.panel_separacionOpciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_separacionOpciones.Location = new System.Drawing.Point(172, 0);
+            this.panel_separacionOpciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_separacionOpciones.Name = "panel_separacionOpciones";
-            this.panel_separacionOpciones.Size = new System.Drawing.Size(82, 63);
+            this.panel_separacionOpciones.Size = new System.Drawing.Size(123, 98);
             this.panel_separacionOpciones.TabIndex = 1;
             // 
             // bttn_crearPartida
             // 
             this.bttn_crearPartida.Dock = System.Windows.Forms.DockStyle.Left;
             this.bttn_crearPartida.Location = new System.Drawing.Point(0, 0);
-            this.bttn_crearPartida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bttn_crearPartida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bttn_crearPartida.Name = "bttn_crearPartida";
-            this.bttn_crearPartida.Size = new System.Drawing.Size(115, 63);
+            this.bttn_crearPartida.Size = new System.Drawing.Size(172, 98);
             this.bttn_crearPartida.TabIndex = 0;
             this.bttn_crearPartida.Text = "Crear Partida";
             this.bttn_crearPartida.UseVisualStyleBackColor = true;
@@ -676,9 +710,9 @@
             this.panel_infoSeleccionar.Controls.Add(this.label_Seleccionar);
             this.panel_infoSeleccionar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_infoSeleccionar.Location = new System.Drawing.Point(0, 0);
-            this.panel_infoSeleccionar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_infoSeleccionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_infoSeleccionar.Name = "panel_infoSeleccionar";
-            this.panel_infoSeleccionar.Size = new System.Drawing.Size(730, 48);
+            this.panel_infoSeleccionar.Size = new System.Drawing.Size(1095, 74);
             this.panel_infoSeleccionar.TabIndex = 1;
             // 
             // label_Seleccionar
@@ -687,9 +721,8 @@
             this.label_Seleccionar.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_Seleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Seleccionar.Location = new System.Drawing.Point(0, 0);
-            this.label_Seleccionar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_Seleccionar.Name = "label_Seleccionar";
-            this.label_Seleccionar.Size = new System.Drawing.Size(763, 26);
+            this.label_Seleccionar.Size = new System.Drawing.Size(1110, 38);
             this.label_Seleccionar.TabIndex = 0;
             this.label_Seleccionar.Text = "Bienvenido al Parchís! Por favor, seleccione una opción para continuar";
             // 
@@ -698,10 +731,10 @@
             this.panel_Bienvenida.BackColor = System.Drawing.Color.Transparent;
             this.panel_Bienvenida.Controls.Add(this.panel5);
             this.panel_Bienvenida.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_Bienvenida.Location = new System.Drawing.Point(1141, 37);
-            this.panel_Bienvenida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Bienvenida.Location = new System.Drawing.Point(1712, 58);
+            this.panel_Bienvenida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_Bienvenida.Name = "panel_Bienvenida";
-            this.panel_Bienvenida.Size = new System.Drawing.Size(115, 690);
+            this.panel_Bienvenida.Size = new System.Drawing.Size(172, 1061);
             this.panel_Bienvenida.TabIndex = 3;
             // 
             // panel5
@@ -714,9 +747,9 @@
             this.panel5.Controls.Add(this.LogIn_groupBox);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(115, 272);
+            this.panel5.Size = new System.Drawing.Size(172, 419);
             this.panel5.TabIndex = 4;
             // 
             // groupBox3
@@ -726,11 +759,11 @@
             this.groupBox3.Controls.Add(this.PortBox);
             this.groupBox3.Controls.Add(this.IPBox);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox3.Location = new System.Drawing.Point(658, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Location = new System.Drawing.Point(988, 0);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(179, 272);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(269, 419);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Connection Manager";
@@ -738,48 +771,46 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 86);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(8, 132);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.Size = new System.Drawing.Size(42, 20);
             this.label6.TabIndex = 19;
             this.label6.Text = "Port:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 52);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(21, 80);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 13);
+            this.label5.Size = new System.Drawing.Size(28, 20);
             this.label5.TabIndex = 18;
             this.label5.Text = "IP:";
             // 
             // PortBox
             // 
-            this.PortBox.Location = new System.Drawing.Point(35, 84);
-            this.PortBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PortBox.Location = new System.Drawing.Point(53, 129);
+            this.PortBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PortBox.Name = "PortBox";
-            this.PortBox.Size = new System.Drawing.Size(90, 20);
+            this.PortBox.Size = new System.Drawing.Size(133, 26);
             this.PortBox.TabIndex = 17;
             this.PortBox.Text = "50071";
             // 
             // IPBox
             // 
-            this.IPBox.Location = new System.Drawing.Point(35, 50);
-            this.IPBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IPBox.Location = new System.Drawing.Point(53, 78);
+            this.IPBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IPBox.Name = "IPBox";
-            this.IPBox.Size = new System.Drawing.Size(90, 20);
+            this.IPBox.Size = new System.Drawing.Size(133, 26);
             this.IPBox.TabIndex = 16;
             this.IPBox.Text = "10.4.119.5";
             // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(508, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Location = new System.Drawing.Point(763, 0);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(150, 272);
+            this.panel7.Size = new System.Drawing.Size(225, 419);
             this.panel7.TabIndex = 8;
             // 
             // Register_groupBox
@@ -793,11 +824,11 @@
             this.Register_groupBox.Controls.Add(this.PassRegisterBox);
             this.Register_groupBox.Controls.Add(this.UserRegisterBox);
             this.Register_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Register_groupBox.Location = new System.Drawing.Point(329, 0);
-            this.Register_groupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Register_groupBox.Location = new System.Drawing.Point(494, 0);
+            this.Register_groupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Register_groupBox.Name = "Register_groupBox";
-            this.Register_groupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Register_groupBox.Size = new System.Drawing.Size(179, 272);
+            this.Register_groupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Register_groupBox.Size = new System.Drawing.Size(269, 419);
             this.Register_groupBox.TabIndex = 7;
             this.Register_groupBox.TabStop = false;
             this.Register_groupBox.Text = "Register";
@@ -806,10 +837,9 @@
             // 
             this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelError.ForeColor = System.Drawing.Color.Red;
-            this.labelError.Location = new System.Drawing.Point(4, 209);
-            this.labelError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelError.Location = new System.Drawing.Point(6, 321);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(170, 46);
+            this.labelError.Size = new System.Drawing.Size(255, 71);
             this.labelError.TabIndex = 7;
             this.labelError.Text = "Username and Password files must not be empty and passwords must coincide.";
             this.labelError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -818,28 +848,27 @@
             // labelRepeatPassword
             // 
             this.labelRepeatPassword.AutoSize = true;
-            this.labelRepeatPassword.Location = new System.Drawing.Point(28, 128);
-            this.labelRepeatPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelRepeatPassword.Location = new System.Drawing.Point(42, 198);
             this.labelRepeatPassword.Name = "labelRepeatPassword";
-            this.labelRepeatPassword.Size = new System.Drawing.Size(94, 13);
+            this.labelRepeatPassword.Size = new System.Drawing.Size(139, 20);
             this.labelRepeatPassword.TabIndex = 6;
             this.labelRepeatPassword.Text = "Repeat Password:";
             // 
             // RepeatRegisterBox
             // 
-            this.RepeatRegisterBox.Location = new System.Drawing.Point(28, 143);
-            this.RepeatRegisterBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RepeatRegisterBox.Location = new System.Drawing.Point(42, 220);
+            this.RepeatRegisterBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RepeatRegisterBox.Name = "RepeatRegisterBox";
             this.RepeatRegisterBox.PasswordChar = '*';
-            this.RepeatRegisterBox.Size = new System.Drawing.Size(124, 20);
+            this.RepeatRegisterBox.Size = new System.Drawing.Size(184, 26);
             this.RepeatRegisterBox.TabIndex = 5;
             // 
             // Register_Button
             // 
-            this.Register_Button.Location = new System.Drawing.Point(26, 174);
-            this.Register_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Register_Button.Location = new System.Drawing.Point(39, 268);
+            this.Register_Button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Register_Button.Name = "Register_Button";
-            this.Register_Button.Size = new System.Drawing.Size(123, 24);
+            this.Register_Button.Size = new System.Drawing.Size(184, 38);
             this.Register_Button.TabIndex = 4;
             this.Register_Button.Text = "Register";
             this.Register_Button.UseVisualStyleBackColor = true;
@@ -848,48 +877,46 @@
             // labelPassword2
             // 
             this.labelPassword2.AutoSize = true;
-            this.labelPassword2.Location = new System.Drawing.Point(26, 86);
-            this.labelPassword2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelPassword2.Location = new System.Drawing.Point(39, 132);
             this.labelPassword2.Name = "labelPassword2";
-            this.labelPassword2.Size = new System.Drawing.Size(56, 13);
+            this.labelPassword2.Size = new System.Drawing.Size(82, 20);
             this.labelPassword2.TabIndex = 3;
             this.labelPassword2.Text = "Password:";
             // 
             // labelUsername1
             // 
             this.labelUsername1.AutoSize = true;
-            this.labelUsername1.Location = new System.Drawing.Point(26, 35);
-            this.labelUsername1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelUsername1.Location = new System.Drawing.Point(39, 54);
             this.labelUsername1.Name = "labelUsername1";
-            this.labelUsername1.Size = new System.Drawing.Size(58, 13);
+            this.labelUsername1.Size = new System.Drawing.Size(87, 20);
             this.labelUsername1.TabIndex = 2;
             this.labelUsername1.Text = "Username:";
             // 
             // PassRegisterBox
             // 
-            this.PassRegisterBox.Location = new System.Drawing.Point(26, 102);
-            this.PassRegisterBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PassRegisterBox.Location = new System.Drawing.Point(39, 158);
+            this.PassRegisterBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PassRegisterBox.Name = "PassRegisterBox";
             this.PassRegisterBox.PasswordChar = '*';
-            this.PassRegisterBox.Size = new System.Drawing.Size(124, 20);
+            this.PassRegisterBox.Size = new System.Drawing.Size(184, 26);
             this.PassRegisterBox.TabIndex = 1;
             // 
             // UserRegisterBox
             // 
-            this.UserRegisterBox.Location = new System.Drawing.Point(26, 53);
-            this.UserRegisterBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserRegisterBox.Location = new System.Drawing.Point(39, 81);
+            this.UserRegisterBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserRegisterBox.Name = "UserRegisterBox";
-            this.UserRegisterBox.Size = new System.Drawing.Size(124, 20);
+            this.UserRegisterBox.Size = new System.Drawing.Size(184, 26);
             this.UserRegisterBox.TabIndex = 0;
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.ForeColor = System.Drawing.Color.Transparent;
-            this.panel6.Location = new System.Drawing.Point(179, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Location = new System.Drawing.Point(269, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(150, 272);
+            this.panel6.Size = new System.Drawing.Size(225, 419);
             this.panel6.TabIndex = 5;
             // 
             // LogIn_groupBox
@@ -903,10 +930,10 @@
             this.LogIn_groupBox.Controls.Add(this.Username_TextBox);
             this.LogIn_groupBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.LogIn_groupBox.Location = new System.Drawing.Point(0, 0);
-            this.LogIn_groupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogIn_groupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LogIn_groupBox.Name = "LogIn_groupBox";
-            this.LogIn_groupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.LogIn_groupBox.Size = new System.Drawing.Size(179, 272);
+            this.LogIn_groupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LogIn_groupBox.Size = new System.Drawing.Size(269, 419);
             this.LogIn_groupBox.TabIndex = 4;
             this.LogIn_groupBox.TabStop = false;
             this.LogIn_groupBox.Text = "Log In";
@@ -914,10 +941,10 @@
             // pasarelaBttn
             // 
             this.pasarelaBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.pasarelaBttn.Location = new System.Drawing.Point(25, 167);
-            this.pasarelaBttn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pasarelaBttn.Location = new System.Drawing.Point(37, 258);
+            this.pasarelaBttn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pasarelaBttn.Name = "pasarelaBttn";
-            this.pasarelaBttn.Size = new System.Drawing.Size(124, 56);
+            this.pasarelaBttn.Size = new System.Drawing.Size(186, 86);
             this.pasarelaBttn.TabIndex = 17;
             this.pasarelaBttn.Text = "PASAR LOG-IN SIN CONEXION (SOLO PARA PRUEBAS)";
             this.pasarelaBttn.UseVisualStyleBackColor = false;
@@ -925,10 +952,10 @@
             // 
             // Disconnect_bttn
             // 
-            this.Disconnect_bttn.Location = new System.Drawing.Point(27, 236);
-            this.Disconnect_bttn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Disconnect_bttn.Location = new System.Drawing.Point(40, 362);
+            this.Disconnect_bttn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Disconnect_bttn.Name = "Disconnect_bttn";
-            this.Disconnect_bttn.Size = new System.Drawing.Size(121, 19);
+            this.Disconnect_bttn.Size = new System.Drawing.Size(181, 29);
             this.Disconnect_bttn.TabIndex = 16;
             this.Disconnect_bttn.Text = "Disconnect";
             this.Disconnect_bttn.UseVisualStyleBackColor = true;
@@ -937,10 +964,10 @@
             // 
             // LogIn_Button
             // 
-            this.LogIn_Button.Location = new System.Drawing.Point(26, 132);
-            this.LogIn_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogIn_Button.Location = new System.Drawing.Point(39, 202);
+            this.LogIn_Button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LogIn_Button.Name = "LogIn_Button";
-            this.LogIn_Button.Size = new System.Drawing.Size(123, 24);
+            this.LogIn_Button.Size = new System.Drawing.Size(184, 38);
             this.LogIn_Button.TabIndex = 4;
             this.LogIn_Button.Text = "Log In";
             this.LogIn_Button.UseVisualStyleBackColor = true;
@@ -949,39 +976,37 @@
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(26, 86);
-            this.labelPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelPassword.Location = new System.Drawing.Point(39, 132);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(56, 13);
+            this.labelPassword.Size = new System.Drawing.Size(82, 20);
             this.labelPassword.TabIndex = 3;
             this.labelPassword.Text = "Password:";
             // 
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(26, 35);
-            this.labelUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelUsername.Location = new System.Drawing.Point(39, 54);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(58, 13);
+            this.labelUsername.Size = new System.Drawing.Size(87, 20);
             this.labelUsername.TabIndex = 2;
             this.labelUsername.Text = "Username:";
             // 
             // Password_TextBox
             // 
-            this.Password_TextBox.Location = new System.Drawing.Point(26, 102);
-            this.Password_TextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Password_TextBox.Location = new System.Drawing.Point(39, 158);
+            this.Password_TextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Password_TextBox.Name = "Password_TextBox";
             this.Password_TextBox.PasswordChar = '*';
-            this.Password_TextBox.Size = new System.Drawing.Size(124, 20);
+            this.Password_TextBox.Size = new System.Drawing.Size(184, 26);
             this.Password_TextBox.TabIndex = 1;
             this.Password_TextBox.Text = "host2";
             // 
             // Username_TextBox
             // 
-            this.Username_TextBox.Location = new System.Drawing.Point(26, 53);
-            this.Username_TextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Username_TextBox.Location = new System.Drawing.Point(39, 81);
+            this.Username_TextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Username_TextBox.Name = "Username_TextBox";
-            this.Username_TextBox.Size = new System.Drawing.Size(124, 20);
+            this.Username_TextBox.Size = new System.Drawing.Size(184, 26);
             this.Username_TextBox.TabIndex = 0;
             this.Username_TextBox.Text = "Alex";
             // 
@@ -991,9 +1016,10 @@
             this.panelCasillas.Controls.Add(this.fila2);
             this.panelCasillas.Controls.Add(this.fila1);
             this.panelCasillas.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelCasillas.Location = new System.Drawing.Point(59, 37);
+            this.panelCasillas.Location = new System.Drawing.Point(89, 58);
+            this.panelCasillas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelCasillas.Name = "panelCasillas";
-            this.panelCasillas.Size = new System.Drawing.Size(1082, 690);
+            this.panelCasillas.Size = new System.Drawing.Size(1623, 1061);
             this.panelCasillas.TabIndex = 2;
             this.panelCasillas.Visible = false;
             // 
@@ -1003,18 +1029,20 @@
             this.fila3.Controls.Add(this.casillasInferiores);
             this.fila3.Controls.Add(this.casilla_baseVerde);
             this.fila3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fila3.Location = new System.Drawing.Point(0, 370);
+            this.fila3.Location = new System.Drawing.Point(0, 568);
+            this.fila3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fila3.Name = "fila3";
-            this.fila3.Size = new System.Drawing.Size(1082, 228);
+            this.fila3.Size = new System.Drawing.Size(1623, 351);
             this.fila3.TabIndex = 2;
             // 
             // casilla_baseAmarilla
             // 
             this.casilla_baseAmarilla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_baseAmarilla.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_baseAmarilla.Location = new System.Drawing.Point(374, 0);
+            this.casilla_baseAmarilla.Location = new System.Drawing.Point(561, 0);
+            this.casilla_baseAmarilla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_baseAmarilla.Name = "casilla_baseAmarilla";
-            this.casilla_baseAmarilla.Size = new System.Drawing.Size(84, 228);
+            this.casilla_baseAmarilla.Size = new System.Drawing.Size(126, 351);
             this.casilla_baseAmarilla.TabIndex = 2;
             this.casilla_baseAmarilla.Paint += new System.Windows.Forms.PaintEventHandler(this.casilla_baseAmarilla_Paint);
             // 
@@ -1024,9 +1052,10 @@
             this.casillasInferiores.Controls.Add(this.casillaInferior2);
             this.casillasInferiores.Controls.Add(this.casillaInferior1);
             this.casillasInferiores.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillasInferiores.Location = new System.Drawing.Point(128, 0);
+            this.casillasInferiores.Location = new System.Drawing.Point(192, 0);
+            this.casillasInferiores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillasInferiores.Name = "casillasInferiores";
-            this.casillasInferiores.Size = new System.Drawing.Size(246, 228);
+            this.casillasInferiores.Size = new System.Drawing.Size(369, 351);
             this.casillasInferiores.TabIndex = 1;
             // 
             // casillaInferior3
@@ -1040,45 +1069,50 @@
             this.casillaInferior3.Controls.Add(this.casilla6);
             this.casillaInferior3.Controls.Add(this.casilla7);
             this.casillaInferior3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillaInferior3.Location = new System.Drawing.Point(170, 0);
+            this.casillaInferior3.Location = new System.Drawing.Point(253, 0);
+            this.casillaInferior3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaInferior3.Name = "casillaInferior3";
-            this.casillaInferior3.Size = new System.Drawing.Size(80, 228);
+            this.casillaInferior3.Size = new System.Drawing.Size(119, 351);
             this.casillaInferior3.TabIndex = 2;
             // 
             // casilla1
             // 
             this.casilla1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla1.Location = new System.Drawing.Point(0, 192);
+            this.casilla1.Location = new System.Drawing.Point(0, 288);
+            this.casilla1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla1.Name = "casilla1";
-            this.casilla1.Size = new System.Drawing.Size(78, 32);
+            this.casilla1.Size = new System.Drawing.Size(117, 48);
             this.casilla1.TabIndex = 13;
             // 
             // casilla2
             // 
             this.casilla2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla2.Location = new System.Drawing.Point(0, 160);
+            this.casilla2.Location = new System.Drawing.Point(0, 240);
+            this.casilla2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla2.Name = "casilla2";
-            this.casilla2.Size = new System.Drawing.Size(78, 32);
+            this.casilla2.Size = new System.Drawing.Size(117, 48);
             this.casilla2.TabIndex = 12;
             // 
             // casilla3
             // 
             this.casilla3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla3.Location = new System.Drawing.Point(0, 128);
+            this.casilla3.Location = new System.Drawing.Point(0, 192);
+            this.casilla3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla3.Name = "casilla3";
-            this.casilla3.Size = new System.Drawing.Size(78, 32);
+            this.casilla3.Size = new System.Drawing.Size(117, 48);
             this.casilla3.TabIndex = 11;
             // 
             // casilla4
             // 
             this.casilla4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla4.Location = new System.Drawing.Point(0, 96);
+            this.casilla4.Location = new System.Drawing.Point(0, 144);
+            this.casilla4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla4.Name = "casilla4";
-            this.casilla4.Size = new System.Drawing.Size(78, 32);
+            this.casilla4.Size = new System.Drawing.Size(117, 48);
             this.casilla4.TabIndex = 10;
             // 
             // casilla5
@@ -1086,18 +1120,20 @@
             this.casilla5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla5.Location = new System.Drawing.Point(0, 64);
+            this.casilla5.Location = new System.Drawing.Point(0, 96);
+            this.casilla5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla5.Name = "casilla5";
-            this.casilla5.Size = new System.Drawing.Size(78, 32);
+            this.casilla5.Size = new System.Drawing.Size(117, 48);
             this.casilla5.TabIndex = 9;
             // 
             // casilla6
             // 
             this.casilla6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla6.Location = new System.Drawing.Point(0, 32);
+            this.casilla6.Location = new System.Drawing.Point(0, 48);
+            this.casilla6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla6.Name = "casilla6";
-            this.casilla6.Size = new System.Drawing.Size(78, 32);
+            this.casilla6.Size = new System.Drawing.Size(117, 48);
             this.casilla6.TabIndex = 8;
             // 
             // casilla7
@@ -1105,8 +1141,9 @@
             this.casilla7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla7.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla7.Location = new System.Drawing.Point(0, 0);
+            this.casilla7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla7.Name = "casilla7";
-            this.casilla7.Size = new System.Drawing.Size(78, 32);
+            this.casilla7.Size = new System.Drawing.Size(117, 48);
             this.casilla7.TabIndex = 7;
             // 
             // casillaInferior2
@@ -1120,18 +1157,20 @@
             this.casillaInferior2.Controls.Add(this.casilla_ma5);
             this.casillaInferior2.Controls.Add(this.casilla_ma6);
             this.casillaInferior2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillaInferior2.Location = new System.Drawing.Point(80, 0);
+            this.casillaInferior2.Location = new System.Drawing.Point(119, 0);
+            this.casillaInferior2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaInferior2.Name = "casillaInferior2";
-            this.casillaInferior2.Size = new System.Drawing.Size(90, 228);
+            this.casillaInferior2.Size = new System.Drawing.Size(134, 351);
             this.casillaInferior2.TabIndex = 1;
             // 
             // casilla68
             // 
             this.casilla68.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla68.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla68.Location = new System.Drawing.Point(0, 192);
+            this.casilla68.Location = new System.Drawing.Point(0, 288);
+            this.casilla68.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla68.Name = "casilla68";
-            this.casilla68.Size = new System.Drawing.Size(88, 32);
+            this.casilla68.Size = new System.Drawing.Size(132, 48);
             this.casilla68.TabIndex = 13;
             // 
             // casilla_ma1
@@ -1139,9 +1178,10 @@
             this.casilla_ma1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_ma1.Location = new System.Drawing.Point(0, 160);
+            this.casilla_ma1.Location = new System.Drawing.Point(0, 240);
+            this.casilla_ma1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma1.Name = "casilla_ma1";
-            this.casilla_ma1.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma1.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma1.TabIndex = 12;
             // 
             // casilla_ma2
@@ -1149,9 +1189,10 @@
             this.casilla_ma2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_ma2.Location = new System.Drawing.Point(0, 128);
+            this.casilla_ma2.Location = new System.Drawing.Point(0, 192);
+            this.casilla_ma2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma2.Name = "casilla_ma2";
-            this.casilla_ma2.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma2.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma2.TabIndex = 11;
             // 
             // casilla_ma3
@@ -1159,9 +1200,10 @@
             this.casilla_ma3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_ma3.Location = new System.Drawing.Point(0, 96);
+            this.casilla_ma3.Location = new System.Drawing.Point(0, 144);
+            this.casilla_ma3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma3.Name = "casilla_ma3";
-            this.casilla_ma3.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma3.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma3.TabIndex = 10;
             // 
             // casilla_ma4
@@ -1169,9 +1211,10 @@
             this.casilla_ma4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_ma4.Location = new System.Drawing.Point(0, 64);
+            this.casilla_ma4.Location = new System.Drawing.Point(0, 96);
+            this.casilla_ma4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma4.Name = "casilla_ma4";
-            this.casilla_ma4.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma4.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma4.TabIndex = 9;
             // 
             // casilla_ma5
@@ -1179,9 +1222,10 @@
             this.casilla_ma5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_ma5.Location = new System.Drawing.Point(0, 32);
+            this.casilla_ma5.Location = new System.Drawing.Point(0, 48);
+            this.casilla_ma5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma5.Name = "casilla_ma5";
-            this.casilla_ma5.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma5.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma5.TabIndex = 8;
             // 
             // casilla_ma6
@@ -1190,8 +1234,9 @@
             this.casilla_ma6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma6.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla_ma6.Location = new System.Drawing.Point(0, 0);
+            this.casilla_ma6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma6.Name = "casilla_ma6";
-            this.casilla_ma6.Size = new System.Drawing.Size(88, 32);
+            this.casilla_ma6.Size = new System.Drawing.Size(132, 48);
             this.casilla_ma6.TabIndex = 7;
             // 
             // casillaInferior1
@@ -1206,62 +1251,69 @@
             this.casillaInferior1.Controls.Add(this.casilla61);
             this.casillaInferior1.Dock = System.Windows.Forms.DockStyle.Left;
             this.casillaInferior1.Location = new System.Drawing.Point(0, 0);
+            this.casillaInferior1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaInferior1.Name = "casillaInferior1";
-            this.casillaInferior1.Size = new System.Drawing.Size(80, 228);
+            this.casillaInferior1.Size = new System.Drawing.Size(119, 351);
             this.casillaInferior1.TabIndex = 0;
             // 
             // casilla67
             // 
             this.casilla67.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla67.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla67.Location = new System.Drawing.Point(0, 192);
+            this.casilla67.Location = new System.Drawing.Point(0, 288);
+            this.casilla67.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla67.Name = "casilla67";
-            this.casilla67.Size = new System.Drawing.Size(78, 32);
+            this.casilla67.Size = new System.Drawing.Size(117, 48);
             this.casilla67.TabIndex = 6;
             // 
             // casilla66
             // 
             this.casilla66.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla66.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla66.Location = new System.Drawing.Point(0, 160);
+            this.casilla66.Location = new System.Drawing.Point(0, 240);
+            this.casilla66.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla66.Name = "casilla66";
-            this.casilla66.Size = new System.Drawing.Size(78, 32);
+            this.casilla66.Size = new System.Drawing.Size(117, 48);
             this.casilla66.TabIndex = 5;
             // 
             // casilla65
             // 
             this.casilla65.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla65.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla65.Location = new System.Drawing.Point(0, 128);
+            this.casilla65.Location = new System.Drawing.Point(0, 192);
+            this.casilla65.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla65.Name = "casilla65";
-            this.casilla65.Size = new System.Drawing.Size(78, 32);
+            this.casilla65.Size = new System.Drawing.Size(117, 48);
             this.casilla65.TabIndex = 4;
             // 
             // casilla64
             // 
             this.casilla64.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla64.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla64.Location = new System.Drawing.Point(0, 96);
+            this.casilla64.Location = new System.Drawing.Point(0, 144);
+            this.casilla64.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla64.Name = "casilla64";
-            this.casilla64.Size = new System.Drawing.Size(78, 32);
+            this.casilla64.Size = new System.Drawing.Size(117, 48);
             this.casilla64.TabIndex = 3;
             // 
             // casilla63
             // 
             this.casilla63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla63.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla63.Location = new System.Drawing.Point(0, 64);
+            this.casilla63.Location = new System.Drawing.Point(0, 96);
+            this.casilla63.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla63.Name = "casilla63";
-            this.casilla63.Size = new System.Drawing.Size(78, 32);
+            this.casilla63.Size = new System.Drawing.Size(117, 48);
             this.casilla63.TabIndex = 2;
             // 
             // casilla62
             // 
             this.casilla62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla62.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla62.Location = new System.Drawing.Point(0, 32);
+            this.casilla62.Location = new System.Drawing.Point(0, 48);
+            this.casilla62.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla62.Name = "casilla62";
-            this.casilla62.Size = new System.Drawing.Size(78, 32);
+            this.casilla62.Size = new System.Drawing.Size(117, 48);
             this.casilla62.TabIndex = 1;
             // 
             // casilla61
@@ -1269,8 +1321,9 @@
             this.casilla61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla61.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla61.Location = new System.Drawing.Point(0, 0);
+            this.casilla61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla61.Name = "casilla61";
-            this.casilla61.Size = new System.Drawing.Size(78, 32);
+            this.casilla61.Size = new System.Drawing.Size(117, 48);
             this.casilla61.TabIndex = 0;
             // 
             // casilla_baseVerde
@@ -1278,8 +1331,9 @@
             this.casilla_baseVerde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_baseVerde.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla_baseVerde.Location = new System.Drawing.Point(0, 0);
+            this.casilla_baseVerde.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_baseVerde.Name = "casilla_baseVerde";
-            this.casilla_baseVerde.Size = new System.Drawing.Size(128, 228);
+            this.casilla_baseVerde.Size = new System.Drawing.Size(192, 351);
             this.casilla_baseVerde.TabIndex = 0;
             this.casilla_baseVerde.Paint += new System.Windows.Forms.PaintEventHandler(this.casilla_baseVerde_Paint);
             // 
@@ -1289,9 +1343,10 @@
             this.fila2.Controls.Add(this.medioCentro);
             this.fila2.Controls.Add(this.medioIzquierda);
             this.fila2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fila2.Location = new System.Drawing.Point(0, 327);
+            this.fila2.Location = new System.Drawing.Point(0, 502);
+            this.fila2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fila2.Name = "fila2";
-            this.fila2.Size = new System.Drawing.Size(1082, 43);
+            this.fila2.Size = new System.Drawing.Size(1623, 66);
             this.fila2.TabIndex = 1;
             // 
             // medioDerecha
@@ -1300,9 +1355,10 @@
             this.medioDerecha.Controls.Add(this.casillaDerecha2);
             this.medioDerecha.Controls.Add(this.casillaDerecha1);
             this.medioDerecha.Dock = System.Windows.Forms.DockStyle.Left;
-            this.medioDerecha.Location = new System.Drawing.Point(560, 0);
+            this.medioDerecha.Location = new System.Drawing.Point(840, 0);
+            this.medioDerecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.medioDerecha.Name = "medioDerecha";
-            this.medioDerecha.Size = new System.Drawing.Size(412, 43);
+            this.medioDerecha.Size = new System.Drawing.Size(618, 66);
             this.medioDerecha.TabIndex = 2;
             // 
             // casillaDerecha3
@@ -1316,63 +1372,70 @@
             this.casillaDerecha3.Controls.Add(this.casilla11);
             this.casillaDerecha3.Controls.Add(this.casilla10);
             this.casillaDerecha3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casillaDerecha3.Location = new System.Drawing.Point(0, 188);
+            this.casillaDerecha3.Location = new System.Drawing.Point(0, 286);
+            this.casillaDerecha3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaDerecha3.Name = "casillaDerecha3";
-            this.casillaDerecha3.Size = new System.Drawing.Size(412, 94);
+            this.casillaDerecha3.Size = new System.Drawing.Size(618, 143);
             this.casillaDerecha3.TabIndex = 3;
             // 
             // casilla16
             // 
             this.casilla16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla16.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla16.Location = new System.Drawing.Point(264, 0);
+            this.casilla16.Location = new System.Drawing.Point(390, 0);
+            this.casilla16.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla16.Name = "casilla16";
-            this.casilla16.Size = new System.Drawing.Size(44, 92);
+            this.casilla16.Size = new System.Drawing.Size(65, 141);
             this.casilla16.TabIndex = 12;
             // 
             // casilla15
             // 
             this.casilla15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla15.Location = new System.Drawing.Point(220, 0);
+            this.casilla15.Location = new System.Drawing.Point(325, 0);
+            this.casilla15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla15.Name = "casilla15";
-            this.casilla15.Size = new System.Drawing.Size(44, 92);
+            this.casilla15.Size = new System.Drawing.Size(65, 141);
             this.casilla15.TabIndex = 11;
             // 
             // casilla14
             // 
             this.casilla14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla14.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla14.Location = new System.Drawing.Point(176, 0);
+            this.casilla14.Location = new System.Drawing.Point(260, 0);
+            this.casilla14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla14.Name = "casilla14";
-            this.casilla14.Size = new System.Drawing.Size(44, 92);
+            this.casilla14.Size = new System.Drawing.Size(65, 141);
             this.casilla14.TabIndex = 10;
             // 
             // casilla13
             // 
             this.casilla13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla13.Location = new System.Drawing.Point(132, 0);
+            this.casilla13.Location = new System.Drawing.Point(195, 0);
+            this.casilla13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla13.Name = "casilla13";
-            this.casilla13.Size = new System.Drawing.Size(44, 92);
+            this.casilla13.Size = new System.Drawing.Size(65, 141);
             this.casilla13.TabIndex = 9;
             // 
             // casilla12
             // 
             this.casilla12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla12.Location = new System.Drawing.Point(88, 0);
+            this.casilla12.Location = new System.Drawing.Point(130, 0);
+            this.casilla12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla12.Name = "casilla12";
-            this.casilla12.Size = new System.Drawing.Size(44, 92);
+            this.casilla12.Size = new System.Drawing.Size(65, 141);
             this.casilla12.TabIndex = 8;
             // 
             // casilla11
             // 
             this.casilla11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla11.Location = new System.Drawing.Point(44, 0);
+            this.casilla11.Location = new System.Drawing.Point(65, 0);
+            this.casilla11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla11.Name = "casilla11";
-            this.casilla11.Size = new System.Drawing.Size(44, 92);
+            this.casilla11.Size = new System.Drawing.Size(65, 141);
             this.casilla11.TabIndex = 7;
             // 
             // casilla10
@@ -1380,8 +1443,9 @@
             this.casilla10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla10.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla10.Location = new System.Drawing.Point(0, 0);
+            this.casilla10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla10.Name = "casilla10";
-            this.casilla10.Size = new System.Drawing.Size(44, 92);
+            this.casilla10.Size = new System.Drawing.Size(65, 141);
             this.casilla10.TabIndex = 6;
             // 
             // casillaDerecha2
@@ -1395,18 +1459,20 @@
             this.casillaDerecha2.Controls.Add(this.casilla_mb5);
             this.casillaDerecha2.Controls.Add(this.casilla_mb6);
             this.casillaDerecha2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casillaDerecha2.Location = new System.Drawing.Point(0, 94);
+            this.casillaDerecha2.Location = new System.Drawing.Point(0, 143);
+            this.casillaDerecha2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaDerecha2.Name = "casillaDerecha2";
-            this.casillaDerecha2.Size = new System.Drawing.Size(412, 94);
+            this.casillaDerecha2.Size = new System.Drawing.Size(618, 143);
             this.casillaDerecha2.TabIndex = 2;
             // 
             // casilla17
             // 
             this.casilla17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla17.Location = new System.Drawing.Point(264, 0);
+            this.casilla17.Location = new System.Drawing.Point(390, 0);
+            this.casilla17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla17.Name = "casilla17";
-            this.casilla17.Size = new System.Drawing.Size(44, 92);
+            this.casilla17.Size = new System.Drawing.Size(65, 141);
             this.casilla17.TabIndex = 12;
             // 
             // casilla_mb1
@@ -1414,9 +1480,10 @@
             this.casilla_mb1.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mb1.Location = new System.Drawing.Point(220, 0);
+            this.casilla_mb1.Location = new System.Drawing.Point(325, 0);
+            this.casilla_mb1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb1.Name = "casilla_mb1";
-            this.casilla_mb1.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb1.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb1.TabIndex = 11;
             // 
             // casilla_mb2
@@ -1424,9 +1491,10 @@
             this.casilla_mb2.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mb2.Location = new System.Drawing.Point(176, 0);
+            this.casilla_mb2.Location = new System.Drawing.Point(260, 0);
+            this.casilla_mb2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb2.Name = "casilla_mb2";
-            this.casilla_mb2.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb2.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb2.TabIndex = 10;
             // 
             // casilla_mb3
@@ -1434,9 +1502,10 @@
             this.casilla_mb3.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mb3.Location = new System.Drawing.Point(132, 0);
+            this.casilla_mb3.Location = new System.Drawing.Point(195, 0);
+            this.casilla_mb3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb3.Name = "casilla_mb3";
-            this.casilla_mb3.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb3.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb3.TabIndex = 9;
             // 
             // casilla_mb4
@@ -1444,9 +1513,10 @@
             this.casilla_mb4.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mb4.Location = new System.Drawing.Point(88, 0);
+            this.casilla_mb4.Location = new System.Drawing.Point(130, 0);
+            this.casilla_mb4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb4.Name = "casilla_mb4";
-            this.casilla_mb4.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb4.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb4.TabIndex = 8;
             // 
             // casilla_mb5
@@ -1454,9 +1524,10 @@
             this.casilla_mb5.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mb5.Location = new System.Drawing.Point(44, 0);
+            this.casilla_mb5.Location = new System.Drawing.Point(65, 0);
+            this.casilla_mb5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb5.Name = "casilla_mb5";
-            this.casilla_mb5.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb5.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb5.TabIndex = 7;
             // 
             // casilla_mb6
@@ -1465,8 +1536,9 @@
             this.casilla_mb6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb6.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla_mb6.Location = new System.Drawing.Point(0, 0);
+            this.casilla_mb6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb6.Name = "casilla_mb6";
-            this.casilla_mb6.Size = new System.Drawing.Size(44, 92);
+            this.casilla_mb6.Size = new System.Drawing.Size(65, 141);
             this.casilla_mb6.TabIndex = 6;
             // 
             // casillaDerecha1
@@ -1481,44 +1553,49 @@
             this.casillaDerecha1.Controls.Add(this.casilla24);
             this.casillaDerecha1.Dock = System.Windows.Forms.DockStyle.Top;
             this.casillaDerecha1.Location = new System.Drawing.Point(0, 0);
+            this.casillaDerecha1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaDerecha1.Name = "casillaDerecha1";
-            this.casillaDerecha1.Size = new System.Drawing.Size(412, 94);
+            this.casillaDerecha1.Size = new System.Drawing.Size(618, 143);
             this.casillaDerecha1.TabIndex = 1;
             // 
             // casilla18
             // 
             this.casilla18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla18.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla18.Location = new System.Drawing.Point(264, 0);
+            this.casilla18.Location = new System.Drawing.Point(390, 0);
+            this.casilla18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla18.Name = "casilla18";
-            this.casilla18.Size = new System.Drawing.Size(44, 92);
+            this.casilla18.Size = new System.Drawing.Size(65, 141);
             this.casilla18.TabIndex = 12;
             // 
             // casilla19
             // 
             this.casilla19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla19.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla19.Location = new System.Drawing.Point(220, 0);
+            this.casilla19.Location = new System.Drawing.Point(325, 0);
+            this.casilla19.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla19.Name = "casilla19";
-            this.casilla19.Size = new System.Drawing.Size(44, 92);
+            this.casilla19.Size = new System.Drawing.Size(65, 141);
             this.casilla19.TabIndex = 11;
             // 
             // casilla20
             // 
             this.casilla20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla20.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla20.Location = new System.Drawing.Point(176, 0);
+            this.casilla20.Location = new System.Drawing.Point(260, 0);
+            this.casilla20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla20.Name = "casilla20";
-            this.casilla20.Size = new System.Drawing.Size(44, 92);
+            this.casilla20.Size = new System.Drawing.Size(65, 141);
             this.casilla20.TabIndex = 10;
             // 
             // casilla21
             // 
             this.casilla21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla21.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla21.Location = new System.Drawing.Point(132, 0);
+            this.casilla21.Location = new System.Drawing.Point(195, 0);
+            this.casilla21.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla21.Name = "casilla21";
-            this.casilla21.Size = new System.Drawing.Size(44, 92);
+            this.casilla21.Size = new System.Drawing.Size(65, 141);
             this.casilla21.TabIndex = 9;
             // 
             // casilla22
@@ -1526,18 +1603,20 @@
             this.casilla22.BackColor = System.Drawing.Color.Blue;
             this.casilla22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla22.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla22.Location = new System.Drawing.Point(88, 0);
+            this.casilla22.Location = new System.Drawing.Point(130, 0);
+            this.casilla22.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla22.Name = "casilla22";
-            this.casilla22.Size = new System.Drawing.Size(44, 92);
+            this.casilla22.Size = new System.Drawing.Size(65, 141);
             this.casilla22.TabIndex = 8;
             // 
             // casilla23
             // 
             this.casilla23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla23.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla23.Location = new System.Drawing.Point(44, 0);
+            this.casilla23.Location = new System.Drawing.Point(65, 0);
+            this.casilla23.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla23.Name = "casilla23";
-            this.casilla23.Size = new System.Drawing.Size(44, 92);
+            this.casilla23.Size = new System.Drawing.Size(65, 141);
             this.casilla23.TabIndex = 7;
             // 
             // casilla24
@@ -1545,8 +1624,9 @@
             this.casilla24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla24.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla24.Location = new System.Drawing.Point(0, 0);
+            this.casilla24.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla24.Name = "casilla24";
-            this.casilla24.Size = new System.Drawing.Size(44, 92);
+            this.casilla24.Size = new System.Drawing.Size(65, 141);
             this.casilla24.TabIndex = 6;
             // 
             // medioCentro
@@ -1556,9 +1636,10 @@
             this.medioCentro.Controls.Add(this.centroInferior);
             this.medioCentro.Controls.Add(this.centroSuperior);
             this.medioCentro.Dock = System.Windows.Forms.DockStyle.Left;
-            this.medioCentro.Location = new System.Drawing.Point(308, 0);
+            this.medioCentro.Location = new System.Drawing.Point(462, 0);
+            this.medioCentro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.medioCentro.Name = "medioCentro";
-            this.medioCentro.Size = new System.Drawing.Size(252, 43);
+            this.medioCentro.Size = new System.Drawing.Size(378, 66);
             this.medioCentro.TabIndex = 1;
             this.medioCentro.Paint += new System.Windows.Forms.PaintEventHandler(this.medioCentro_Paint);
             // 
@@ -1569,18 +1650,20 @@
             this.centroDerecha.Controls.Add(this.casilla_mb7);
             this.centroDerecha.Controls.Add(this.casilla25);
             this.centroDerecha.Dock = System.Windows.Forms.DockStyle.Right;
-            this.centroDerecha.Location = new System.Drawing.Point(118, 43);
+            this.centroDerecha.Location = new System.Drawing.Point(177, 66);
+            this.centroDerecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centroDerecha.Name = "centroDerecha";
-            this.centroDerecha.Size = new System.Drawing.Size(134, 0);
+            this.centroDerecha.Size = new System.Drawing.Size(201, 0);
             this.centroDerecha.TabIndex = 3;
             // 
             // casilla9
             // 
             this.casilla9.BackColor = System.Drawing.Color.Transparent;
             this.casilla9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla9.Location = new System.Drawing.Point(0, 134);
+            this.casilla9.Location = new System.Drawing.Point(0, 204);
+            this.casilla9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla9.Name = "casilla9";
-            this.casilla9.Size = new System.Drawing.Size(134, 67);
+            this.casilla9.Size = new System.Drawing.Size(201, 102);
             this.casilla9.TabIndex = 9;
             // 
             // casilla_mb7
@@ -1588,9 +1671,10 @@
             this.casilla_mb7.BackColor = System.Drawing.Color.Blue;
             this.casilla_mb7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mb7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mb7.Location = new System.Drawing.Point(0, 67);
+            this.casilla_mb7.Location = new System.Drawing.Point(0, 102);
+            this.casilla_mb7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mb7.Name = "casilla_mb7";
-            this.casilla_mb7.Size = new System.Drawing.Size(134, 67);
+            this.casilla_mb7.Size = new System.Drawing.Size(201, 102);
             this.casilla_mb7.TabIndex = 8;
             // 
             // casilla25
@@ -1598,8 +1682,9 @@
             this.casilla25.BackColor = System.Drawing.Color.Transparent;
             this.casilla25.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla25.Location = new System.Drawing.Point(0, 0);
+            this.casilla25.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla25.Name = "casilla25";
-            this.casilla25.Size = new System.Drawing.Size(134, 67);
+            this.casilla25.Size = new System.Drawing.Size(201, 102);
             this.casilla25.TabIndex = 7;
             // 
             // centroIzquierda
@@ -1609,18 +1694,20 @@
             this.centroIzquierda.Controls.Add(this.casilla_mv7);
             this.centroIzquierda.Controls.Add(this.casilla43);
             this.centroIzquierda.Dock = System.Windows.Forms.DockStyle.Left;
-            this.centroIzquierda.Location = new System.Drawing.Point(0, 43);
+            this.centroIzquierda.Location = new System.Drawing.Point(0, 66);
+            this.centroIzquierda.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centroIzquierda.Name = "centroIzquierda";
-            this.centroIzquierda.Size = new System.Drawing.Size(60, 0);
+            this.centroIzquierda.Size = new System.Drawing.Size(90, 0);
             this.centroIzquierda.TabIndex = 2;
             // 
             // casilla59
             // 
             this.casilla59.BackColor = System.Drawing.Color.Transparent;
             this.casilla59.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla59.Location = new System.Drawing.Point(0, 134);
+            this.casilla59.Location = new System.Drawing.Point(0, 204);
+            this.casilla59.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla59.Name = "casilla59";
-            this.casilla59.Size = new System.Drawing.Size(60, 67);
+            this.casilla59.Size = new System.Drawing.Size(90, 102);
             this.casilla59.TabIndex = 6;
             // 
             // casilla_mv7
@@ -1628,9 +1715,10 @@
             this.casilla_mv7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mv7.Location = new System.Drawing.Point(0, 67);
+            this.casilla_mv7.Location = new System.Drawing.Point(0, 102);
+            this.casilla_mv7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv7.Name = "casilla_mv7";
-            this.casilla_mv7.Size = new System.Drawing.Size(60, 67);
+            this.casilla_mv7.Size = new System.Drawing.Size(90, 102);
             this.casilla_mv7.TabIndex = 5;
             // 
             // casilla43
@@ -1638,8 +1726,9 @@
             this.casilla43.BackColor = System.Drawing.Color.Transparent;
             this.casilla43.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla43.Location = new System.Drawing.Point(0, 0);
+            this.casilla43.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla43.Name = "casilla43";
-            this.casilla43.Size = new System.Drawing.Size(60, 67);
+            this.casilla43.Size = new System.Drawing.Size(90, 102);
             this.casilla43.TabIndex = 4;
             // 
             // centroInferior
@@ -1649,18 +1738,20 @@
             this.centroInferior.Controls.Add(this.casilla_ma7);
             this.centroInferior.Controls.Add(this.casilla60);
             this.centroInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.centroInferior.Location = new System.Drawing.Point(0, -24);
+            this.centroInferior.Location = new System.Drawing.Point(0, -36);
+            this.centroInferior.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centroInferior.Name = "centroInferior";
-            this.centroInferior.Size = new System.Drawing.Size(252, 67);
+            this.centroInferior.Size = new System.Drawing.Size(378, 102);
             this.centroInferior.TabIndex = 1;
             this.centroInferior.Paint += new System.Windows.Forms.PaintEventHandler(this.centroInferior_Paint);
             // 
             // casilla8
             // 
             this.casilla8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla8.Location = new System.Drawing.Point(153, 0);
+            this.casilla8.Location = new System.Drawing.Point(229, 0);
+            this.casilla8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla8.Name = "casilla8";
-            this.casilla8.Size = new System.Drawing.Size(46, 67);
+            this.casilla8.Size = new System.Drawing.Size(69, 102);
             this.casilla8.TabIndex = 5;
             // 
             // casilla_ma7
@@ -1668,9 +1759,10 @@
             this.casilla_ma7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.casilla_ma7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_ma7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_ma7.Location = new System.Drawing.Point(57, 0);
+            this.casilla_ma7.Location = new System.Drawing.Point(86, 0);
+            this.casilla_ma7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_ma7.Name = "casilla_ma7";
-            this.casilla_ma7.Size = new System.Drawing.Size(96, 67);
+            this.casilla_ma7.Size = new System.Drawing.Size(143, 102);
             this.casilla_ma7.TabIndex = 4;
             // 
             // casilla60
@@ -1678,8 +1770,9 @@
             this.casilla60.BackColor = System.Drawing.Color.Transparent;
             this.casilla60.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla60.Location = new System.Drawing.Point(0, 0);
+            this.casilla60.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla60.Name = "casilla60";
-            this.casilla60.Size = new System.Drawing.Size(57, 67);
+            this.casilla60.Size = new System.Drawing.Size(86, 102);
             this.casilla60.TabIndex = 3;
             // 
             // centroSuperior
@@ -1690,16 +1783,18 @@
             this.centroSuperior.Controls.Add(this.casilla42);
             this.centroSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.centroSuperior.Location = new System.Drawing.Point(0, 0);
+            this.centroSuperior.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centroSuperior.Name = "centroSuperior";
-            this.centroSuperior.Size = new System.Drawing.Size(252, 43);
+            this.centroSuperior.Size = new System.Drawing.Size(378, 66);
             this.centroSuperior.TabIndex = 0;
             // 
             // casilla26
             // 
             this.casilla26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla26.Location = new System.Drawing.Point(153, 0);
+            this.casilla26.Location = new System.Drawing.Point(229, 0);
+            this.casilla26.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla26.Name = "casilla26";
-            this.casilla26.Size = new System.Drawing.Size(46, 43);
+            this.casilla26.Size = new System.Drawing.Size(69, 66);
             this.casilla26.TabIndex = 2;
             // 
             // casilla_mr7
@@ -1707,9 +1802,10 @@
             this.casilla_mr7.BackColor = System.Drawing.Color.Red;
             this.casilla_mr7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_mr7.Location = new System.Drawing.Point(57, 0);
+            this.casilla_mr7.Location = new System.Drawing.Point(86, 0);
+            this.casilla_mr7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr7.Name = "casilla_mr7";
-            this.casilla_mr7.Size = new System.Drawing.Size(96, 43);
+            this.casilla_mr7.Size = new System.Drawing.Size(143, 66);
             this.casilla_mr7.TabIndex = 1;
             // 
             // casilla42
@@ -1717,8 +1813,9 @@
             this.casilla42.BackColor = System.Drawing.Color.Transparent;
             this.casilla42.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla42.Location = new System.Drawing.Point(0, 0);
+            this.casilla42.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla42.Name = "casilla42";
-            this.casilla42.Size = new System.Drawing.Size(57, 43);
+            this.casilla42.Size = new System.Drawing.Size(86, 66);
             this.casilla42.TabIndex = 0;
             // 
             // medioIzquierda
@@ -1728,8 +1825,9 @@
             this.medioIzquierda.Controls.Add(this.casillaIzquierda1);
             this.medioIzquierda.Dock = System.Windows.Forms.DockStyle.Left;
             this.medioIzquierda.Location = new System.Drawing.Point(0, 0);
+            this.medioIzquierda.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.medioIzquierda.Name = "medioIzquierda";
-            this.medioIzquierda.Size = new System.Drawing.Size(308, 43);
+            this.medioIzquierda.Size = new System.Drawing.Size(462, 66);
             this.medioIzquierda.TabIndex = 0;
             // 
             // casillaIzquierda3
@@ -1743,45 +1841,50 @@
             this.casillaIzquierda3.Controls.Add(this.casilla57);
             this.casillaIzquierda3.Controls.Add(this.casilla58);
             this.casillaIzquierda3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casillaIzquierda3.Location = new System.Drawing.Point(0, 176);
+            this.casillaIzquierda3.Location = new System.Drawing.Point(0, 267);
+            this.casillaIzquierda3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaIzquierda3.Name = "casillaIzquierda3";
-            this.casillaIzquierda3.Size = new System.Drawing.Size(308, 85);
+            this.casillaIzquierda3.Size = new System.Drawing.Size(462, 130);
             this.casillaIzquierda3.TabIndex = 2;
             // 
             // casilla52
             // 
             this.casilla52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla52.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla52.Location = new System.Drawing.Point(-2, 0);
+            this.casilla52.Location = new System.Drawing.Point(5, 0);
+            this.casilla52.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla52.Name = "casilla52";
-            this.casilla52.Size = new System.Drawing.Size(44, 83);
+            this.casilla52.Size = new System.Drawing.Size(65, 128);
             this.casilla52.TabIndex = 6;
             // 
             // casilla53
             // 
             this.casilla53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla53.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla53.Location = new System.Drawing.Point(42, 0);
+            this.casilla53.Location = new System.Drawing.Point(70, 0);
+            this.casilla53.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla53.Name = "casilla53";
-            this.casilla53.Size = new System.Drawing.Size(44, 83);
+            this.casilla53.Size = new System.Drawing.Size(65, 128);
             this.casilla53.TabIndex = 5;
             // 
             // casilla54
             // 
             this.casilla54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla54.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla54.Location = new System.Drawing.Point(86, 0);
+            this.casilla54.Location = new System.Drawing.Point(135, 0);
+            this.casilla54.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla54.Name = "casilla54";
-            this.casilla54.Size = new System.Drawing.Size(44, 83);
+            this.casilla54.Size = new System.Drawing.Size(65, 128);
             this.casilla54.TabIndex = 4;
             // 
             // casilla55
             // 
             this.casilla55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla55.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla55.Location = new System.Drawing.Point(130, 0);
+            this.casilla55.Location = new System.Drawing.Point(200, 0);
+            this.casilla55.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla55.Name = "casilla55";
-            this.casilla55.Size = new System.Drawing.Size(44, 83);
+            this.casilla55.Size = new System.Drawing.Size(65, 128);
             this.casilla55.TabIndex = 3;
             // 
             // casilla56
@@ -1789,27 +1892,30 @@
             this.casilla56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla56.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla56.Location = new System.Drawing.Point(174, 0);
+            this.casilla56.Location = new System.Drawing.Point(265, 0);
+            this.casilla56.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla56.Name = "casilla56";
-            this.casilla56.Size = new System.Drawing.Size(44, 83);
+            this.casilla56.Size = new System.Drawing.Size(65, 128);
             this.casilla56.TabIndex = 2;
             // 
             // casilla57
             // 
             this.casilla57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla57.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla57.Location = new System.Drawing.Point(218, 0);
+            this.casilla57.Location = new System.Drawing.Point(330, 0);
+            this.casilla57.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla57.Name = "casilla57";
-            this.casilla57.Size = new System.Drawing.Size(44, 83);
+            this.casilla57.Size = new System.Drawing.Size(65, 128);
             this.casilla57.TabIndex = 1;
             // 
             // casilla58
             // 
             this.casilla58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla58.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla58.Location = new System.Drawing.Point(262, 0);
+            this.casilla58.Location = new System.Drawing.Point(395, 0);
+            this.casilla58.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla58.Name = "casilla58";
-            this.casilla58.Size = new System.Drawing.Size(44, 83);
+            this.casilla58.Size = new System.Drawing.Size(65, 128);
             this.casilla58.TabIndex = 0;
             // 
             // casillaIzquierda2
@@ -1823,18 +1929,20 @@
             this.casillaIzquierda2.Controls.Add(this.casilla_mv5);
             this.casillaIzquierda2.Controls.Add(this.casilla_mv6);
             this.casillaIzquierda2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casillaIzquierda2.Location = new System.Drawing.Point(0, 94);
+            this.casillaIzquierda2.Location = new System.Drawing.Point(0, 143);
+            this.casillaIzquierda2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaIzquierda2.Name = "casillaIzquierda2";
-            this.casillaIzquierda2.Size = new System.Drawing.Size(308, 82);
+            this.casillaIzquierda2.Size = new System.Drawing.Size(462, 124);
             this.casillaIzquierda2.TabIndex = 1;
             // 
             // casilla51
             // 
             this.casilla51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla51.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla51.Location = new System.Drawing.Point(-2, 0);
+            this.casilla51.Location = new System.Drawing.Point(5, 0);
+            this.casilla51.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla51.Name = "casilla51";
-            this.casilla51.Size = new System.Drawing.Size(44, 80);
+            this.casilla51.Size = new System.Drawing.Size(65, 122);
             this.casilla51.TabIndex = 6;
             // 
             // casilla_mv1
@@ -1842,9 +1950,10 @@
             this.casilla_mv1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv1.Location = new System.Drawing.Point(42, 0);
+            this.casilla_mv1.Location = new System.Drawing.Point(70, 0);
+            this.casilla_mv1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv1.Name = "casilla_mv1";
-            this.casilla_mv1.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv1.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv1.TabIndex = 5;
             // 
             // casilla_mv2
@@ -1852,9 +1961,10 @@
             this.casilla_mv2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv2.Location = new System.Drawing.Point(86, 0);
+            this.casilla_mv2.Location = new System.Drawing.Point(135, 0);
+            this.casilla_mv2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv2.Name = "casilla_mv2";
-            this.casilla_mv2.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv2.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv2.TabIndex = 4;
             // 
             // casilla_mv3
@@ -1862,9 +1972,10 @@
             this.casilla_mv3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv3.Location = new System.Drawing.Point(130, 0);
+            this.casilla_mv3.Location = new System.Drawing.Point(200, 0);
+            this.casilla_mv3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv3.Name = "casilla_mv3";
-            this.casilla_mv3.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv3.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv3.TabIndex = 3;
             // 
             // casilla_mv4
@@ -1872,9 +1983,10 @@
             this.casilla_mv4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv4.Location = new System.Drawing.Point(174, 0);
+            this.casilla_mv4.Location = new System.Drawing.Point(265, 0);
+            this.casilla_mv4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv4.Name = "casilla_mv4";
-            this.casilla_mv4.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv4.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv4.TabIndex = 2;
             // 
             // casilla_mv5
@@ -1882,9 +1994,10 @@
             this.casilla_mv5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv5.Location = new System.Drawing.Point(218, 0);
+            this.casilla_mv5.Location = new System.Drawing.Point(330, 0);
+            this.casilla_mv5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv5.Name = "casilla_mv5";
-            this.casilla_mv5.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv5.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv5.TabIndex = 1;
             // 
             // casilla_mv6
@@ -1892,9 +2005,10 @@
             this.casilla_mv6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.casilla_mv6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mv6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla_mv6.Location = new System.Drawing.Point(262, 0);
+            this.casilla_mv6.Location = new System.Drawing.Point(395, 0);
+            this.casilla_mv6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mv6.Name = "casilla_mv6";
-            this.casilla_mv6.Size = new System.Drawing.Size(44, 80);
+            this.casilla_mv6.Size = new System.Drawing.Size(65, 122);
             this.casilla_mv6.TabIndex = 0;
             // 
             // casillaIzquierda1
@@ -1909,71 +2023,79 @@
             this.casillaIzquierda1.Controls.Add(this.casilla44);
             this.casillaIzquierda1.Dock = System.Windows.Forms.DockStyle.Top;
             this.casillaIzquierda1.Location = new System.Drawing.Point(0, 0);
+            this.casillaIzquierda1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaIzquierda1.Name = "casillaIzquierda1";
-            this.casillaIzquierda1.Size = new System.Drawing.Size(308, 94);
+            this.casillaIzquierda1.Size = new System.Drawing.Size(462, 143);
             this.casillaIzquierda1.TabIndex = 0;
             // 
             // casilla50
             // 
             this.casilla50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla50.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla50.Location = new System.Drawing.Point(-2, 0);
+            this.casilla50.Location = new System.Drawing.Point(5, 0);
+            this.casilla50.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla50.Name = "casilla50";
-            this.casilla50.Size = new System.Drawing.Size(44, 92);
+            this.casilla50.Size = new System.Drawing.Size(65, 141);
             this.casilla50.TabIndex = 6;
             // 
             // casilla49
             // 
             this.casilla49.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla49.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla49.Location = new System.Drawing.Point(42, 0);
+            this.casilla49.Location = new System.Drawing.Point(70, 0);
+            this.casilla49.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla49.Name = "casilla49";
-            this.casilla49.Size = new System.Drawing.Size(44, 92);
+            this.casilla49.Size = new System.Drawing.Size(65, 141);
             this.casilla49.TabIndex = 5;
             // 
             // casilla48
             // 
             this.casilla48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla48.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla48.Location = new System.Drawing.Point(86, 0);
+            this.casilla48.Location = new System.Drawing.Point(135, 0);
+            this.casilla48.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla48.Name = "casilla48";
-            this.casilla48.Size = new System.Drawing.Size(44, 92);
+            this.casilla48.Size = new System.Drawing.Size(65, 141);
             this.casilla48.TabIndex = 4;
             // 
             // casilla47
             // 
             this.casilla47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla47.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla47.Location = new System.Drawing.Point(130, 0);
+            this.casilla47.Location = new System.Drawing.Point(200, 0);
+            this.casilla47.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla47.Name = "casilla47";
-            this.casilla47.Size = new System.Drawing.Size(44, 92);
+            this.casilla47.Size = new System.Drawing.Size(65, 141);
             this.casilla47.TabIndex = 3;
             // 
             // casilla46
             // 
             this.casilla46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla46.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla46.Location = new System.Drawing.Point(174, 0);
+            this.casilla46.Location = new System.Drawing.Point(265, 0);
+            this.casilla46.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla46.Name = "casilla46";
-            this.casilla46.Size = new System.Drawing.Size(44, 92);
+            this.casilla46.Size = new System.Drawing.Size(65, 141);
             this.casilla46.TabIndex = 2;
             // 
             // casilla45
             // 
             this.casilla45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla45.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla45.Location = new System.Drawing.Point(218, 0);
+            this.casilla45.Location = new System.Drawing.Point(330, 0);
+            this.casilla45.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla45.Name = "casilla45";
-            this.casilla45.Size = new System.Drawing.Size(44, 92);
+            this.casilla45.Size = new System.Drawing.Size(65, 141);
             this.casilla45.TabIndex = 1;
             // 
             // casilla44
             // 
             this.casilla44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla44.Dock = System.Windows.Forms.DockStyle.Right;
-            this.casilla44.Location = new System.Drawing.Point(262, 0);
+            this.casilla44.Location = new System.Drawing.Point(395, 0);
+            this.casilla44.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla44.Name = "casilla44";
-            this.casilla44.Size = new System.Drawing.Size(44, 92);
+            this.casilla44.Size = new System.Drawing.Size(65, 141);
             this.casilla44.TabIndex = 0;
             // 
             // fila1
@@ -1983,17 +2105,19 @@
             this.fila1.Controls.Add(this.casilla_baseRoja);
             this.fila1.Dock = System.Windows.Forms.DockStyle.Top;
             this.fila1.Location = new System.Drawing.Point(0, 0);
+            this.fila1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fila1.Name = "fila1";
-            this.fila1.Size = new System.Drawing.Size(1082, 327);
+            this.fila1.Size = new System.Drawing.Size(1623, 502);
             this.fila1.TabIndex = 0;
             // 
             // casilla_baseAzul
             // 
             this.casilla_baseAzul.BackColor = System.Drawing.Color.Blue;
             this.casilla_baseAzul.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casilla_baseAzul.Location = new System.Drawing.Point(560, 0);
+            this.casilla_baseAzul.Location = new System.Drawing.Point(840, 0);
+            this.casilla_baseAzul.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_baseAzul.Name = "casilla_baseAzul";
-            this.casilla_baseAzul.Size = new System.Drawing.Size(58, 327);
+            this.casilla_baseAzul.Size = new System.Drawing.Size(87, 502);
             this.casilla_baseAzul.TabIndex = 2;
             this.casilla_baseAzul.Paint += new System.Windows.Forms.PaintEventHandler(this.casilla_baseAzul_Paint);
             // 
@@ -2003,9 +2127,10 @@
             this.casillasSuperiores.Controls.Add(this.casillaSuperior2);
             this.casillasSuperiores.Controls.Add(this.casillaSuperior1);
             this.casillasSuperiores.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillasSuperiores.Location = new System.Drawing.Point(308, 0);
+            this.casillasSuperiores.Location = new System.Drawing.Point(462, 0);
+            this.casillasSuperiores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillasSuperiores.Name = "casillasSuperiores";
-            this.casillasSuperiores.Size = new System.Drawing.Size(252, 327);
+            this.casillasSuperiores.Size = new System.Drawing.Size(378, 502);
             this.casillasSuperiores.TabIndex = 1;
             // 
             // casillaSuperior3
@@ -2019,63 +2144,70 @@
             this.casillaSuperior3.Controls.Add(this.casilla32);
             this.casillaSuperior3.Controls.Add(this.casilla33);
             this.casillaSuperior3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillaSuperior3.Location = new System.Drawing.Point(171, 0);
+            this.casillaSuperior3.Location = new System.Drawing.Point(254, 0);
+            this.casillaSuperior3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaSuperior3.Name = "casillaSuperior3";
-            this.casillaSuperior3.Size = new System.Drawing.Size(80, 327);
+            this.casillaSuperior3.Size = new System.Drawing.Size(119, 502);
             this.casillaSuperior3.TabIndex = 3;
             // 
             // casilla27
             // 
             this.casilla27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla27.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla27.Location = new System.Drawing.Point(0, 192);
+            this.casilla27.Location = new System.Drawing.Point(0, 288);
+            this.casilla27.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla27.Name = "casilla27";
-            this.casilla27.Size = new System.Drawing.Size(78, 32);
+            this.casilla27.Size = new System.Drawing.Size(117, 48);
             this.casilla27.TabIndex = 6;
             // 
             // casilla28
             // 
             this.casilla28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla28.Location = new System.Drawing.Point(0, 160);
+            this.casilla28.Location = new System.Drawing.Point(0, 240);
+            this.casilla28.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla28.Name = "casilla28";
-            this.casilla28.Size = new System.Drawing.Size(78, 32);
+            this.casilla28.Size = new System.Drawing.Size(117, 48);
             this.casilla28.TabIndex = 5;
             // 
             // casilla29
             // 
             this.casilla29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla29.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla29.Location = new System.Drawing.Point(0, 128);
+            this.casilla29.Location = new System.Drawing.Point(0, 192);
+            this.casilla29.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla29.Name = "casilla29";
-            this.casilla29.Size = new System.Drawing.Size(78, 32);
+            this.casilla29.Size = new System.Drawing.Size(117, 48);
             this.casilla29.TabIndex = 4;
             // 
             // casilla30
             // 
             this.casilla30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla30.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla30.Location = new System.Drawing.Point(0, 96);
+            this.casilla30.Location = new System.Drawing.Point(0, 144);
+            this.casilla30.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla30.Name = "casilla30";
-            this.casilla30.Size = new System.Drawing.Size(78, 32);
+            this.casilla30.Size = new System.Drawing.Size(117, 48);
             this.casilla30.TabIndex = 3;
             // 
             // casilla31
             // 
             this.casilla31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla31.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla31.Location = new System.Drawing.Point(0, 64);
+            this.casilla31.Location = new System.Drawing.Point(0, 96);
+            this.casilla31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla31.Name = "casilla31";
-            this.casilla31.Size = new System.Drawing.Size(78, 32);
+            this.casilla31.Size = new System.Drawing.Size(117, 48);
             this.casilla31.TabIndex = 2;
             // 
             // casilla32
             // 
             this.casilla32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla32.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla32.Location = new System.Drawing.Point(0, 32);
+            this.casilla32.Location = new System.Drawing.Point(0, 48);
+            this.casilla32.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla32.Name = "casilla32";
-            this.casilla32.Size = new System.Drawing.Size(78, 32);
+            this.casilla32.Size = new System.Drawing.Size(117, 48);
             this.casilla32.TabIndex = 1;
             // 
             // casilla33
@@ -2083,8 +2215,9 @@
             this.casilla33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla33.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla33.Location = new System.Drawing.Point(0, 0);
+            this.casilla33.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla33.Name = "casilla33";
-            this.casilla33.Size = new System.Drawing.Size(78, 32);
+            this.casilla33.Size = new System.Drawing.Size(117, 48);
             this.casilla33.TabIndex = 0;
             // 
             // casillaSuperior2
@@ -2098,9 +2231,10 @@
             this.casillaSuperior2.Controls.Add(this.casilla_mr1);
             this.casillaSuperior2.Controls.Add(this.casilla34);
             this.casillaSuperior2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.casillaSuperior2.Location = new System.Drawing.Point(81, 0);
+            this.casillaSuperior2.Location = new System.Drawing.Point(120, 0);
+            this.casillaSuperior2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaSuperior2.Name = "casillaSuperior2";
-            this.casillaSuperior2.Size = new System.Drawing.Size(90, 327);
+            this.casillaSuperior2.Size = new System.Drawing.Size(134, 502);
             this.casillaSuperior2.TabIndex = 2;
             // 
             // casilla_mr6
@@ -2108,9 +2242,10 @@
             this.casilla_mr6.BackColor = System.Drawing.Color.Red;
             this.casilla_mr6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr6.Location = new System.Drawing.Point(0, 192);
+            this.casilla_mr6.Location = new System.Drawing.Point(0, 288);
+            this.casilla_mr6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr6.Name = "casilla_mr6";
-            this.casilla_mr6.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr6.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr6.TabIndex = 6;
             // 
             // casilla_mr5
@@ -2118,9 +2253,10 @@
             this.casilla_mr5.BackColor = System.Drawing.Color.Red;
             this.casilla_mr5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr5.Location = new System.Drawing.Point(0, 160);
+            this.casilla_mr5.Location = new System.Drawing.Point(0, 240);
+            this.casilla_mr5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr5.Name = "casilla_mr5";
-            this.casilla_mr5.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr5.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr5.TabIndex = 5;
             // 
             // casilla_mr4
@@ -2128,9 +2264,10 @@
             this.casilla_mr4.BackColor = System.Drawing.Color.Red;
             this.casilla_mr4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr4.Location = new System.Drawing.Point(0, 128);
+            this.casilla_mr4.Location = new System.Drawing.Point(0, 192);
+            this.casilla_mr4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr4.Name = "casilla_mr4";
-            this.casilla_mr4.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr4.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr4.TabIndex = 4;
             // 
             // casilla_mr3
@@ -2138,9 +2275,10 @@
             this.casilla_mr3.BackColor = System.Drawing.Color.Red;
             this.casilla_mr3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr3.Location = new System.Drawing.Point(0, 96);
+            this.casilla_mr3.Location = new System.Drawing.Point(0, 144);
+            this.casilla_mr3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr3.Name = "casilla_mr3";
-            this.casilla_mr3.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr3.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr3.TabIndex = 3;
             // 
             // casilla_mr2
@@ -2148,9 +2286,10 @@
             this.casilla_mr2.BackColor = System.Drawing.Color.Red;
             this.casilla_mr2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr2.Location = new System.Drawing.Point(0, 64);
+            this.casilla_mr2.Location = new System.Drawing.Point(0, 96);
+            this.casilla_mr2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr2.Name = "casilla_mr2";
-            this.casilla_mr2.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr2.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr2.TabIndex = 2;
             // 
             // casilla_mr1
@@ -2158,9 +2297,10 @@
             this.casilla_mr1.BackColor = System.Drawing.Color.Red;
             this.casilla_mr1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla_mr1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla_mr1.Location = new System.Drawing.Point(0, 32);
+            this.casilla_mr1.Location = new System.Drawing.Point(0, 48);
+            this.casilla_mr1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_mr1.Name = "casilla_mr1";
-            this.casilla_mr1.Size = new System.Drawing.Size(88, 32);
+            this.casilla_mr1.Size = new System.Drawing.Size(132, 48);
             this.casilla_mr1.TabIndex = 1;
             // 
             // casilla34
@@ -2168,8 +2308,9 @@
             this.casilla34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla34.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla34.Location = new System.Drawing.Point(0, 0);
+            this.casilla34.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla34.Name = "casilla34";
-            this.casilla34.Size = new System.Drawing.Size(88, 32);
+            this.casilla34.Size = new System.Drawing.Size(132, 48);
             this.casilla34.TabIndex = 0;
             // 
             // casillaSuperior1
@@ -2184,26 +2325,29 @@
             this.casillaSuperior1.Controls.Add(this.casilla35);
             this.casillaSuperior1.Dock = System.Windows.Forms.DockStyle.Left;
             this.casillaSuperior1.Location = new System.Drawing.Point(0, 0);
+            this.casillaSuperior1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casillaSuperior1.Name = "casillaSuperior1";
-            this.casillaSuperior1.Size = new System.Drawing.Size(81, 327);
+            this.casillaSuperior1.Size = new System.Drawing.Size(120, 502);
             this.casillaSuperior1.TabIndex = 1;
             // 
             // casilla41
             // 
             this.casilla41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla41.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla41.Location = new System.Drawing.Point(0, 192);
+            this.casilla41.Location = new System.Drawing.Point(0, 288);
+            this.casilla41.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla41.Name = "casilla41";
-            this.casilla41.Size = new System.Drawing.Size(79, 32);
+            this.casilla41.Size = new System.Drawing.Size(118, 48);
             this.casilla41.TabIndex = 6;
             // 
             // casilla40
             // 
             this.casilla40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla40.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla40.Location = new System.Drawing.Point(0, 160);
+            this.casilla40.Location = new System.Drawing.Point(0, 240);
+            this.casilla40.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla40.Name = "casilla40";
-            this.casilla40.Size = new System.Drawing.Size(79, 32);
+            this.casilla40.Size = new System.Drawing.Size(118, 48);
             this.casilla40.TabIndex = 5;
             // 
             // casilla39
@@ -2211,36 +2355,40 @@
             this.casilla39.BackColor = System.Drawing.Color.Red;
             this.casilla39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla39.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla39.Location = new System.Drawing.Point(0, 128);
+            this.casilla39.Location = new System.Drawing.Point(0, 192);
+            this.casilla39.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla39.Name = "casilla39";
-            this.casilla39.Size = new System.Drawing.Size(79, 32);
+            this.casilla39.Size = new System.Drawing.Size(118, 48);
             this.casilla39.TabIndex = 4;
             // 
             // casilla38
             // 
             this.casilla38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla38.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla38.Location = new System.Drawing.Point(0, 96);
+            this.casilla38.Location = new System.Drawing.Point(0, 144);
+            this.casilla38.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla38.Name = "casilla38";
-            this.casilla38.Size = new System.Drawing.Size(79, 32);
+            this.casilla38.Size = new System.Drawing.Size(118, 48);
             this.casilla38.TabIndex = 3;
             // 
             // casilla37
             // 
             this.casilla37.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla37.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla37.Location = new System.Drawing.Point(0, 64);
+            this.casilla37.Location = new System.Drawing.Point(0, 96);
+            this.casilla37.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla37.Name = "casilla37";
-            this.casilla37.Size = new System.Drawing.Size(79, 32);
+            this.casilla37.Size = new System.Drawing.Size(118, 48);
             this.casilla37.TabIndex = 2;
             // 
             // casilla36
             // 
             this.casilla36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla36.Dock = System.Windows.Forms.DockStyle.Top;
-            this.casilla36.Location = new System.Drawing.Point(0, 32);
+            this.casilla36.Location = new System.Drawing.Point(0, 48);
+            this.casilla36.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla36.Name = "casilla36";
-            this.casilla36.Size = new System.Drawing.Size(79, 32);
+            this.casilla36.Size = new System.Drawing.Size(118, 48);
             this.casilla36.TabIndex = 1;
             // 
             // casilla35
@@ -2248,8 +2396,9 @@
             this.casilla35.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.casilla35.Dock = System.Windows.Forms.DockStyle.Top;
             this.casilla35.Location = new System.Drawing.Point(0, 0);
+            this.casilla35.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla35.Name = "casilla35";
-            this.casilla35.Size = new System.Drawing.Size(79, 32);
+            this.casilla35.Size = new System.Drawing.Size(118, 48);
             this.casilla35.TabIndex = 0;
             // 
             // casilla_baseRoja
@@ -2257,17 +2406,19 @@
             this.casilla_baseRoja.BackColor = System.Drawing.Color.Red;
             this.casilla_baseRoja.Dock = System.Windows.Forms.DockStyle.Left;
             this.casilla_baseRoja.Location = new System.Drawing.Point(0, 0);
+            this.casilla_baseRoja.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.casilla_baseRoja.Name = "casilla_baseRoja";
-            this.casilla_baseRoja.Size = new System.Drawing.Size(308, 327);
+            this.casilla_baseRoja.Size = new System.Drawing.Size(462, 502);
             this.casilla_baseRoja.TabIndex = 0;
             this.casilla_baseRoja.Paint += new System.Windows.Forms.PaintEventHandler(this.casilla_baseRoja_Paint);
             // 
             // margenIzquierdo
             // 
             this.margenIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.margenIzquierdo.Location = new System.Drawing.Point(0, 37);
+            this.margenIzquierdo.Location = new System.Drawing.Point(0, 58);
+            this.margenIzquierdo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.margenIzquierdo.Name = "margenIzquierdo";
-            this.margenIzquierdo.Size = new System.Drawing.Size(59, 690);
+            this.margenIzquierdo.Size = new System.Drawing.Size(89, 1061);
             this.margenIzquierdo.TabIndex = 1;
             // 
             // margenSuperior
@@ -2275,8 +2426,9 @@
             this.margenSuperior.Controls.Add(this.labelInvitar);
             this.margenSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.margenSuperior.Location = new System.Drawing.Point(0, 0);
+            this.margenSuperior.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.margenSuperior.Name = "margenSuperior";
-            this.margenSuperior.Size = new System.Drawing.Size(1226, 37);
+            this.margenSuperior.Size = new System.Drawing.Size(1839, 58);
             this.margenSuperior.TabIndex = 0;
             // 
             // labelInvitar
@@ -2285,9 +2437,8 @@
             this.labelInvitar.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelInvitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInvitar.Location = new System.Drawing.Point(0, 0);
-            this.labelInvitar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelInvitar.Name = "labelInvitar";
-            this.labelInvitar.Size = new System.Drawing.Size(404, 26);
+            this.labelInvitar.Size = new System.Drawing.Size(587, 38);
             this.labelInvitar.TabIndex = 1;
             this.labelInvitar.Text = "Seleccione jugadores para invitarles:";
             this.labelInvitar.Visible = false;
@@ -2299,12 +2450,14 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 727);
+            this.panel3.Size = new System.Drawing.Size(300, 1119);
             this.panel3.TabIndex = 0;
             // 
             // ChatReceiverBox
             // 
+            this.ChatReceiverBox.Controls.Add(this.buttonIniciarPartida);
             this.ChatReceiverBox.Controls.Add(this.label1);
             this.ChatReceiverBox.Controls.Add(this.ConnectedPlayersTextBox);
             this.ChatReceiverBox.Controls.Add(this.btt_pos_send);
@@ -2313,42 +2466,53 @@
             this.ChatReceiverBox.Controls.Add(this.chatViewerTextBox);
             this.ChatReceiverBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatReceiverBox.Location = new System.Drawing.Point(0, 0);
+            this.ChatReceiverBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ChatReceiverBox.Name = "ChatReceiverBox";
-            this.ChatReceiverBox.Size = new System.Drawing.Size(200, 727);
+            this.ChatReceiverBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ChatReceiverBox.Size = new System.Drawing.Size(300, 1119);
             this.ChatReceiverBox.TabIndex = 1;
             this.ChatReceiverBox.TabStop = false;
             this.ChatReceiverBox.Text = "Chat";
             this.ChatReceiverBox.Visible = false;
             // 
+            // buttonIniciarPartida
+            // 
+            this.buttonIniciarPartida.Location = new System.Drawing.Point(58, 1026);
+            this.buttonIniciarPartida.Name = "buttonIniciarPartida";
+            this.buttonIniciarPartida.Size = new System.Drawing.Size(168, 77);
+            this.buttonIniciarPartida.TabIndex = 3;
+            this.buttonIniciarPartida.Text = "Iniciar partida";
+            this.buttonIniciarPartida.UseVisualStyleBackColor = true;
+            this.buttonIniciarPartida.Click += new System.EventHandler(this.buttonIniciarPartida_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label1.Location = new System.Drawing.Point(5, 566);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(8, 871);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 13);
+            this.label1.Size = new System.Drawing.Size(146, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "Connected Players:";
             // 
             // ConnectedPlayersTextBox
             // 
-            this.ConnectedPlayersTextBox.Location = new System.Drawing.Point(6, 582);
-            this.ConnectedPlayersTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConnectedPlayersTextBox.Location = new System.Drawing.Point(9, 895);
+            this.ConnectedPlayersTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ConnectedPlayersTextBox.Multiline = true;
             this.ConnectedPlayersTextBox.Name = "ConnectedPlayersTextBox";
             this.ConnectedPlayersTextBox.ReadOnly = true;
-            this.ConnectedPlayersTextBox.Size = new System.Drawing.Size(190, 84);
+            this.ConnectedPlayersTextBox.Size = new System.Drawing.Size(283, 126);
             this.ConnectedPlayersTextBox.TabIndex = 3;
             // 
             // btt_pos_send
             // 
             this.btt_pos_send.BackColor = System.Drawing.Color.Black;
             this.btt_pos_send.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btt_pos_send.Location = new System.Drawing.Point(3, 535);
-            this.btt_pos_send.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btt_pos_send.Location = new System.Drawing.Point(4, 816);
+            this.btt_pos_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btt_pos_send.Name = "btt_pos_send";
-            this.btt_pos_send.Size = new System.Drawing.Size(194, 19);
+            this.btt_pos_send.Size = new System.Drawing.Size(292, 29);
             this.btt_pos_send.TabIndex = 27;
             this.btt_pos_send.Text = "Simulate position reception";
             this.btt_pos_send.UseVisualStyleBackColor = false;
@@ -2357,10 +2521,11 @@
             // pos_rec
             // 
             this.pos_rec.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pos_rec.Location = new System.Drawing.Point(3, 477);
+            this.pos_rec.Location = new System.Drawing.Point(4, 730);
+            this.pos_rec.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pos_rec.Multiline = true;
             this.pos_rec.Name = "pos_rec";
-            this.pos_rec.Size = new System.Drawing.Size(194, 58);
+            this.pos_rec.Size = new System.Drawing.Size(292, 86);
             this.pos_rec.TabIndex = 26;
             this.pos_rec.Text = "57/3/11/64/22/1/46/66/16/33/61/24/48/43/19/61";
             // 
@@ -2369,9 +2534,11 @@
             this.chatSenderBox.Controls.Add(this.messageSenderButton);
             this.chatSenderBox.Controls.Add(this.chatInputTextBox);
             this.chatSenderBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chatSenderBox.Location = new System.Drawing.Point(3, 306);
+            this.chatSenderBox.Location = new System.Drawing.Point(4, 468);
+            this.chatSenderBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chatSenderBox.Name = "chatSenderBox";
-            this.chatSenderBox.Size = new System.Drawing.Size(194, 171);
+            this.chatSenderBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chatSenderBox.Size = new System.Drawing.Size(292, 262);
             this.chatSenderBox.TabIndex = 25;
             this.chatSenderBox.TabStop = false;
             this.chatSenderBox.Text = "Send Message Menu";
@@ -2380,9 +2547,10 @@
             // 
             this.messageSenderButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.messageSenderButton.ForeColor = System.Drawing.Color.Black;
-            this.messageSenderButton.Location = new System.Drawing.Point(3, 130);
+            this.messageSenderButton.Location = new System.Drawing.Point(4, 197);
+            this.messageSenderButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.messageSenderButton.Name = "messageSenderButton";
-            this.messageSenderButton.Size = new System.Drawing.Size(188, 38);
+            this.messageSenderButton.Size = new System.Drawing.Size(284, 60);
             this.messageSenderButton.TabIndex = 2;
             this.messageSenderButton.Text = "Send Message";
             this.messageSenderButton.UseVisualStyleBackColor = true;
@@ -2391,10 +2559,11 @@
             // chatInputTextBox
             // 
             this.chatInputTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chatInputTextBox.Location = new System.Drawing.Point(3, 16);
+            this.chatInputTextBox.Location = new System.Drawing.Point(4, 24);
+            this.chatInputTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chatInputTextBox.Multiline = true;
             this.chatInputTextBox.Name = "chatInputTextBox";
-            this.chatInputTextBox.Size = new System.Drawing.Size(188, 114);
+            this.chatInputTextBox.Size = new System.Drawing.Size(284, 173);
             this.chatInputTextBox.TabIndex = 1;
             this.chatInputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chatInputTextBox_KeyDown);
             // 
@@ -2402,19 +2571,21 @@
             // 
             this.chatViewerTextBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.chatViewerTextBox.FormattingEnabled = true;
-            this.chatViewerTextBox.Location = new System.Drawing.Point(3, 16);
-            this.chatViewerTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chatViewerTextBox.ItemHeight = 20;
+            this.chatViewerTextBox.Location = new System.Drawing.Point(4, 24);
+            this.chatViewerTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chatViewerTextBox.Name = "chatViewerTextBox";
-            this.chatViewerTextBox.Size = new System.Drawing.Size(194, 290);
+            this.chatViewerTextBox.Size = new System.Drawing.Size(292, 444);
             this.chatViewerTextBox.TabIndex = 24;
             // 
             // FormPartida
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1426, 857);
+            this.ClientSize = new System.Drawing.Size(2139, 1319);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelStatus);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormPartida";
             this.Text = "T05_ProyectoSO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -2423,15 +2594,15 @@
             this.panel_Estadisticas.ResumeLayout(false);
             this.groupBox_P4.ResumeLayout(false);
             this.turno_P4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P4)).EndInit();
             this.groupBox_P3.ResumeLayout(false);
             this.turno_P3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P3)).EndInit();
             this.groupBox_P2.ResumeLayout(false);
             this.turno_P2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dadoP2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.color_P2)).EndInit();
             this.groupBox_P1.ResumeLayout(false);
             this.turno_P1.ResumeLayout(false);
@@ -2500,17 +2671,17 @@
         private System.Windows.Forms.PictureBox dadoP1;
         private System.Windows.Forms.GroupBox groupBox_P2;
         private System.Windows.Forms.Panel turno_P2;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox dadoP2;
         private System.Windows.Forms.PictureBox color_P2;
         private System.Windows.Forms.Label labelName_P2;
         private System.Windows.Forms.GroupBox groupBox_P3;
         private System.Windows.Forms.Panel turno_P3;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox dadoP3;
         private System.Windows.Forms.PictureBox color_P3;
         private System.Windows.Forms.Label labelName_P3;
         private System.Windows.Forms.GroupBox groupBox_P4;
         private System.Windows.Forms.Panel turno_P4;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox dadoP4;
         private System.Windows.Forms.PictureBox color_P4;
         private System.Windows.Forms.Label labelName_P4;
         private System.Windows.Forms.Panel panel2;
@@ -2690,6 +2861,7 @@
         private System.Windows.Forms.Label labelInvitar;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreJugador;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnAccion;
+        private System.Windows.Forms.Button buttonIniciarPartida;
     }
 }
 
