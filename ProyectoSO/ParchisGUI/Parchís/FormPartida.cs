@@ -790,7 +790,10 @@ namespace Parchís
 
         }
 
+
         // Método que dibuja dentro del panel, llamado por el evento Paint
+
+
         private void Panel_Paint(object sender, PaintEventArgs e)
         {
             if (current_Numeric_Pos != 0)
@@ -1379,15 +1382,10 @@ namespace Parchís
 
         private void pasarelaPonPlayersPanel(string mensajeRecivido)
         {
-            
-
-
-
             string[] partes = mensajeRecivido.Split('-');
             labelName_P1.Text = partes[0];
 
-
-            if (localUsername != partes[0]) //SI NO ERES EL HOST
+            if (localUsername != partes[0]) // Si no eres el host
             {
                 this.Invoke((MethodInvoker)(() =>
                 {
@@ -1400,58 +1398,42 @@ namespace Parchís
                     panel_Estadisticas.Visible = true;
                 }));
             }
-            else //SI ERES EL HOST
+            else // Si eres el host
             {
                 enSalaEspera = partes;
                 actualizarTablaInvitaciones(partes);
-            }
-            
-            
 
+                // Mostrar el botón de iniciar partida si hay al menos dos jugadores
+                if (partes.Length >= 2)
+                {
+                    buttonIniciarPartida.Visible = true;
+                }
+                else
+                {
+                    buttonIniciarPartida.Visible = false;
+                }
+            }
+
+            // Actualizar nombres de jugadores según la cantidad recibida
             if (partes.Length > 1)
             {
                 labelName_P2.Text = partes[1];
+                UsernamePlayer1 = partes[0];
+                UsernamePlayer2 = partes[1];
             }
             if (partes.Length > 2)
             {
                 labelName_P3.Text = partes[2];
+                UsernamePlayer3 = partes[2];
+
             }
             if (partes.Length > 3)
             {
                 labelName_P4.Text = partes[3];
-                UsernamePlayer1 = partes[0];
-                UsernamePlayer2 = partes[1];
-                UsernamePlayer3 = partes[2];
                 UsernamePlayer4 = partes[3];
-
-
-
-                if (localUsername == partes[0]) //PARTIDA LLENA, OCULTAMOS MENÚ INVITACIÓN
-                {
-                    SeleccionarOpcionPanel.Visible = false;
-                    panel_infoSeleccionar.Visible = false;
-                    panel_invitarJugadores.Visible = false;
-                    labelInvitar.Visible = false;
-                    dataGridInvitar.Visible = false;
-
-                    panelStatus.Visible = true;
-                    panel_Estadisticas.Visible = true;
-
-                    if (game_started == false)
-                    {
-                        MessageBox.Show(localUsername+"REQUESTED 230");
-                        string mensaje = "230/" + currentGameID;
-                        byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                        server.Send(msg);
-                        game_started = true;
-                    }
-                    
-
-                }
-                
-
             }
         }
+
 
         private void actualizarTablaInvitaciones(string[] partes)
         {
@@ -1809,10 +1791,86 @@ namespace Parchís
                 string mensaje = "300/" + currentGameID+ "-1-" + numeroAleatorio;
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
+                turnoJugador(2);
 
 
             }
         }
+
+        private void dadoP2_Click(object sender, EventArgs e)
+        {
+            if (localUsername == UsernamePlayer2)
+            {
+                turno_P2.Visible = false;
+                groupBox_P2.BackColor = Color.FromArgb(51, 153, 255); // Azul similar al "ActiveCaption"
+                Random random = new Random();
+
+                // Generar un número aleatorio entre 1 y 6 (inclusive)
+                int numeroAleatorio = random.Next(1, 7);
+
+                string mensaje = "300/" + currentGameID + "-2-" + numeroAleatorio;
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                turnoJugador(3);
+
+            }
+        }
+
+        private void dadoP3_Click(object sender, EventArgs e)
+        {
+            if (localUsername == UsernamePlayer3)
+            {
+                turno_P3.Visible = false;
+                groupBox_P3.BackColor = Color.FromArgb(51, 153, 255); // Azul similar al "ActiveCaption"
+                Random random = new Random();
+
+                // Generar un número aleatorio entre 1 y 6 (inclusive)
+                int numeroAleatorio = random.Next(1, 7);
+
+                string mensaje = "300/" + currentGameID + "-3-" + numeroAleatorio;
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                turnoJugador(4);
+
+            }
+        }
+
+        private void dadoP4_Click(object sender, EventArgs e)
+        {
+            if (localUsername == UsernamePlayer4)
+            {
+                turno_P4.Visible = false;
+                groupBox_P4.BackColor = Color.FromArgb(51, 153, 255); // Azul similar al "ActiveCaption"
+                Random random = new Random();
+
+                // Generar un número aleatorio entre 1 y 6 (inclusive)
+                int numeroAleatorio = random.Next(1, 7);
+
+                string mensaje = "300/" + currentGameID + "-4-" + numeroAleatorio;
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                turnoJugador(1);
+
+            }
+        }
+
+        private void buttonIniciarPartida_Click(object sender, EventArgs e)
+        {
+            if (!game_started)
+            {
+                string mensaje = "230/" + currentGameID;
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                game_started = true;
+                labelInvitar.Visible = false;
+                dataGridInvitar.Visible = false;
+                MessageBox.Show("Partida iniciada por " + localUsername);
+            }
+
+
+        }
+      
+      
     }
 
 }
