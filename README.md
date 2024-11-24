@@ -26,4 +26,5 @@ URL: https://youtu.be/cM8sgKqnaMo
 "Version v3.16-dev verificada por Alex Fernandez Ortiz" 
 "Version v3.16-dev comunicada por Joel Rojas Llaurado"
 URL:  https://www.youtube.com/watch?v=CPoyoYw1KYE
-"Versión v5.1-dev generada por Ignasi Navas y Judit Martinez"
+"Version v5.1-dev generada por Ignasi Navas y Judit Martinez"
+"Version v5.1-dev verificada por Judit Martinez"
