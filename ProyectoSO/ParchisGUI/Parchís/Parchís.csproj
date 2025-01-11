@@ -58,6 +58,12 @@
     <Compile Include="FormPartida.Designer.cs">
       <DependentUpon>FormPartida.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRango.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRango.Designer.cs">
+      <DependentUpon>FormRango.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormInvitacionRecibida.resx">
@@ -65,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPartida.resx">
       <DependentUpon>FormPartida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRango.resx">
+      <DependentUpon>FormRango.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,6 +121,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cubo-azul2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\portada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eetac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upc.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

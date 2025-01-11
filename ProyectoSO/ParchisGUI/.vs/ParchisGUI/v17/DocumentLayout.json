@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\v_f2\\v_f1\\ProyectoSO\\ParchisGUI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}|Parch\u00EDs\\Parch\u00EDs.csproj|C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\parch\u00EDs\\formpartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}|Parch\u00EDs\\Parch\u00EDs.csproj|c:\\users\\usuario\\onedrive\\escritorio\\v_f2\\v_f1\\proyectoso\\parchisgui\\parch\u00EDs\\formpartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}|Parch\u00EDs\\Parch\u00EDs.csproj|solutionrelative:parch\u00EDs\\formpartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}|Parch\u00EDs\\Parch\u00EDs.csproj|c:\\users\\usuario\\onedrive\\escritorio\\project_so_t5\\project\\t05_proyectoso\\proyectoso\\parchisgui\\parch\u00EDs\\formpartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3FFA2CD4-2A53-4F80-B22E-5B8830BBD10B}|Parch\u00EDs\\Parch\u00EDs.csproj|solutionrelative:parch\u00EDs\\formpartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormPartida.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs",
-              "RelativeDocumentMoniker": "Parch\u00EDs\\FormPartida.cs",
-              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Parch\u00EDs\\FormPartida.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T08:15:47.723Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "FormPartida.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\v_f2\\v_f1\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs",
               "RelativeDocumentMoniker": "Parch\u00EDs\\FormPartida.cs",
-              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\PROJECT_SO_T5\\PROJECT\\T05_ProyectoSO\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\v_f2\\v_f1\\ProyectoSO\\ParchisGUI\\Parch\u00EDs\\FormPartida.cs",
               "RelativeToolTip": "Parch\u00EDs\\FormPartida.cs",
-              "ViewState": "AgIAABUHAAAAAAAAAAAAwE0HAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T08:15:48.064Z",
+              "WhenOpened": "2025-01-11T15:47:22.833Z",
               "EditorCaption": ""
             }
           ]

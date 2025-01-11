@@ -15,7 +15,9 @@ CREATE TABLE Game (
     Game_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     GameStatus INT NOT NULL,
     PosicionFichas VARCHAR(255) NOT NULL,
-	GameAdmin INT NOT NULL
+	GameAdmin INT NOT NULL,
+    GameTime DATETIME,
+    GameResult VARCHAR(255)
 );
 
 CREATE TABLE Game_Members (

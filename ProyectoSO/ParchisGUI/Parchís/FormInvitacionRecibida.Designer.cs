@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvitacionRecibida));
             this.labelPregunta = new System.Windows.Forms.Label();
             this.bttn_aceptarInvitacion = new System.Windows.Forms.Button();
             this.bttn_rechazarInvitacion = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             this.labelPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPregunta.Location = new System.Drawing.Point(0, 0);
             this.labelPregunta.Name = "labelPregunta";
-            this.labelPregunta.Size = new System.Drawing.Size(422, 25);
+            this.labelPregunta.Size = new System.Drawing.Size(349, 20);
             this.labelPregunta.TabIndex = 0;
             this.labelPregunta.Text = "Has recibido una invitación para jugar con:";
             // 
@@ -72,6 +73,7 @@
             this.Controls.Add(this.bttn_rechazarInvitacion);
             this.Controls.Add(this.bttn_aceptarInvitacion);
             this.Controls.Add(this.labelPregunta);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InvitacionRecibida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invitación para Jugar!";
